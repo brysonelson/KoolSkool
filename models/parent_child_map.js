@@ -58,12 +58,12 @@ module.exports = function(sequelize, DataTypes) {
     models.Parents.belongsToMany(models.Students, {
       as: "Parents",
       through: "parent_child_map",
-      foreignKey: "student_id"
+      foreignKey: "parent_id"
     });
     models.Students.belongsToMany(models.Parents, {
       as: "Children",
       through: "parent_child_map",
-      foreignKey: "parent_id"
+      foreignKey: "student_id"
     });
   };
   return ParentChild;
