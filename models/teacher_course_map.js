@@ -1,17 +1,31 @@
 
 module.exports = function(sequelize, DataTypes) {
   var TeacherCourse = sequelize.define(
-    "teacher_course_maps",
+    "teacher_course_map",
     {
+      /*************************************************************************/
+      /* Teacher Type Description Definition and Usage Example:
+      /  Required, length no greater than 10 chars
+      /  Example:  Teacher, TA, Volunteer
+      /*************************************************************************/
       teacher_type_descr: {
         type: DataTypes.STRING,
-        allowNull: false
-      }
-    },
-    {
+        allowNull: false,
+        validate: {
+          len: [1, 15]
+        }
+      },
+      /*************************************************************************/
+      /* Status Definition and Usage Example:
+      /  Required, length no greater than 10 chars
+      /  Example:  Not Started, Dropped, Active, Complete 
+      /*************************************************************************/
       status: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false,
+        validate: {
+          len: [1, 15]
+        }
       }
     },
     {
@@ -44,12 +58,12 @@ module.exports = function(sequelize, DataTypes) {
   TeacherCourse.associate = function(models) {
     models.Personnel.belongsToMany(models.Course, {
       as: "Teachers",
-      through: "teacher_course_maps",
+      through: "teacher_course_map",
       foreignKey: "personnel_id"
     });
     models.Course.belongsToMany(models.Personnel, {
       as: "Course_Taught",
-      through: "teacher_course_maps",
+      through: "teacher_course_map",
       foreignKey: "course_id"
     });
   };

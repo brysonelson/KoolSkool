@@ -92,14 +92,6 @@ module.exports = function(sequelize, DataTypes) {
       onDelete: "cascade",
       onUpdate: "cascade"
     });
-
-    Attendence.belongsTo(models.Classrooms, {
-      foreignKey: {
-        allowNull: false
-      },
-      onDelete: "cascade",
-      onUpdate: "cascade"
-    });
   };
 
   return Attendence;
