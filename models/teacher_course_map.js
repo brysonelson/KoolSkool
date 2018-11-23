@@ -1,7 +1,13 @@
 
 module.exports = function(sequelize, DataTypes) {
   var TeacherCourse = sequelize.define(
-    "teacher_course_map",
+    "teacher_course_maps",
+    {
+      teacher_type_descr: {
+        type: DataTypes.STRING,
+        allowNull: false
+      }
+    },
     {
       status: {
         type: DataTypes.STRING,
@@ -38,13 +44,13 @@ module.exports = function(sequelize, DataTypes) {
   TeacherCourse.associate = function(models) {
     models.Personnel.belongsToMany(models.Course, {
       as: "Teachers",
-      through: "teacher_course_map",
-      foreignKey: "course_id"
+      through: "teacher_course_maps",
+      foreignKey: "personnel_id"
     });
     models.Course.belongsToMany(models.Personnel, {
       as: "Course_Taught",
-      through: "teacher_course_map",
-      foreignKey: "personnel_id"
+      through: "teacher_course_maps",
+      foreignKey: "course_id"
     });
   };
   return TeacherCourse;
