@@ -3,9 +3,17 @@ module.exports = function(sequelize, DataTypes) {
   var StudentCourse = sequelize.define(
     "student_course_map",
     {
+      /*************************************************************************/
+      /* Status Definition and Usage Example:
+      /  Required, length no greater than 10 chars
+      /  Example:  Not Started, Dropped, Suspended, Moved, Active, Complete 
+      /*************************************************************************/
       status: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false,
+        validate: {
+          len: [1, 15]
+        }
       }
     },
     {
