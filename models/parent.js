@@ -73,7 +73,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       /*************************************************************************/
       /* City Definition and Usage Example:
-      /  Not required but if used length no greater than 30 chars
+      /  Not required but if used length no greater than 50 chars
       /  The field is not required because we anticipate there may be some 
       /  situations where the address isn't available at the time of data entry. 
       /*************************************************************************/
@@ -81,7 +81,7 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: true,
         validate: {
-          len: [1, 30]
+          len: [1, 50]
         }
       },
       /*************************************************************************/
@@ -169,7 +169,7 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: true,
         validate: {
           isEmail: true,
-          len: [1]
+          len: [1, 50]
         }
       },
       /*************************************************************************/

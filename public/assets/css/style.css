@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Abel|Lato|Oswald|Raleway|Roboto');
-
+@import url('https://fonts.googleapis.com/css?family=Abel|Barlow|Barlow+Condensed|Barlow+Semi+Condensed|Lato|Roboto|Roboto+Condensed');
 *{
-    font-family: 'abel', sans-serif;
+    font-family: 'Barlow', sans-serif;
     font-size: 18px;
     color: #071629;
 }
@@ -51,5 +50,19 @@ html {
     border-top-style: solid;
     border-top-width: 0.5px;
   }
+
+  .card-header {
+    font-family: 'Barlow+Semi+Condensed', sans-serif;
+  }
   
+  .form-label {
+    font-size: .90rem;
+    margin-bottom: .05rem;
+}
+
+.feedback {
+    font-family: 'Barlow+Condensed', sans-serif;
+    font-size: .80rem;
+    margin-bottom: .05rem;
+}
   
