@@ -1,0 +1,56 @@
+Setting up local development environment for the first time:
+
+Run the file `schema.sql`.  This will create a development local version of koolskooldb and it will create a testdb  also.
+
+The starter file we were given assumes there is a 'Development", a "Test" and a "Production" environment.
+
+On row 32 of server.js, there is an 'if' statement that will force syncOptions to true which drops and creates the database again when process.env.NODE_ENV === 'test'.
+
+So, for the first go-around, config.js will look like this:
+<code>
+require("dotenv").config();
+module.exports = {
+  development: {
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    host: process.env.DB_HOST,
+    dialect: "mysql"
+  },
+  test: {
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    host: "127.0.0.1",
+    dialect: "mysql"
+  },
+  production: {
+    useEnvVariable: "JAWSDB_URL",
+    dialect: "mysql"
+  }
+};
+</code>
+
+The dotenv will look like this:
+<code>
+# Database Connection
+  DB_HOST=127.0.0.1
+  DB_PORT=3306
+  DB_USERNAME=root
+  DB_PASSWORD=YourPasswordHere
+  DB_DATABASE=koolskool_db
+  NODE_ENV=test
+</code>
+
+Then run `node server.js` on the command line.
+
+Populate the table with the seeds files.
+
+Change row 13 of the config.js file to this:  `database: "koolskool_testdb",`
+
+Change row 7 of the .env file to this:  `NODE_ENV=development`
+
+
+
+
+

@@ -32,12 +32,49 @@
 </head>
 
 <body>
+  <!--This form contains no header by design-->
 
-  <header>
-  </header>
 
-		{{{ body }}}
+  <main>
 
+    <!--Use Bootstrap's grid system inside the main area of the page-->
+    <div class="container">
+      <!--1st row holds the logo and application name-->
+      <div class="row">
+        <div class="col-12">
+          <div class="text-center m-0">
+            <img class="m-0" src="public/assets/images/logo1.png" alt="logo">
+              <h3>Please log in to continue</h3>
+          </div>
+        </div>
+      </div>
+      <!--Hidden row holds warning or alert messages-->
+      <div class="row warningMsg">
+      </div>
+      <!--2nd row holds the form-->
+      <div class="row">
+        <div class="col-12">
+          <form class="form-signin" action="" method="post">
+            <div class="form-label-group">
+              <input type="email" id="userName" name="userName" class="form-control outline-secondary" placeholder="Email address"
+                autocomplete="email" required autofocus>
+              <label for="userName">User Name</label>
+            </div>
+
+            <div class="form-label-group">
+              <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password"
+                autocomplete="new-password" required>
+              <label for="inputPassword">Password</label>
+            </div>
+
+            <button class="btn btn-lg btn-light btn-outline-secondary" type="submit" name="submit">Log in</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
 
   <!--footer will always be on bottom of content-->
   <footer class="footer sticky-bottom">
