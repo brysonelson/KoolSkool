@@ -1,0 +1,17 @@
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu a::after {
+  transform: rotate(90deg);
+  position: absolute;
+  left: 6px;
+  top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  right: 100%;
+  margin-left: -15rem;
+  margin-right: .1rem;
+}
