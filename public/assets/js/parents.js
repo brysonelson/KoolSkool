@@ -18,56 +18,56 @@ $(function() {
    * This function calculates and shows the number of characters remaining for 
    * every input
    *****************************************************************************/
-  var text_max_firstname = 35;
-  $("#feedback_firstname").html(text_max_firstname + " characters remain");
-  $("#firstname").bind("input change paste keyup mouseup", function() {
-    var text_max_firstname = 35;
-    var text_length_firstname = $("#firstname").val().length;
-    var text_remaining_firstname = text_max_firstname - text_length_firstname;
-    $("#feedback_firstname").html(
-      text_remaining_firstname + " characters remain"
+  var text_max_first_name = 35;
+  $("#feedback_first_name").html(text_max_first_name + " characters remain");
+  $("#first_name").bind("input change paste keyup mouseup", function() {
+    var text_max_first_name = 35;
+    var text_length_first_name = $("#first_name").val().length;
+    var text_remaining_first_name = text_max_first_name - text_length_first_name;
+    $("#feedback_first_name").html(
+      text_remaining_first_name + " characters remain"
     );
     $(this).after(
-      $("#feedback_firstname").html(
-        text_remaining_firstname + " characters remain"
+      $("#feedback_first_name").html(
+        text_remaining_first_name + " characters remain"
       )
     );
   });
-  $("#firstname").keyup();
+  $("#first_name").keyup();
 
-  var text_max_middleint = 25;
-  $("#feedback_middleint").html(text_max_middleint + " characters remain");
-  $("#middleint").bind("input change paste keyup mouseup", function() {
-    var text_max_middleint = 25;
-    var text_length_middleint = $("#middleint").val().length;
-    var text_remaining_middleint = text_max_middleint - text_length_middleint;
-    $("#feedback_middleint").html(
-      text_remaining_middleint + " characters remain"
+  var text_max_middle_name = 25;
+  $("#feedback_middle_name").html(text_max_middle_name + " characters remain");
+  $("#middle_name").bind("input change paste keyup mouseup", function() {
+    var text_max_middle_name = 25;
+    var text_length_middle_name = $("#middle_name").val().length;
+    var text_remaining_middle_name = text_max_middle_name - text_length_middle_name;
+    $("#feedback_middle_name").html(
+      text_remaining_middle_name + " characters remain"
     );
     $(this).after(
-      $("#feedback_middleint").html(
-        text_remaining_middleint + " characters remain"
+      $("#feedback_middle_name").html(
+        text_remaining_middle_name + " characters remain"
       )
     );
   });
-  $("#middleint").keyup();
+  $("#middle_name").keyup();
 
-  var text_max_lastname = 60;
-  $("#feedback_lastname").html(text_max_lastname + " characters remain");
-  $("#lastname").bind("input change paste keyup mouseup", function() {
-    var text_max_lastname = 60;
-    var text_length_lastname = $("#lastname").val().length;
-    var text_remaining_lastname = text_max_lastname - text_length_lastname;
-    $("#feedback_lastname").html(
-      text_remaining_lastname + " characters remain"
+  var text_max_last_name = 60;
+  $("#feedback_last_name").html(text_max_last_name + " characters remain");
+  $("#last_name").bind("input change paste keyup mouseup", function() {
+    var text_max_last_name = 60;
+    var text_length_last_name = $("#last_name").val().length;
+    var text_remaining_last_name = text_max_last_name - text_length_last_name;
+    $("#feedback_last_name").html(
+      text_remaining_last_name + " characters remain"
     );
     $(this).after(
-      $("#feedback_lastname").html(
-        text_remaining_lastname + " characters remain"
+      $("#feedback_last_name").html(
+        text_remaining_last_name + " characters remain"
       )
     );
   });
-  $("#lastname").keyup();
+  $("#last_name").keyup();
 
   var text_max_address1 = 100;
   $("#feedback_address1").html(text_max_address1 + " characters remain");
@@ -185,4 +185,53 @@ $(function() {
   });
   $("#remarks").keyup();
 
+  // Get references to page elements
+  var $first_name = $("#first_name");
+  var $middle_name = $("#middle_name");
+  var $last_name = $("#last_name");
+  var $submit_parent = $("#submit_parent");
+
+  // The API object contains methods for each kind of request we'll make
+  var API = {
+    saveParent: function(parent) {
+      return $.ajax({
+        headers: {
+          "Content-Type": "application/json"
+        },
+        type: "POST",
+        url: "/api/parents",
+        data: JSON.stringify(parent)
+      });
+    }
+  };
+
+  // handleFormSubmit is called whenever we submit a new record
+  // Save the new example to the db and refresh the list
+  var handleFormSubmit = function(event) {
+    event.preventDefault();
+
+    var parents = {
+      first_name: $first_name.val().trim(),
+      middle_name: $middle_name.val().trim(),
+      last_name: $last_name.val().trim()
+    };
+
+    console.log(parent);
+
+    if (!(parents.first_name && parent.last_name)) {
+      alert("You must enter a first and last name!");
+      return;
+    }
+
+    API.saveParent(parent).then(function() {
+      console.log("Testing!");
+      refreshParents();
+    });
+
+    $first_name.val("");
+    $last_name.val("");
+  };
+
+  // Add event listeners to the submit and delete buttons
+  $submit_parent.on("click", handleFormSubmit);
 });

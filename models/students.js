@@ -122,5 +122,9 @@ module.exports = function(sequelize, DataTypes) {
       underscored: true
     }
   );
+  Students.associate = function(models) {
+    Students.hasMany(models.Attendence, { as: "student_attendence" });
+    Students.hasMany(models.Course, { as: "student_courses" });
+  };
   return Students;
 };

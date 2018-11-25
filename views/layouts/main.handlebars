@@ -11,7 +11,7 @@
   <meta name="author" content="Kook Skool Team ">
 
   <!--favicon-->
-  <link rel="icon" href="public/assets/images/favicon.png">
+  <link rel="icon" href="/assets/images/favicon.png">
 
   <!--Application Name-->
   <title>Kool Skool Tool</title>
@@ -23,36 +23,40 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
     crossorigin="anonymous">
   <!--Custom local stylesheet for nav-->
-  <link rel="stylesheet" type="text/css" media="screen" href="public/assets/css/nav.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/nav.css" />
   <!--Custom local stylesheet for common shared elements like header and footer-->
-  <link rel="stylesheet" type="text/css" media="screen" href="public/assets/css/style.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css" />
   <!--Custom local stylesheet for elements unique to this page-->
-  <link href="public/assets/css/floating-labels.css" rel="stylesheet">
+  <link href="/assets/css/floating-labels.css" rel="stylesheet">
+  <link href="/assets/css/button-animation.css" rel="stylesheet">
 
 </head>
 
 <body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <defs>
+      <symbol id="arrow" viewBox="0 0 100 100">
+        <path d="M12.5 45.83h64.58v8.33H12.5z" />
+        <path d="M59.17 77.92l-5.84-5.84L75.43 50l-22.1-22.08 5.84-5.84L87.07 50z" />
+      </symbol>
+    </defs>
+  </svg>
 
-  <header>
+  <header class="container-fluid pl-0 pr-0 border-bottom">
+
+    <!--Nav Here but not for login page-->
+  {{#if nav}}
+    {{> navs/topnav-block}}
+  {{/if}}
+
   </header>
 
 		{{{ body }}}
 
 
-  <!--footer will always be on bottom of content-->
-  <footer class="footer sticky-bottom">
-    <!--spans the full width of the viewport-->
-    <div class="container-fluid container-bottom border-top">
-      <!--spans a fixed width based on media sizes developed by bootstrap-->
-      <div class="container">
-        <!--Nav Bar copyright in footer-->
-        <nav class="navbar navbar-expand-lg justify-content-md-center pl-0">
-          <span id="copyright">&copy; Copyright 2018 KoolSkool Team</span>
-        </nav>
-      </div>
-    </div>
-  </footer>
-  
+    <!--Footer-->
+    {{> navs/footer-block}}
+
 
     <!-- jquery
 	================================================== -->
@@ -69,7 +73,7 @@
     crossorigin="anonymous"></script>
 
   <!--Our Local js file used to customize the nav bar-->
-  <!--script src="assets/js/nav.js" type="text/javascript"></script-->
+  <script src="/assets/js/cms.js" type="text/javascript"></script>
 
 
 </body>
