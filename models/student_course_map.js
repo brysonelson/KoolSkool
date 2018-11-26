@@ -45,12 +45,12 @@ module.exports = function(sequelize, DataTypes) {
 
   StudentCourse.associate = function(models) {
     models.Students.belongsToMany(models.Course, {
-      as: "Students",
+      as: "course_enrolled",
       through: "student_course_map",
       foreignKey: "student_id"
     });
     models.Course.belongsToMany(models.Students, {
-      as: "Course_Enrolled",
+      as: "course_students",
       through: "student_course_map",
       foreignKey: "course_id"
     });

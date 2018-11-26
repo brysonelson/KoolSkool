@@ -1,0 +1,109 @@
+  <main>
+
+    <div class="container-fluid personnel-container col-md-9 align-self-start">
+
+      <!--Personnel Data Entry Form Wrapper-->
+      <form enctype="multipart/form-data" action="POST" method="" name="form_personnel_add" autocomplete="nope">
+
+        <div class="mx-5 mt-3">
+          <h3>Personnel</h3>
+          <hr>
+        </div>
+
+        <!--Contact Information-->
+        <div class="card mx-5 my-2">
+          <div class="card-header">Contact Information:</div>
+          <div class="card-body">
+
+            {{> name-block}}
+
+            {{> address-block}}
+
+          </div>
+        </div>
+
+        {{> phone_email-block}}
+
+        <!--Additional Information-->
+        <div class="card mx-5 my-2">
+          <div class="card-header">Additional Information:</div>
+          <div class="card-body"> 
+
+            <div class="form-row">
+              <!--Position-->
+              <div class="form-group col-md-8">
+                <label class="form-label" for="position_descr">Position</label>
+                <input type="text" class="form-control" name="position_descr" id="position_descr" maxlength="50" placeholder="Position Description" value="">
+                <p class="text-right feedback" id="feedback_position_descr">50 characters remain</p>
+              </div>
+              <!--Reports To-->
+              <div class="form-group col-md-4">
+                <label class="form-label" for="reports_to_id">Report To:</label>
+                <select class="form-control" name="reports_to_id" id="reports_to_id">
+                  <option disabled selected value>-- Select --</option>
+                  <option value="1">William H. Principiell IV</option>
+                  <option value="2">Peter Plum</option>
+                  <option value="3">Vivienne Scarlet</option>
+                  <option value="4">Michael C. Mustard, Col.</option>
+                  <option value="5">Blanche White</option>
+                  <option value="6">Jonathan Green</option>
+                  <option value="7">Elizabeth Peacock</option>
+                  <option value="8">William B. Boddy</option>
+                  <option value="9">Bill Black Black</option>
+                  <option value="10">Glenda Pechacek</option>
+                  <option value="11">Randal Michael Smith</option>
+                  <option value="12">Randall E. Lancaster</option>
+                  <option value="13">Muriel Jan Jernigan</option>
+                  <option value="14">Jeanne Nage</option>
+                  <option value="15">Mike Tarcza</option>
+                  <option value="16">Ricky Gene McKenzie</option>
+                  <option value="17">Guillermo Alfonso Richards</option>
+                  <option value="18">Rochelle Miller</option>
+                </select>
+              </div>
+            </div>            
+
+            {{> remarks-block}}
+          </div>
+        </div>
+
+        <!--Button Group-->
+        <hr class="mx-5">
+        <div class="btnContainer d-flex mx-5">
+
+          <div>
+            <button id="submit_personnel" class="button" name="submit_personnel">
+              Add Personnel
+              <span>
+                <svg>
+                  <use xlink:href="#arrow" href="#arrow"></use>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <div class="ml-auto">
+            <a href="#." id="cancel" class="btn btn-outline-dark">Cancel</a>
+          </div>
+
+        </div>
+
+      </form>
+      <hr>
+    </div>
+    <div class="container-fluid student-container col-md-3 align-self-start">
+      <!--Student Data Entry Form Wrapper-->
+      <form enctype="multipart/form-data" action="" name="form_students_add" autocomplete="nope">
+        <div class="mx-5 mt-3">
+          <h3>Students</h3>
+          <hr>
+        </div>
+
+      </form>
+
+
+    </div>
+  </main>
+
+  <!--Our Local js file-->
+  <script src="/assets/js/personnel.js" type="text/javascript"></script>

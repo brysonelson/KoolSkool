@@ -56,12 +56,12 @@ module.exports = function(sequelize, DataTypes) {
 
   ParentChild.associate = function(models) {
     models.Parents.belongsToMany(models.Students, {
-      as: "Parents",
+      as: "children",
       through: "parent_child_map",
       foreignKey: "parent_id"
     });
     models.Students.belongsToMany(models.Parents, {
-      as: "Children",
+      as: "parents",
       through: "parent_child_map",
       foreignKey: "student_id"
     });
