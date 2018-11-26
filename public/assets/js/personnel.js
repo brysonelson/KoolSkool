@@ -2,7 +2,7 @@
  *
  * Summary:
  *  This file contains the primary front-end java script functions and logic
- *  for creating and managing parent records
+ *  for creating and managing personnel records
  *
  *****************************************************************************/
 
@@ -26,31 +26,33 @@ $(function() {
   var $phone_num_primary = $("#phone_num_primary");
   var $phone_num_alt = $("#phone_num_alt");
   var $email_address = $("#email_address");
+  var $position_descr = $("#position_descr");
+  var $reports_to_id = $("#reports_to_id");
   var $remarks = $("#remarks");
-  var $submit_parent = $("#submit_parent");
+  var $submit_personnel = $("#submit_personnel");
 
   // The API object contains methods for each kind of request we'll make
   var API = {
-    saveParent: function(parent) {
-      console.log(parent);
+    savePersonnel: function(personnel) {
+      console.log(personnel);
       return $.ajax({
         headers: {
           "Content-Type": "application/json"
         },
         type: "POST",
-        url: "api/parents",
-        data: JSON.stringify(parent)
+        url: "api/personnel",
+        data: JSON.stringify(personnel)
       });
     },
-    getParents: function() {
+    getPersonnel: function() {
       return $.ajax({
-        url: "api/parents",
+        url: "api/personnel",
         type: "GET"
       });
     },
-    deleteParents: function(id) {
+    deletePersonnel: function(id) {
       return $.ajax({
-        url: "api/parents/" + id,
+        url: "api/personnel/" + id,
         type: "DELETE"
       });
     }
@@ -61,7 +63,7 @@ $(function() {
   var handleFormSubmit = function(event) {
     event.preventDefault();
 
-    var parent = {
+    var personnel = {
       first_name: $first_name.val().trim(),
       middle_name: $middle_name.val().trim(),
       last_name: $last_name.val().trim(),
@@ -74,17 +76,19 @@ $(function() {
       phone_num_primary: $phone_num_primary.val().trim(),
       phone_num_alt: $phone_num_alt.val().trim(),
       email_address: $email_address.val().trim(),
+      position_descr: $position_descr.val().trim(),
+      reports_to_id: $reports_to_id.val().trim(),
       remarks: $remarks.val().trim()
     };
 
-    if (!(parent.first_name && parent.last_name)) {
+    if (!(personnel.first_name && personnel.last_name)) {
       alert("You must enter a first and last name!");
       return;
     }
 
-    API.saveParent(parent).then(function() {
+    API.savePersonnel(personnel).then(function() {
       console.log("Something is happening!");
-//      refreshParents();
+      //refreshPersonnel();
     });
 
     //$first_name.val("");
@@ -92,5 +96,5 @@ $(function() {
   };
 
   // Add event listeners to the submit and delete buttons
-  $submit_parent.on("click", handleFormSubmit);
+  $submit_personnel.on("click", handleFormSubmit);
 });

@@ -23,4 +23,17 @@ module.exports = function(app) {
     });
   });
 
+  // Load parents data entry page
+  app.get("/cms/personnel", function(req, res) {
+    res.render("personnel", {
+      nav: true
+    });
+  });
+
+  // Create a new example
+  app.post("/cms/api/personnel", function(req, res) {
+    db.Personnel.create(req.body).then(function(dbPersonnel) {
+      res.json(dbPersonnel);
+    });
+  });
 };
