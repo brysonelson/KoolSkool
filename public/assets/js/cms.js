@@ -223,4 +223,21 @@ $(function() {
     );
   });
   $("#position_descr").keyup();
+
+  var text_max_nickname = 35;
+  $("#feedback_nickname").html(text_max_nickname + " characters remain");
+  $("#nickname").bind("input change paste keyup mouseup", function() {
+    var text_max_nickname = 35;
+    var text_length_nickname = $("#nickname").val().length;
+    var text_remaining_nickname = text_max_nickname - text_length_nickname;
+    $("#feedback_nickname").html(
+      text_remaining_nickname + " characters remain"
+    );
+    $(this).after(
+      $("#feedback_nickname").html(
+        text_remaining_nickname + " characters remain"
+      )
+    );
+  });
+  $("#nickname").keyup();
 });

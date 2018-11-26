@@ -1,0 +1,113 @@
+  <main>
+
+    <div class="container-fluid student-container col-md-9 align-self-start">
+
+      <!--Student Data Entry Form Wrapper-->
+      <form enctype="multipart/form-data" action="POST" method="" name="form_student_add" autocomplete="nope">
+
+        <div class="mx-5 mt-3">
+          <h3>Students</h3>
+          <hr>
+        </div>
+
+        <!--Contact Information-->
+        <div class="card mx-5 my-2">
+          <div class="card-header">Student Information:</div>
+          <div class="card-body">
+
+            {{> name-block}}
+
+            <div class="form-row">
+              <!--Nickname-->
+              <div class="form-group col-md-3">
+                <label class="form-label" for="nickname">Nickname</label>
+                <input type="text" class="form-control" name="nickname" id="nickname" maxlength="35" placeholder="Nickname" value="">
+                <p class="text-right feedback" id="feedback_nickname">35 characters remain</p>
+              </div>
+              <!--Birthdate-->
+              <div class="form-group col-md-3">
+                <label class="form-label" for="birthdate">Birthdate</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend2">
+                      <i class="far fa-calendar-alt"></i>
+                    </span>
+                  </div>
+                  <input type="date" class="form-control" name="birthdate" id="birthdate">
+                </div>
+              </div>
+              <!--Gender-->
+              <fieldset>
+                <legend class="form-label">Gender?</legend>
+                  <div class="radio-wrapper form-control border-secondary rounded pb-3">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="gender1" value="1" checked>
+                    <label class="form-check-label" for="gender1">
+                      Not Answered
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="gender2" value="2">
+                    <label class="form-check-label" for="gender2">
+                      Male
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="gender3" value="3">
+                    <label class="form-check-label" for="gender3">
+                      Female
+                    </label>
+                  </div>
+                  </div>
+              </fieldset>
+            </div>
+            <div class="form-row">
+              <!--Photo URL-->
+              <div class="form-group col-md-6">
+                <label class="form-label" for="photo">Photo</label>
+                <input type="text" class="form-control" name="photo" id="photo" placeholder="Photo" value="">
+              </div>
+            </div>          
+          </div>
+        </div>
+
+        <!--Button Group-->
+        <hr class="mx-5">
+        <div class="btnContainer d-flex mx-5">
+
+          <div>
+            <button id="submit_student" class="button" name="submit_student">
+              Add Student
+              <span>
+                <svg>
+                  <use xlink:href="#arrow" href="#arrow"></use>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <div class="ml-auto">
+            <a href="#." id="cancel" class="btn btn-outline-dark">Cancel</a>
+          </div>
+
+        </div>
+
+      </form>
+      <hr>
+    </div>
+    <div class="container-fluid student-container col-md-3 align-self-start">
+      <!--Student Data Entry Form Wrapper-->
+      <form enctype="multipart/form-data" action="" name="form_students_add" autocomplete="nope">
+        <div class="mx-5 mt-3">
+          <h3>Students</h3>
+          <hr>
+        </div>
+
+      </form>
+
+
+    </div>
+  </main>
+
+  <!--Our Local js file-->
+  <script src="/assets/js/students.js" type="text/javascript"></script>
