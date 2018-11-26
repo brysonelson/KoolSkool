@@ -37,8 +37,8 @@
               </div>
               <!--Suffix-->
               <div class="form-group col-md-2">
-                <label class="form-label" for="suffix">Suffix</label>
-                <select class="form-control" name="suffix" id="suffix">
+                <label class="form-label" for="name_suffix">Suffix</label>
+                <select class="form-control" name="name_suffix" id="name_suffix">
                   <option disabled selected value>-- Select Suffix --</option>
                   <option>Sr.</option>
                   <option>Jr.</option>
@@ -76,8 +76,8 @@
               </div>
               <!--State Postal Code-->
               <div class="form-group col-md-2">
-                <label class="form-label" for="statename">State</label>
-                <select class="form-control" name='statename' id='statename'>
+                <label class="form-label" for="postal_code">State</label>
+                <select class="form-control" name='postal_code' id='postal_code'>
                   <option value="">--Select State--</option>
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
@@ -142,10 +142,10 @@
               </div>
               <!--Zip Code-->
               <div class="form-group col-md-2">
-                <label class="form-label" for="zip">Zip Code</label>
-                <input type="text" class="form-control" name="zip" id="zip" maxlength="10" placeholder="12345-6789"
+                <label class="form-label" for="zip_code">Zip Code</label>
+                <input type="text" class="form-control" name="zip_code" id="zip_code" maxlength="10" placeholder="12345-6789"
                   value="">
-                <p class="text-right feedback" id="feedback_zip">10 characters remain</p>
+                <p class="text-right feedback" id="feedback_zip_code">10 characters remain</p>
               </div>
             </div>
           </div>
@@ -158,24 +158,24 @@
             <div class="form-row">
               <!--Email Address 1-->
               <div class="form-group col-md-6">
-                <label class="form-label" for="email1">Email Address</label>
-                <input type="text" class="form-control" name="email1" id="email1" maxlength="50" placeholder="Primary Email Address"
+                <label class="form-label" for="email_address">Email Address</label>
+                <input type="text" class="form-control" name="email_address" id="email_address" maxlength="50" placeholder="Primary Email Address"
                   value="">
-                <p class="text-right feedback" id="feedback_email1">50 characters remain</p>
+                <p class="text-right feedback" id="feedback_email_address">50 characters remain</p>
               </div>
               <!--Phone-->
               <div class="form-group col-md-3">
-                <label class="form-label" for="phone">Primary Phone Number</label>
-                <input type="text" class="form-control" name="phone" id="phone" maxlength="14" placeholder="(xxx) xxx-xxxx"
+                <label class="form-label" for="phone_num_primary">Primary Phone Number</label>
+                <input type="text" class="form-control" name="phone_num_primary" id="phone_num_primary" maxlength="14" placeholder="(xxx) xxx-xxxx"
                   value="">
-                <p class="text-right feedback" id="feedback_phone">14 characters remain</p>
+                <p class="text-right feedback" id="feedback_phone_num_primary">14 characters remain</p>
               </div>
               <!--Other Phone-->
               <div class="form-group col-md-3">
-                <label class="form-label" for="otherphone">Alternate Phone Number</label>
-                <input type="text" class="form-control" name="otherphone" id="otherphone" maxlength="14" placeholder="(xxx) xxx-xxxx"
+                <label class="form-label" for="phone_num_alt">Alternate Phone Number</label>
+                <input type="text" class="form-control" name="phone_num_alt" id="phone_num_alt" maxlength="14" placeholder="(xxx) xxx-xxxx"
                   value="">
-                <p class="text-right feedback" id="feedback_otherphone">14 characters remain</p>
+                <p class="text-right feedback" id="feedback_phone_num_alt">14 characters remain</p>
               </div>
             </div>
           </div>
@@ -237,3 +237,5 @@
     </div>
   </main>
 
+  <!--Our Local js file-->
+  <script src="/assets/js/parents.js" type="text/javascript"></script>

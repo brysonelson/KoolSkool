@@ -1,5 +1,4 @@
-//commenting out for now to pass Travis tests
-//var db = require("../models");
+var db = require("../models");
 
 module.exports = function(app) {
   // Load cms splash page
@@ -14,6 +13,13 @@ module.exports = function(app) {
   app.get("/cms/parents", function(req, res) {
     res.render("parents", {
       nav: true
+    });
+  });
+
+  // Create a new example
+  app.post("/cms/api/parents", function(req, res) {
+    db.Parents.create(req.body).then(function(dbParents) {
+      res.json(dbParents);
     });
   });
 

@@ -116,61 +116,79 @@ $(function() {
   });
   $("#city").keyup();
 
-  var text_max_zip = 10;
-  $("#feedback_zip").html(text_max_zip + " characters remain");
-  $("#zip").bind("input change paste keyup mouseup", function() {
-    var text_max_zip = 10;
-    var text_length_zip = $("#zip").val().length;
-    var text_remaining_zip = text_max_zip - text_length_zip;
-    $("#feedback_zip").html(text_remaining_zip + " characters remain");
-    $(this).after(
-      $("#feedback_zip").html(text_remaining_zip + " characters remain")
-    );
-  });
-  $("#zip").keyup();
-
-  var text_max_phone = 14;
-  $("#feedback_phone").html(text_max_phone + " characters remain");
-  $("#phone").bind("input change paste keyup mouseup", function() {
-    var text_max_phone = 14;
-    var text_length_phone = $("#phone").val().length;
-    var text_remaining_phone = text_max_phone - text_length_phone;
-    $("#feedback_phone").html(text_remaining_phone + " characters remain");
-    $(this).after(
-      $("#feedback_phone").html(text_remaining_phone + " characters remain")
-    );
-  });
-  $("#phone").keyup();
-
-  var text_max_otherphone = 14;
-  $("#feedback_otherphone").html(text_max_otherphone + " characters remain");
-  $("#otherphone").bind("input change paste keyup mouseup", function() {
-    var text_max_otherphone = 14;
-    var text_length_otherphone = $("#otherphone").val().length;
-    var text_remaining_otherphone = text_max_otherphone - text_length_otherphone;
-    $("#feedback_otherphone").html(
-      text_remaining_otherphone + " characters remain"
+  var text_max_zip_code = 10;
+  $("#feedback_zip_code").html(text_max_zip_code + " characters remain");
+  $("#zip_code").bind("input change paste keyup mouseup", function() {
+    var text_max_zip_code = 10;
+    var text_length_zip_code = $("#zip_code").val().length;
+    var text_remaining_zip_code = text_max_zip_code - text_length_zip_code;
+    $("#feedback_zip_code").html(
+      text_remaining_zip_code + " characters remain"
     );
     $(this).after(
-      $("#feedback_otherphone").html(
-        text_remaining_otherphone + " characters remain"
+      $("#feedback_zip_code").html(
+        text_remaining_zip_code + " characters remain"
       )
     );
   });
-  $("#otherphone").keyup();
+  $("#zip_code").keyup();
 
-  var text_max_email1 = 50;
-  $("#feedback_email1").html(text_max_email1 + " characters remain");
-  $("#email1").bind("input change paste keyup mouseup", function() {
-    var text_max_email1 = 50;
-    var text_length_email1 = $("#email1").val().length;
-    var text_remaining_email1 = text_max_email1 - text_length_email1;
-    $("#feedback_email1").html(text_remaining_email1 + " characters remain");
+  var text_max_phone_num_primary = 14;
+  $("#feedback_phone_num_primary").html(
+    text_max_phone_num_primary + " characters remain"
+  );
+  $("#phone_num_primary").bind("input change paste keyup mouseup", function() {
+    var text_max_phone_num_primary = 14;
+    var text_length_phone_num_primary = $("#phone_num_primary").val().length;
+    var text_remaining_phone_num_primary = text_max_phone_num_primary - text_length_phone_num_primary;
+    $("#feedback_phone_num_primary").html(
+      text_remaining_phone_num_primary + " characters remain"
+    );
     $(this).after(
-      $("#feedback_email1").html(text_remaining_email1 + " characters remain")
+      $("#feedback_phone").html(
+        text_remaining_phone_num_primary + " characters remain"
+      )
     );
   });
-  $("#email1").keyup();
+  $("#phone_num_primary").keyup();
+
+  var text_max_phone_num_alt = 14;
+  $("#feedback_phone_num_alt").html(
+    text_max_phone_num_alt + " characters remain"
+  );
+  $("#phone_num_alt").bind("input change paste keyup mouseup", function() {
+    var text_max_phone_num_alt = 14;
+    var text_length_phone_num_alt = $("#phone_num_alt").val().length;
+    var text_remaining_phone_num_alt = text_max_phone_num_alt - text_length_phone_num_alt;
+    $("#feedback_phone_num_alt").html(
+      text_remaining_phone_num_alt + " characters remain"
+    );
+    $(this).after(
+      $("#feedback_phone_num_alt").html(
+        text_remaining_phone_num_alt + " characters remain"
+      )
+    );
+  });
+  $("#phone_num_alt").keyup();
+
+  var text_max_email_address = 50;
+  $("#feedback_email_address").html(
+    text_max_email_address + " characters remain"
+  );
+  $("#email_address").bind("input change paste keyup mouseup", function() {
+    var text_max_email_address = 50;
+    var text_length_email_address = $("#email_address").val().length;
+    var text_remaining_email_address = text_max_email_address - text_length_email_address;
+    $("#feedback_email_address").html(
+      text_remaining_email_address + " characters remain"
+    );
+    $(this).after(
+      $("#feedback_email_address").html(
+        text_remaining_email_address + " characters remain"
+      )
+    );
+  });
+  $("#email_address").keyup();
 
   var text_max_remarks = 4000;
   $("#feedback_remarks").html(text_max_remarks + " characters remain");
@@ -189,18 +207,41 @@ $(function() {
   var $first_name = $("#first_name");
   var $middle_name = $("#middle_name");
   var $last_name = $("#last_name");
+  var $name_suffix = $("#name_suffix");
+  var $address1 = $("#address1");
+  var $address2 = $("#address2");
+  var $city = $("#city");
+  var $postal_code = $("#postal_code");
+  var $zip_code = $("#zip_code");
+  var $phone_num_primary = $("#phone_num_primary");
+  var $phone_num_alt = $("#phone_num_alt");
+  var $email_address = $("#email_address");
+  var $remarks = $("#remarks");
   var $submit_parent = $("#submit_parent");
 
   // The API object contains methods for each kind of request we'll make
   var API = {
     saveParent: function(parent) {
+      console.log(parent);
       return $.ajax({
         headers: {
           "Content-Type": "application/json"
         },
         type: "POST",
-        url: "/api/parents",
+        url: "api/parents",
         data: JSON.stringify(parent)
+      });
+    },
+    getParents: function() {
+      return $.ajax({
+        url: "api/parents",
+        type: "GET"
+      });
+    },
+    deleteParents: function(id) {
+      return $.ajax({
+        url: "api/parents/" + id,
+        type: "DELETE"
       });
     }
   };
@@ -210,26 +251,34 @@ $(function() {
   var handleFormSubmit = function(event) {
     event.preventDefault();
 
-    var parents = {
+    var parent = {
       first_name: $first_name.val().trim(),
       middle_name: $middle_name.val().trim(),
-      last_name: $last_name.val().trim()
+      last_name: $last_name.val().trim(),
+      name_suffix: $name_suffix.val().trim(),
+      address1: $address1.val().trim(),
+      address2: $address2.val().trim(),
+      city: $city.val().trim(),
+      postal_code: $postal_code.val().trim(),
+      zip_code: $zip_code.val().trim(),
+      phone_num_primary: $phone_num_primary.val().trim(),
+      phone_num_alt: $phone_num_alt.val().trim(),
+      email_address: $email_address.val().trim(),
+      remarks: $remarks.val().trim()
     };
 
-    console.log(parent);
-
-    if (!(parents.first_name && parent.last_name)) {
+    if (!(parent.first_name && parent.last_name)) {
       alert("You must enter a first and last name!");
       return;
     }
 
     API.saveParent(parent).then(function() {
-      console.log("Testing!");
-      refreshParents();
+      console.log("Something is happening!");
+//      refreshParents();
     });
 
-    $first_name.val("");
-    $last_name.val("");
+    //$first_name.val("");
+    //$last_name.val("");
   };
 
   // Add event listeners to the submit and delete buttons
