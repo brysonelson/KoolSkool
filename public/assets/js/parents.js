@@ -104,6 +104,7 @@ $(function() {
 
     API.saveParent(parent).then(function() {
       console.log("Something is happening!");
+      //Hide data entry grid
       //refreshParents();
     });
   };
