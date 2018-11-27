@@ -243,4 +243,59 @@ $(function() {
     );
   });
   $("#nickname").keyup();
+
+  var text_max_course_descr = 35;
+  $("#feedback_course_descr").html(
+    text_max_course_descr + " characters remain"
+  );
+  $("#course_descr").bind("input change paste keyup mouseup", function() {
+    var text_max_course_descr = 35;
+    var text_length_course_descr = $("#course_descr").val().length;
+    var text_remaining_course_descr = text_max_course_descr - text_length_course_descr;
+    $("#feedback_course_descr").html(
+      text_remaining_course_descr + " characters remain"
+    );
+    $(this).after(
+      $("#feedback_course_descr").html(
+        text_remaining_course_descr + " characters remain"
+      )
+    );
+  });
+  $("#course_descr").keyup();
+
+  var text_max_location_descr = 50;
+  $("#feedback_location_descr").html(
+    text_max_location_descr + " characters remain"
+  );
+  $("#location_descr").bind("input change paste keyup mouseup", function() {
+    var text_max_location_descr = 50;
+    var text_length_location_descr = $("#location_descr").val().length;
+    var text_remaining_location_descr = text_max_location_descr - text_length_location_descr;
+    $("#feedback_location_descr").html(
+      text_remaining_location_descr + " characters remain"
+    );
+    $(this).after(
+      $("#feedback_location_descr").html(
+        text_remaining_location_descr + " characters remain"
+      )
+    );
+  });
+  $("#location_descr").keyup();
+
+  var text_max_room_num = 50;
+  $("#feedback_room_num").html(text_max_room_num + " characters remain");
+  $("#room_num").bind("input change paste keyup mouseup", function() {
+    var text_max_room_num = 50;
+    var text_length_room_num = $("#room_num").val().length;
+    var text_remaining_room_num = text_max_room_num - text_length_room_num;
+    $("#feedback_room_num").html(
+      text_remaining_room_num + " characters remain"
+    );
+    $(this).after(
+      $("#feedback_room_num").html(
+        text_remaining_room_num + " characters remain"
+      )
+    );
+  });
+  $("#room_num").keyup();
 });

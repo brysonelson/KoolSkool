@@ -50,4 +50,32 @@ module.exports = function(app) {
       res.json(dbStudents);
     });
   });
+
+  // Load students data entry page
+  app.get("/cms/courses", function(req, res) {
+    res.render("courses", {
+      nav: true
+    });
+  });
+
+  // Create a new record in course table
+  app.post("/cms/api/courses", function(req, res) {
+    db.Course.create(req.body).then(function(dbCourse) {
+      res.json(dbCourse);
+    });
+  });
+
+  // Load students data entry page
+  app.get("/cms/classrooms", function(req, res) {
+    res.render("classrooms", {
+      nav: true
+    });
+  });
+
+  // Create a new record in course table
+  app.post("/cms/api/classrooms", function(req, res) {
+    db.Classrooms.create(req.body).then(function(dbClassrooms) {
+      res.json(dbClassrooms);
+    });
+  });
 };
