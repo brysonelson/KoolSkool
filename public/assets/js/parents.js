@@ -7,11 +7,6 @@
  *****************************************************************************/
 
 $(function() {
-  /******************************************************************************
-   *Upon page load Initialize bootstrap 4 tooltips
-   *
-   *****************************************************************************/
-  $("[data-toggle='tooltip']").tooltip();
 
   // Get references to page elements
   var $first_name = $("#first_name");
@@ -27,6 +22,7 @@ $(function() {
   var $phone_num_alt = $("#phone_num_alt");
   var $email_address = $("#email_address");
   var $remarks = $("#remarks");
+  var $form_parent_add = $("#form_parent_add");
   var $submit_parent = $("#submit_parent");
 
   // The API object contains methods for each kind of request we'll make
@@ -56,26 +52,50 @@ $(function() {
     }
   };
 
+  //This function is used to convert values from empty strings to null
+  function emptyStringsToNull(object) {
+    for (var key in object) {
+      if (object[key] === "") {
+        object[key] = null;
+      }
+    }
+    return object;
+  }
+
   // handleFormSubmit is called whenever we submit a new record
-  // Save the new example to the db and refresh the list
-  var handleFormSubmit = function(event) {
-    event.preventDefault();
+  var handleFormSubmit = function() {
+
+    //get values from selects and if not answered convert to empty string
+    if (!$("#name_suffix").val()) {
+      $name_suffix = "";
+    } else {
+      $name_suffix = $name_suffix.val();
+    }
+
+    if (!$("#postal_code").val()) {
+      $postal_code = "";
+    } else {
+      $postal_code = $postal_code.val();
+    }
 
     var parent = {
       first_name: $first_name.val().trim(),
       middle_name: $middle_name.val().trim(),
       last_name: $last_name.val().trim(),
-      name_suffix: $name_suffix.val().trim(),
+      name_suffix: $name_suffix,
       address1: $address1.val().trim(),
       address2: $address2.val().trim(),
       city: $city.val().trim(),
-      postal_code: $postal_code.val().trim(),
+      postal_code: $postal_code,
       zip_code: $zip_code.val().trim(),
       phone_num_primary: $phone_num_primary.val().trim(),
       phone_num_alt: $phone_num_alt.val().trim(),
       email_address: $email_address.val().trim(),
       remarks: $remarks.val().trim()
     };
+
+    //replace any empty strings with null values to work around sequelize validations on empty strings
+    emptyStringsToNull(parent);
 
     if (!(parent.first_name && parent.last_name)) {
       alert("You must enter a first and last name!");
@@ -84,13 +104,14 @@ $(function() {
 
     API.saveParent(parent).then(function() {
       console.log("Something is happening!");
-//      refreshParents();
+      //Hide data entry grid
+      //refreshParents();
     });
-
-    //$first_name.val("");
-    //$last_name.val("");
   };
 
-  // Add event listeners to the submit and delete buttons
-  $submit_parent.on("click", handleFormSubmit);
+  //event listeners to form and submit button(s)
+  $form_parent_add.on("submit", function(event) {
+    event.preventDefault();
+    handleFormSubmit();
+  });
 });

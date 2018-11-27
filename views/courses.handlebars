@@ -1,0 +1,55 @@
+  <main>
+
+    <div class="container-fluid course-container col-md-12 align-self-start">
+
+      <!--Course Data Entry Form Wrapper-->
+      <form id="form_course_add" name="form_course_add" autocomplete="nope">
+
+        <div class="mx-5 mt-3">
+          <h3>Classes</h3>
+          <hr>
+        </div>
+
+        <!--Course Information-->
+        <div class="card mx-5 my-2">
+          <div class="card-header">Class Information:</div>
+          <div class="card-body">
+            <div class="form-row">
+              <!--Course Descr-->
+              <div class="form-group col-md-3">
+                <label class="form-label" for="course_descr">Class Description</label>
+                <input type="text" class="form-control" name="course_descr" id="course_descr" maxlength="35" placeholder="Class Name" required>
+                <p class="text-right feedback" id="feedback_course_descr">25 characters remain</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Button Group-->
+        <hr class="mx-5">
+        <div class="btnContainer d-flex mx-5">
+
+          <div>
+            <button type="submit" id="submit_course" class="button" name="submit_course">
+              Add Course
+              <span>
+                <svg>
+                  <use xlink:href="#arrow" href="#arrow"></use>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <div class="ml-auto">
+            <a href="#." id="cancel" class="btn btn-outline-dark">Cancel</a>
+          </div>
+
+        </div>
+
+      </form>
+      <hr>
+    </div>
+  </main>
+
+  <!--Our Local js file-->
+  <script src="/assets/js/courses.js" type="text/javascript"></script>

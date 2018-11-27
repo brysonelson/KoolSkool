@@ -1,0 +1,61 @@
+  <main>
+
+    <div class="container-fluid classroom-container col-md-12 align-self-start">
+
+      <!--Classrooms Data Entry Form Wrapper-->
+      <form id="form_classroom_add" name="form_classrooms_add" autocomplete="nope">
+
+        <div class="mx-5 mt-3">
+          <h3>Classrooms</h3>
+          <hr>
+        </div>
+
+        <!--Classrooms Information-->
+        <div class="card mx-5 my-2">
+          <div class="card-header">Classrooms Information:</div>
+          <div class="card-body">
+            <div class="form-row">
+              <!--Classrooms Descr-->
+              <div class="form-group col-md-5">
+                <label class="form-label" for="location_descr">Classroom Location Description</label>
+                <input type="text" class="form-control" name="location_descr" id="location_descr" maxlength="50" placeholder="Classroom Location Description" required>
+                <p class="text-right feedback" id="feedback_location_descr">50 characters remain</p>
+              </div>
+              <!--Room Num-->
+              <div class="form-group col-md-3">
+                <label class="form-label" for="room_num">Room Number (if applicable)</label>
+                <input type="text" class="form-control" name="room_num" id="room_num" maxlength="10" placeholder="Room Num, if applicable">
+                <p class="text-right feedback" id="feedback_room_num">10 characters remain</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Button Group-->
+        <hr class="mx-5">
+        <div class="btnContainer d-flex mx-5">
+
+          <div>
+            <button type="submit" id="submit_classroom" class="button" name="submit_classroom">
+              Add Classroom
+              <span>
+                <svg>
+                  <use xlink:href="#arrow" href="#arrow"></use>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <div class="ml-auto">
+            <a href="#." id="cancel" class="btn btn-outline-dark">Cancel</a>
+          </div>
+
+        </div>
+
+      </form>
+      <hr>
+    </div>
+  </main>
+
+  <!--Our Local js file-->
+  <script src="/assets/js/classrooms.js" type="text/javascript"></script>
