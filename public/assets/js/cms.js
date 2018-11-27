@@ -14,6 +14,9 @@ $(function() {
     $("#footer").removeClass("invisible");
   }
 
+  //Initialize bootstrap 4 tooltips
+  $("[data-toggle='tooltip']").tooltip();
+
   /******************************************************************************
    * Feedback Functions Specific To Contact Add and Edit Form
    * This function calculates and shows the number of characters remaining for 

@@ -3,7 +3,7 @@
     <div class="container-fluid personnel-container col-md-9 align-self-start">
 
       <!--Personnel Data Entry Form Wrapper-->
-      <form enctype="multipart/form-data" action="POST" method="" name="form_personnel_add" autocomplete="nope">
+      <form id="form_personnel_add" name="form_personnel_add" autocomplete="nope">
 
         <div class="mx-5 mt-3">
           <h3>Personnel</h3>
@@ -33,7 +33,7 @@
               <!--Position-->
               <div class="form-group col-md-8">
                 <label class="form-label" for="position_descr">Position</label>
-                <input type="text" class="form-control" name="position_descr" id="position_descr" maxlength="50" placeholder="Position Description" value="">
+                <input type="text" class="form-control" name="position_descr" id="position_descr" maxlength="50" placeholder="Position Description" required>
                 <p class="text-right feedback" id="feedback_position_descr">50 characters remain</p>
               </div>
               <!--Reports To-->
@@ -72,7 +72,7 @@
         <div class="btnContainer d-flex mx-5">
 
           <div>
-            <button id="submit_personnel" class="button" name="submit_personnel">
+            <button type="submit" id="submit_personnel" class="button" name="submit_personnel">
               Add Personnel
               <span>
                 <svg>
@@ -90,18 +90,6 @@
 
       </form>
       <hr>
-    </div>
-    <div class="container-fluid student-container col-md-3 align-self-start">
-      <!--Student Data Entry Form Wrapper-->
-      <form enctype="multipart/form-data" action="" name="form_students_add" autocomplete="nope">
-        <div class="mx-5 mt-3">
-          <h3>Students</h3>
-          <hr>
-        </div>
-
-      </form>
-
-
     </div>
   </main>
 

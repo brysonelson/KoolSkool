@@ -1,16 +1,16 @@
   <main>
 
-    <div class="container-fluid student-container col-md-9 align-self-start">
+    <div class="container-fluid student-container col-md-12 align-self-start">
 
       <!--Student Data Entry Form Wrapper-->
-      <form enctype="multipart/form-data" action="POST" method="" name="form_student_add" autocomplete="nope">
+      <form id="form_student_add" name="form_student_add" autocomplete="nope">
 
         <div class="mx-5 mt-3">
           <h3>Students</h3>
           <hr>
         </div>
 
-        <!--Contact Information-->
+        <!--Student Information-->
         <div class="card mx-5 my-2">
           <div class="card-header">Student Information:</div>
           <div class="card-body">
@@ -76,7 +76,7 @@
         <div class="btnContainer d-flex mx-5">
 
           <div>
-            <button id="submit_student" class="button" name="submit_student">
+            <button type="submit" id="submit_student" class="button" name="submit_student">
               Add Student
               <span>
                 <svg>
@@ -94,18 +94,6 @@
 
       </form>
       <hr>
-    </div>
-    <div class="container-fluid student-container col-md-3 align-self-start">
-      <!--Student Data Entry Form Wrapper-->
-      <form enctype="multipart/form-data" action="" name="form_students_add" autocomplete="nope">
-        <div class="mx-5 mt-3">
-          <h3>Students</h3>
-          <hr>
-        </div>
-
-      </form>
-
-
     </div>
   </main>
 

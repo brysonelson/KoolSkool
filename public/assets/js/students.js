@@ -7,12 +7,6 @@
  *****************************************************************************/
 
 $(function() {
-  /******************************************************************************
-   *Upon page load Initialize bootstrap 4 tooltips
-   *
-   *****************************************************************************/
-  $("[data-toggle='tooltip']").tooltip();
-
   // Get references to page elements
   var $first_name = $("#first_name");
   var $middle_name = $("#middle_name");
@@ -22,7 +16,8 @@ $(function() {
   var $birthdate = $("#birthdate");
   var $gender = $("#gender");
   var $photo = $("#photo");
-  var $submit_student = $("#submit_student");
+  var $form_student_add = $("#form_student_add");
+  //var $submit_student = $("#submit_student");
 
   // The API object contains methods for each kind of request we'll make
   var API = {
@@ -51,19 +46,29 @@ $(function() {
     }
   };
 
-  // handleFormSubmit is called whenever we submit a new record
-  // Save the new example to the db and refresh the list
-  var handleFormSubmit = function(event) {
-    event.preventDefault();
+  //This function is used to convert values from empty strings to null
+  function emptyStringsToNull(object) {
+    for (var key in object) {
+      if (object[key] === "") {
+        object[key] = null;
+      }
+    }
+    return object;
+  }
 
+  // handleFormSubmit is called whenever we submit a new record
+  var handleFormSubmit = function() {
+    //get values from radio buttons
     $gender = $("input[name='gender']:checked").val();
 
-    if ( !$('#name_suffix').val() ) {
+    //get values from selects and if not answered convert to empty string
+    if (!$("#name_suffix").val()) {
       $name_suffix = "";
     } else {
       $name_suffix = $name_suffix.val();
     }
 
+    //Construct the object of values to save
     var student = {
       first_name: $first_name.val().trim(),
       middle_name: $middle_name.val().trim(),
@@ -74,20 +79,26 @@ $(function() {
       gender: $gender,
       photo: $photo.val().trim()
     };
+
+    //replace any empty strings with null values to work around sequelize validations on empty strings
+    emptyStringsToNull(student);
+
+    //confirm required fields have values
     if (!(student.first_name && student.last_name)) {
       alert("You must enter a first and last name!");
       return;
     }
 
+    //call api route to save the data
     API.saveStudent(student).then(function() {
       console.log("Something is happening!");
       //refreshStudent();
     });
-
-    //$first_name.val("");
-    //$last_name.val("");
   };
 
-  // Add event listeners to the submit and delete buttons
-  $submit_student.on("click", handleFormSubmit);
+  //event listeners to form and submit button(s)
+  $form_student_add.on("submit", function(event) {
+    event.preventDefault();
+    handleFormSubmit();
+  });
 });
