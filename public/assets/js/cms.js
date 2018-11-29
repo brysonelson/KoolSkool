@@ -298,4 +298,21 @@ $(function() {
     );
   });
   $("#room_num").keyup();
+
+  var text_max_relationship = 35;
+  $("#feedback_relationship").html(text_max_relationship + " characters remain");
+  $("#relationship").bind("input change paste keyup mouseup", function() {
+    var text_max_relationship = 35;
+    var text_length_relationship = $("#relationship").val().length;
+    var text_remaining_relationship = text_max_relationship - text_length_relationship;
+    $("#feedback_relationship").html(
+      text_remaining_relationship + " characters remain"
+    );
+    $(this).after(
+      $("#feedback_relationship").html(
+        text_remaining_relationship + " characters remain"
+      )
+    );
+  });
+  $("#relationship").keyup();
 });

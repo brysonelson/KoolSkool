@@ -89,6 +89,28 @@ $(function() {
       $reports_to_id = $reports_to_id.val();
     }
 
+    //trim the 1st digit off phone number if it is a 1
+    $phone_num_primary = $phone_num_primary.val().trim();
+    if ($phone_num_primary.charAt(0) === "1") {
+      $phone_num_primary = $phone_num_primary.substring(1);
+    }
+    $phone_num_alt = $phone_num_alt.val().trim();
+    if ($phone_num_alt.charAt(0) === "1") {
+      $phone_num_alt = $phone_num_alt.substring(1);
+    }
+    //replace all non digits of the phone number
+    $phone_num_primary = $phone_num_primary.replace(/\D/g, "");
+    $phone_num_alt = $phone_num_alt.replace(/\D/g, "");
+
+    //if less than 10 chars, won't pass validation, so change to blank
+    //TODO!! RETURN MESSAGE TO USER TO REENTER PHONE NUMBER
+    if ($phone_num_primary.length !== 10) {
+      $phone_num_primary = "";
+    }
+    if ($phone_num_alt.length !== 10) {
+      $phone_num_alt = "";
+    }
+
     var personnel = {
       first_name: $first_name.val().trim(),
       middle_name: $middle_name.val().trim(),
@@ -99,8 +121,8 @@ $(function() {
       city: $city.val().trim(),
       postal_code: $postal_code,
       zip_code: $zip_code.val().trim(),
-      phone_num_primary: $phone_num_primary.val().trim(),
-      phone_num_alt: $phone_num_alt.val().trim(),
+      phone_num_primary: $phone_num_primary,
+      phone_num_alt: $phone_num_alt,
       email_address: $email_address.val().trim(),
       position_descr: $position_descr.val().trim(),
       reports_to_id: $reports_to_id,
