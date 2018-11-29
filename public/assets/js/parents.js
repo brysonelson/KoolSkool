@@ -7,10 +7,6 @@
  *****************************************************************************/
 
 $(function() {
-
-  //code for multi-select
-  $(".selectpicker").selectpicker();
-
   // Get references to page elements
   var $first_name = $("#first_name");
   var $middle_name = $("#middle_name");
@@ -98,7 +94,6 @@ $(function() {
 
   // handleFormSubmit is called whenever we submit a new record for the data that gets written to the Parent table
   var handleParentFormSubmit = function() {
-
     //get values from selects and if not answered convert to empty string
     if (!$("#name_suffix").val()) {
       $name_suffix = "";
@@ -177,7 +172,6 @@ $(function() {
           " " +
           response.last_name;
       }
-
 
       //create phone
       $phone = "Phone: " + response.phone_num_primary;
@@ -270,6 +264,7 @@ $(function() {
 
       API.getParentChild($parent_id).then(function(response) {
         console.log("Done!");
+        //WHY does this return html???
         console.log(response);
       });
 

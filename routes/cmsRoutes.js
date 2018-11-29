@@ -61,10 +61,26 @@ module.exports = function(app) {
     });
   });
 
-  // Load students data entry page
+  // Load parents data entry page (note: only dropdowns are populated)
   app.get("/cms/students", function(req, res) {
-    res.render("students", {
-      nav: true
+    db.Parents.findAll({
+      attributes: { include: ["last_name", "first_name"] },
+      order: [["last_name", "ASC"], ["first_name", "ASC"]]
+    }).then(function(dbParents) {
+      res.render("students", {
+        nav: true,
+        parents: dbParents
+      });
+    });
+  });
+
+  // Get all examples
+  app.get("/cms/api/allparents", function(req, res) {
+    db.Parents.findAll({
+      attributes: { include: ["last_name", "first_name"] },
+      order: [["last_name", "ASC"], ["first_name", "ASC"]]
+    }).then(function(dbParents) {
+      res.json(dbParents);
     });
   });
 

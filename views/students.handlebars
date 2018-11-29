@@ -25,7 +25,7 @@
                 <p class="text-right feedback" id="feedback_nickname">35 characters remain</p>
               </div>
               <!--Birthdate-->
-              <div class="form-group col-md-3">
+              <div class="form-group col-md-4">
                 <label class="form-label" for="birthdate">Birthdate</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -37,15 +37,9 @@
                 </div>
               </div>
               <!--Gender-->
-              <fieldset>
+              <fieldset  class="form-group col-md-5">
                 <legend class="form-label">Gender?</legend>
-                  <div class="radio-wrapper form-control border-secondary rounded pb-3">
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="gender1" value="1" checked>
-                    <label class="form-check-label" for="gender1">
-                      Not Answered
-                    </label>
-                  </div>
+                  <div class="radio-wrapper form-control border-secondary rounded pb-3 px-1">
                   <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="gender" id="gender2" value="2">
                     <label class="form-check-label" for="gender2">
@@ -56,6 +50,12 @@
                     <input class="form-check-input" type="radio" name="gender" id="gender3" value="3">
                     <label class="form-check-label" for="gender3">
                       Female
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="gender1" value="1" checked>
+                    <label class="form-check-label" for="gender1">
+                      No Answer
                     </label>
                   </div>
                   </div>
@@ -94,6 +94,78 @@
 
       </form>
       <hr>
+
+      <!--Student Information after Rec is saved-->
+      <div class="card mx-5 my-2 d-none" id="student_card">
+        <div class="card-header">Student Information:</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="card-left col-md-6"></div>
+            <div class="card-right col-md-6"></div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="/cms" id="cancel2" class="btn btn-outline-dark m-1">Done!</a>
+          <a href="/cms/parents" id="go_to_parents" class="btn btn-outline-dark m-1">Enter Parent</a>
+          <button id="add_parent" class="btn btn-outline-dark m-1">Add Parents</button>
+        </div>
+      </div>
+
+      <!--Parent Data Entry Form Wrapper-->
+      <form class="myClass d-none" id="form_parent_add" name="form_parent_add" autocomplete="nope">
+
+        <div class="mx-5 mt-3">
+          <h3>Add This Child's Parents</h3>
+          <hr>
+        </div>
+
+        {{> extraparent-block}}
+        <!--Add Another Parent Button-->
+        <div class="form row mx-5 my-0">
+          <button type="button" id="btn_extra_parent" class="btn btn-outline-secondary" data-toggle="tooltip" data-placement="right" title="Click to enter another parent">
+          +
+          <i class="far fa-address-card"></i>
+        </button>
+        </div>
+
+        <!--Button Group-->
+        <hr class="mx-5">
+        <div class="btnContainer d-flex mx-5">
+
+          <div>
+            <button type="submit" id="submit_parent" class="button" name="submit_parent">
+              Add Parents
+              <span>
+                <svg>
+                  <use xlink:href="#arrow" href="#arrow"></use>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <div class="ml-auto">
+            <a href="/cms" id="cancel3" class="btn btn-outline-dark">Cancel</a>
+          </div>
+
+        </div>
+        
+
+      </form>
+
+      <div class="card mx-5 my-2 d-none" id="success_card">
+        <div class="card-header">Success!:</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="myClass">Your Information is Entered!</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="ml-auto">
+            <a href="/cms" id="cancel" class="btn btn-outline-dark">Home</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 

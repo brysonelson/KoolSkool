@@ -14,6 +14,9 @@ $(function() {
     $("#footer").removeClass("invisible");
   }
 
+  //code for multi-select
+  $(".selectpicker").selectpicker();
+
   //Initialize bootstrap 4 tooltips
   $("[data-toggle='tooltip']").tooltip();
 
