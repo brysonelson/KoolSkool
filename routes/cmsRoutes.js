@@ -37,6 +37,7 @@ module.exports = function(app) {
   });
 
   //get the parentChild records  --DOESN'T WORK!
+  // eslint-disable-next-line no-unused-vars
   app.get("/cms/api/parentchild/:id", function(req, res) {
     db.parent_child_map
       .findAll({ where: { parent_id: req.params.id } })
