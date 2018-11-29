@@ -1,9 +1,9 @@
   <main>
 
-    <div class="container-fluid parent-container col-md-9 align-self-start">
+    <div class="container-fluid parent-container col-md-12 align-self-start">
 
       <!--Parent Data Entry Form Wrapper-->
-      <form id="form_parent_add" name="form_parent_add" autocomplete="nope">
+      <form class="myClass" id="form_parent_add" name="form_parent_add" autocomplete="nope">
 
         <div class="mx-5 mt-3">
           <h3>Parents</h3>
@@ -48,14 +48,99 @@
           </div>
 
           <div class="ml-auto">
-            <a href="#." id="cancel" class="btn btn-outline-dark">Cancel</a>
+            <a href="/cms" id="cancel1" class="btn btn-outline-dark">Cancel</a>
           </div>
 
         </div>
 
       </form>
       <hr>
-    </div>
+      <!--Contact Information-->
+      <div class="card mx-5 my-2 d-none" id="parent_card">
+        <div class="card-header">Parent Information:</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="card-left col-md-6"></div>
+            <div class="card-right col-md-6"></div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a href="/cms" id="cancel2" class="btn btn-outline-dark m-1">Done!</a>
+          <a href="/cms/students" id="go_to_students" class="btn btn-outline-dark m-1">Enter Student</a>
+          <button id="add_children" class="btn btn-outline-dark m-1">Add Children</button>
+        </div>
+      </div>
+
+      <!--Student Data Entry Form Wrapper-->
+      <form class="myClass d-none" id="form_student_add" name="form_student_add" autocomplete="nope">
+
+        <div class="mx-5 mt-3">
+          <h3>Add Children</h3>
+          <hr>
+        </div>
+
+        <div class="form-row mx-5 mt-3">
+          <div class="form-group col-md-6">
+            <label class="form-label">Children</label>
+            <select required id="students_select" name="students_select" class="selectpicker" multiple data-selected-text-format="count" data-live-search="true" data-style="btn-outline-secondary" data-width="100%" title="Choose one or more children from this list." >
+              {{#each students}}
+                <option value="{{this.id}}">{{this.last_name}}, {{this.first_name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <!--Relationship-->
+          <div class="form-group col-md-5">
+            <label class="form-label" for="relationship">Relationship</label>
+            <input type="text" class="form-control" name="relationship" id="relationship" maxlength="35" placeholder="Father, Mother, Step, etc." required>
+            <p class="text-right feedback" id="feedback_address1">35 characters remain</p>
+          </div>
+          <!--Relationship-->
+          <div class="form-group col-md-1">
+            <label class="form-label" for="contact_sequence">Contact Order</label>
+            <input type="number" class="form-control" name="contact_sequence" id="contact_sequence" min="1" step="1" required>
+          </div>
+        </div>
+
+        <!--Button Group-->
+        <hr class="mx-5">
+        <div class="btnContainer d-flex mx-5">
+
+          <div>
+            <button type="submit" id="submit_student" class="button" name="submit_student">
+              Add Children
+              <span>
+                <svg>
+                  <use xlink:href="#arrow" href="#arrow"></use>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <div class="ml-auto">
+            <a href="/cms" id="cancel3" class="btn btn-outline-dark">Cancel</a>
+          </div>
+
+        </div>
+        
+
+      </form>
+
+      <div class="card mx-5 my-2 d-none" id="success_card">
+        <div class="card-header">Success!:</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="myClass">Your Information is Entered!</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="ml-auto">
+            <a href="/cms" id="cancel" class="btn btn-outline-dark">Home</a>
+          </div>
+        </div>
+      </div>
+
+    </div>        
+
   </main>
 
   <!--Our Local js file-->

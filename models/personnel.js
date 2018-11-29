@@ -119,45 +119,26 @@ module.exports = function(sequelize, DataTypes) {
       },
       /*************************************************************************/
       /* Phone Number Primary Definition and Usage Example:
-      /  Not required but if used it should be a valid phone number
-      /  If used, it would be the first number called in case of emergency.
-      /  The field is not required because we anticipate there may be some 
-      /  situations where the information isn't available at the time of data entry. 
-      /  Validation logic:
-      /  Matches US style phone number formatting
-      /  123-456-7890
-      /  (123) 456-7890
-      /  123 456 7890
-      /  123.456.7890
-      /  1234567890
+      /  Required must be valid format of 10 characters no punctuation.
       /*************************************************************************/
       phone_num_primary: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
         validate: {
-          len: [1, 14],
-          is: [/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/i]
+          len: [10],
+          is: [/^\d+$/i]
         }
       },
       /*************************************************************************/
       /* Phone Number Alt Definition and Usage Example:
-      /  Not required but if used it should be a valid phone number
-      /  If used, it would be the second number called in case of emergency if
-      /  the primary phone number is not reached.
-      /  Validation logic:
-      /  Matches US style phone number formatting
-      /  123-456-7890
-      /  (123) 456-7890
-      /  123 456 7890
-      /  123.456.7890
-      /  1234567890
+      /  Not required but if used it should be a valid 10 character phone number
       /*************************************************************************/
       phone_num_alt: {
         type: DataTypes.STRING,
         allowNull: true,
         validate: {
-          len: [1, 14],
-          is: [/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/i]
+          len: [10],
+          is: [/^\d+$/i]
         }
       },
       /*************************************************************************/
