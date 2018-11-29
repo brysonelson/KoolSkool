@@ -1,11 +1,11 @@
 var authController = require("../controllers/authcontroller.js");
 var ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
 var authMiddleware = require("../middleware/authMiddleware.js");
+// var db = require("../models");
 
 module.exports = function(app, passport) {
-  app.get("/signup", function() {
-    res.render("signup");
-  });
+
+  app.get("/signup", authController.signup);
 
   app.post(
     "/signup",

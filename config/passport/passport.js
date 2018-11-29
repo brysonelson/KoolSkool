@@ -1,3 +1,4 @@
+var db = require("../../models");
 //load bcrypt to encrypt the password
 var bCrypt = require("bcrypt-nodejs");
 

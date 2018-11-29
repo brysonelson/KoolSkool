@@ -36,10 +36,10 @@ app.set("view engine", "handlebars");
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/cmsRoutes")(app);
+require("./config/passport/passport.js")(passport, db.user);
+require("./routes/authRoutes")(app, passport);
 require("./routes/htmlRoutes")(app);
-require("./routes/authRoutes");
-require("./config/passport/passport.js")(passport);
-require("./routes/authRoutes.js")(app, passport);
+
 
 var syncOptions = { force: false };
 
