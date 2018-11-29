@@ -1,0 +1,33 @@
+Phone Numbers:  
+Create new sql seeds files for parents and personnel which strips punctuation from phone fields. All phone numbers should now be 10 chars.
+Modify models for parents and personnel to reflect primary number required and length must validate to 10 chars
+Modify data entry forms for parents and personnel to require primary number.
+Modify data entry forms to strip punctuation prior to sending data to sequelize validation and to the database.
+
+Created multi-select picker for CMS data entry forms:
+Note: npm install needs to be run again -- or npm install bootstrap-select
+I can successfully add bulk records to the parent child map through the data entry screen at this url:  local:3000/cms/parents
+
+Wrote in MySQL the statements that would retreive phone numbers and the logic on how to accomplish these joins and unions.  The file can be found in the project planning/Schema folder 'Select_Phone.sql'
+
+What I was not successful at:
+Adding the newly created parent-child records back into the dom for display to the user. 
+Still thinking about what to do with the schedules table in our schema
+
+What I'm working on next:
+1.Replicating the parent/child map logic and bulk insert into the student data entry form.
+2.Creating logic and functionality for creating bulk records for the Teacher Course Maps
+3.Creating logic and functionality for creating bulk records for the Student Course Maps
+
+Important Things to know:
+The sql seeds were curated from a giant database that I use at work -- so these are real people, real addresses and real phone numbers.  I felt comfortable doing this because I randomized the first names, then added the last names, then randomized the address parts as well.  But the phone numbers are still real.  Please do not test any emergency functionality with the phone numbers in this database.
+
+You will need to drop/recreate schema and re-seed at some point.
+
+You will need to rerun npm install at some point.
+
+
+
+
+
+
