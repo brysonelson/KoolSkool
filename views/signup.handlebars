@@ -1,0 +1,58 @@
+<main>
+
+    <!--Use Bootstrap's grid system inside the main area of the page-->
+    <div class="container">
+      <!--1st row holds the logo and application name-->
+      <div class="row">
+        <div class="col-12">
+          <div class="text-center m-0">
+            <img class="m-0" src="public/assets/images/logo1.png" alt="logo">
+              <h3>Create A New User</h3>
+          </div>
+        </div>
+      </div>
+      <!--Hidden row holds warning or alert messages-->
+      <div class="row warningMsg">
+      </div>
+      <!--2nd row holds the form-->
+      <div class="row">
+        <div class="col-12">
+          <form class="form-signin" action="" method="post">
+            <div class="form-label-group">
+              <input type="text" id="first-name" name="first-name" class="form-control outline-secondary" placeholder="First Name"
+                autocomplete="first-name" required autofocus>
+              <label for="first-name">First Name</label>
+            </div>
+
+            <div class="form-label-group">
+              <input type="text" id="last-name" name="last-name" class="form-control outline-secondary" placeholder="Last Name"
+                autocomplete="email" required autofocus>
+              <label for="last-name">Last Name</label>
+            </div>
+
+            <div class="form-label-group">
+              <input type="email" id="email" name="email" class="form-control" placeholder="Email"
+                autocomplete="new-password" required>
+              <label for="inputPassword">Email</label>
+            </div>
+
+            <div class="form-label-group">
+              <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password"
+                autocomplete="new-password" required>
+              <label for="inputPassword">Temporary Password</label>
+            </div>
+
+            <div class="form-label-group">
+              <input type="text" id="authorization" name="authorization" class="form-control" placeholder="Authorization"
+                autocomplete="new-password" required>
+              <label for="inputPassword">Authorization</label>
+            </div>
+
+            <button class="btn btn-lg btn-light btn-outline-secondary" type="submit" name="submit">Log in</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
