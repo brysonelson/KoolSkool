@@ -74,6 +74,7 @@ $(function() {
 
   //event listeners to form and submit button(s)
   $form_course_add.on("submit", function(event) {
+    console.log("I've been clicked");
     event.preventDefault();
     handleFormSubmit();
   });

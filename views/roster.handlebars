@@ -54,7 +54,7 @@
               <div class="form-row mx-1 mt-3">
                 <div class="form-group col-md-12 text-left">
                   <label class="form-label">Teachers</label>
-                  <select required id="teacher_select" name="teacher_select" class="selectpicker" multiple
+                  <select required id="teacher_select" name="teacher_select" class="selectpicker"
                     data-selected-text-format="count" data-live-search="true" data-style="btn-outline-secondary"
                     data-width="100%" title="Choose Teachers">
                     {{#each teachers}}
@@ -73,7 +73,7 @@
               <div class="form-row mx-1 mt-3">
                 <div class="form-group col-md-12 text-left">
                   <label class="form-label">Teacher Assistant</label>
-                  <select required id="ta_select" name="ta_select" class="selectpicker" multiple
+                  <select id="ta_select" name="ta_select" class="selectpicker" multiple 
                     data-selected-text-format="count" data-live-search="true" data-style="btn-outline-secondary"
                     data-width="100%" title="Choose TAs">
                     {{#each tas}}
@@ -111,7 +111,7 @@
       <div class="btnContainer d-flex mx-5">
 
         <div>
-          <button type="submit" id="submit_student" class="button" name="submit_student">
+          <button type="button" id="submit_roster" class="button" name="submit_roster">
             Fill up Roster
             <span>
               <svg>
@@ -129,7 +129,20 @@
 
     </form>
     <hr>
-
+      <div class="card mx-5 my-2 d-none" id="success_card">
+        <div class="card-header">Success!:</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="myClass">Your Information is Entered!</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="ml-auto">
+            <a href="/cms" id="cancel" class="btn btn-outline-dark">Home</a>
+          </div>
+        </div>
+      </div>
+      
   </div>
 </main>
 

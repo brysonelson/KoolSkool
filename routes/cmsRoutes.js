@@ -161,4 +161,22 @@ module.exports = function(app) {
       });
     });
   });
+
+  // Create the bulk records in the student_course_map
+  app.post("/cms/api/studentcourse", function(req, res) {
+    db.student_course_map
+      .bulkCreate(req.body)
+      .then(function(dbstudent_course_map) {
+        res.json(dbstudent_course_map);
+      });
+  });
+
+  // Create a new record in course table
+  app.post("/cms/api/teachercourse", function(req, res) {
+    db.teacher_course_map
+      .bulkCreate(req.body)
+      .then(function(dbteacher_course_map) {
+        res.json(dbteacher_course_map);
+      });
+  });
 };
