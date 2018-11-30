@@ -146,7 +146,7 @@ module.exports = function(app) {
               attributes: ["id", "course_descr"],
               order: [["course_descr", "ASC"]]
             }).then(function(dbCourses) {
-//              console.log(JSON.stringify(dbCourses));
+              //console.log(JSON.stringify(dbCourses));
               res.render("roster", {
                 nav: true,
                 courses: dbCourses,
