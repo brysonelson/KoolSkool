@@ -1,12 +1,10 @@
+// eslint-disable-next-line no-unused-vars
 var db = require("../../models");
 //load bcrypt to encrypt the password
 var bCrypt = require("bcrypt-nodejs");
 
 //all of this will be exported for external use
-module.exports = function(passport, user) {
-  //store the user data
-  var User = user;
-
+module.exports = function(passport, User) {
   //this will be the strategy we use for passport
   var LocalStrategy = require("passport-local").Strategy;
 
@@ -57,11 +55,11 @@ module.exports = function(passport, user) {
             var data = {
               email: email,
               password: userPassword,
-              first_name: req.body.first_name,
-              last_name: req.body.last_name
+              first_name: req.body["first-name"],
+              last_name: req.body["last-name"]
             };
 
-            User.create(data).then(function(newUser, created) {
+            User.create(data).then(function(newUser) {
               if (!newUser) {
                 return done(null, false);
               }
@@ -89,13 +87,10 @@ module.exports = function(passport, user) {
 
       function(req, email, password, done) {
         //store the user
-        var User = user;
-
         //function to check that the password is comparable to any passwords in our db
         var isValidPassword = function(userpass, password) {
           return bCrypt.compareSync(password, userpass);
         };
-
         //look for a user with a matching email
         User.findOne({ where: { email: email } })
           .then(function(user) {
