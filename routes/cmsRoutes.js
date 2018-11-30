@@ -1,4 +1,8 @@
 var db = require("../models");
+// eslint-disable-next-line no-unused-vars
+var ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
+// eslint-disable-next-line no-unused-vars
+var authMiddleware = require("../middleware/authMiddleware.js");
 
 module.exports = function(app) {
   // Load cms splash page

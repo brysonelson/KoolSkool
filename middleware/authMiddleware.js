@@ -6,7 +6,7 @@ exports.adminAuth = function() {
   return [
     ensureLoggedIn("/login"),
     function(req, res, next) {
-      if (req.user && req.user.useMode === "admin") {
+      if (req.user && req.user.use_mode === "admin") {
         next();
       } else {
         res.send(401, "Unauthorized");
