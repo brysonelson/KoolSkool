@@ -1,4 +1,5 @@
 var authController = require("../controllers/authcontroller.js");
+// eslint-disable-next-line no-unused-vars
 var ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
 var authMiddleware = require("../middleware/authMiddleware.js");
 // var db = require("../models");

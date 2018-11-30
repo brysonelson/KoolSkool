@@ -1,4 +1,5 @@
 var db = require("../models");
+// eslint-disable-next-line no-unused-vars
 var ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
 var authMiddleware = require("../middleware/authMiddleware.js");
 
@@ -12,7 +13,7 @@ module.exports = function(app) {
   });
 
   // Load parents data entry page (note: only dropdowns are populated)
-  app.get("/cms/parents", authMiddleware.adminAuth(), function(req, res) {
+  app.get("/cms/parents", function(req, res) {
     db.Students.findAll({
       attributes: { include: ["last_name", "first_name"] },
       order: [["last_name", "ASC"], ["first_name", "ASC"]]

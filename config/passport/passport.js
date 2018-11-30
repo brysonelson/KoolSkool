@@ -1,10 +1,10 @@
+// eslint-disable-next-line no-unused-vars
 var db = require("../../models");
 //load bcrypt to encrypt the password
 var bCrypt = require("bcrypt-nodejs");
 
 //all of this will be exported for external use
 module.exports = function(passport, User) {
-
   //this will be the strategy we use for passport
   var LocalStrategy = require("passport-local").Strategy;
 
