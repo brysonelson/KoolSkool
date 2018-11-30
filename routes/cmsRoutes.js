@@ -61,7 +61,7 @@ module.exports = function(app) {
     });
   });
 
-  // Load parents data entry page (note: only dropdowns are populated)
+  // Load students data entry page (note: only dropdowns are populated)
   app.get("/cms/students", function(req, res) {
     db.Parents.findAll({
       attributes: { include: ["last_name", "first_name"] },
@@ -116,6 +116,26 @@ module.exports = function(app) {
   app.post("/cms/api/classrooms", function(req, res) {
     db.Classrooms.create(req.body).then(function(dbClassrooms) {
       res.json(dbClassrooms);
+    });
+  });
+
+  // Load Roster data entry page (note: only dropdowns are populated)
+  app.get("/cms/roster", function(req, res) {
+    db.Students.findAll({
+      attributes: ["last_name", "first_name"],
+      order: [["last_name", "ASC"], ["first_name", "ASC"]]
+    }).then(function(dbStudents) {
+      console.log(JSON.stringify(dbStudents));
+      db.Personnel.findAll({
+        attributes: { include: ["last_name", "first_name"] },
+        order: [["last_name", "ASC"], ["first_name", "ASC"]]
+      }).then(function(dbPersonnel) {
+        res.render("roster", {
+          nav: true,
+          teachers: dbPersonnel,
+          student: dbStudents
+        });
+      });
     });
   });
 };
