@@ -4,18 +4,21 @@ var authMiddleware = require("../middleware/authMiddleware.js");
 // var db = require("../models");
 
 module.exports = function(app, passport) {
-
   app.get("/signup", authController.signup);
+
+  // app.post("/signup", (req, res) => {
+  //   res.json({body:req.body});
+  // })
 
   app.post(
     "/signup",
     passport.authenticate("local-signup", {
-      successRedirect: "/dashboard",
+      successRedirect: "/cms",
       failureRedirect: "/signup"
     })
   );
 
-  app.get("/dashboard", ensureLoggedIn("/login"), authController.dashboard);
+  //app.get("/cms", ensureLoggedIn("/login"), authController.cms);
 
   app.get("/admin", authMiddleware.adminAuth(), authController.admin);
 
@@ -26,7 +29,7 @@ module.exports = function(app, passport) {
   app.post(
     "/login",
     passport.authenticate("local-login", {
-      successRedirect: "/dashboard",
+      successRedirect: "/cms",
       failureRedirect: "/login"
     })
   );

@@ -10,8 +10,8 @@ exports.login = function(req, res) {
   res.render("login");
 };
 
-exports.dashboard = function(req, res) {
-  res.render("dashboard");
+exports.cms = function(req, res) {
+  res.render("cms");
 };
 
 exports.admin = function(req, res) {
