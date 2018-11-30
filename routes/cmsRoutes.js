@@ -126,18 +126,37 @@ module.exports = function(app) {
   // Load Roster data entry page (note: only dropdowns are populated)
   app.get("/cms/roster", function(req, res) {
     db.Students.findAll({
-      attributes: ["last_name", "first_name"],
+      attributes: ["id", "last_name", "first_name"],
       order: [["last_name", "ASC"], ["first_name", "ASC"]]
     }).then(function(dbStudents) {
-      console.log(JSON.stringify(dbStudents));
       db.Personnel.findAll({
-        attributes: { include: ["last_name", "first_name"] },
+        attributes: ["id", "last_name", "first_name"],
+        where: { position_descr: "Teacher" },
         order: [["last_name", "ASC"], ["first_name", "ASC"]]
-      }).then(function(dbPersonnel) {
-        res.render("roster", {
-          nav: true,
-          teachers: dbPersonnel,
-          student: dbStudents
+      }).then(function(dbTeachers) {
+        db.Personnel.findAll({
+          attributes: ["id", "last_name", "first_name"],
+          where: { position_descr: "TA" },
+          order: [["last_name", "ASC"], ["first_name", "ASC"]]
+        }).then(function(dbTAs) {
+          db.Classrooms.findAll({
+            attributes: ["id", "location_descr", "room_num"]
+          }).then(function(dbClassrooms) {
+            db.Course.findAll({
+              attributes: ["id", "course_descr"],
+              order: [["course_descr", "ASC"]]
+            }).then(function(dbCourses) {
+//              console.log(JSON.stringify(dbCourses));
+              res.render("roster", {
+                nav: true,
+                courses: dbCourses,
+                classrooms: dbClassrooms,
+                tas: dbTAs,
+                teachers: dbTeachers,
+                student: dbStudents
+              });
+            });
+          });
         });
       });
     });
