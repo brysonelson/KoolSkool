@@ -1,8 +1,8 @@
     <!--The Nav Bar - navbar-light bg-light is white background, black letters-->
     <nav class="navbar navbar-expand-md navbar-light bg-light">
-      <a class="navbar-brand" href="#"><img class="img-responsive" src="/assets/images/logo2.png" alt="logo_small"
+      <a class="navbar-brand" href="/cms"><img class="img-responsive" src="/assets/images/logo2.png" alt="logo_small"
           height="50"></a>
-      <a class="navbar-brand" href="#"><img class="img-responsive" src="/assets/images/slogan.png" alt="logo_small"
+      <a class="navbar-brand" href="#cms"><img class="img-responsive" src="/assets/images/slogan.png" alt="logo_small"
           height="35"></a>
 
       <!--The Hamburger-->
@@ -85,13 +85,18 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuHome" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              <span class="bar">|&emsp;</span>Home
+              <span class="bar">|&emsp;</span>Account
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
               <a class="dropdown-item" href="home.html">Home</a>
               <a class="dropdown-item" href="#">Change My Password</a>
               <a class="dropdown-item" href="/login">Login</a>
               <a class="dropdown-item" href="/logout">Logout</a>
+              <a class="dropdown-item" href="home.html">Profile</a>
+              <a class="dropdown-item" href="index.html">Settings</a>
+              <a id="user-logout" class="dropdown-item" href="/login">Logout</a>
+
             </div>
           </li>
 
@@ -100,3 +105,4 @@
         </ul>
       </div>
     </nav>
+    <script src="/assets/js/userAuth.js" type="text/javascript"></script>
