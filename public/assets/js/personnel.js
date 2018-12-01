@@ -7,12 +7,6 @@
  *****************************************************************************/
 
 $(function() {
-  /******************************************************************************
-   *Upon page load Initialize bootstrap 4 tooltips
-   *
-   *****************************************************************************/
-  $("[data-toggle='tooltip']").tooltip();
-
   // Get references to page elements
   var $first_name = $("#first_name");
   var $middle_name = $("#middle_name");

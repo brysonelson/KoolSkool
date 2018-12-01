@@ -1,0 +1,6 @@
+1. path for logo in login.handlebars needs to not include the 'public' folder.
+2. the classes on the login page changed, so floating-labels.css needs to change too.
+3. line 1 of authRoutes.js needs to be case sensitive for heroku -- authController.js is camel case. Row 1 of authRoutes.js does not reflect camel case.
+4.  There is not longer a user.js file, so removed the script to it in login.handlebars
+
+
