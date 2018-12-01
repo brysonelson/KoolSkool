@@ -20,6 +20,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 
+/*
+                _                        
+                \`*-.                    
+                 )  _`-.                 
+                .  : `. .                
+                : _   '  \               
+                ; *` _.   `*-._          
+                `-.-'          `-.       
+                  ;       `       `.     
+                  :.       .        \    
+                  . \  .   :   .-'   .   
+                  '  `+.;  ;  '      :   
+                  :  '  |    ;       ;-. 
+                  ; '   : :`-:     _.`* ;
+         [bug] .*' /  .*' ; .*`- +'  `*' 
+               `*-*   `*-*  `*-*'        
+
+               There's always a cat on your keyboard
+                       and a bug in the code
+                        The Kool Skool Team
+*/
+
 // For Passport
 app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })

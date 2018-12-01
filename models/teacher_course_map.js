@@ -8,6 +8,11 @@ module.exports = function(sequelize, DataTypes) {
       /  Required, length no greater than 10 chars
       /  Example:  Teacher, TA, Volunteer
       /*************************************************************************/
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
       teacher_type_descr: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -58,12 +63,13 @@ module.exports = function(sequelize, DataTypes) {
   TeacherCourse.associate = function(models) {
     models.Personnel.belongsToMany(models.Course, {
       as: "course_taught",
+      through: {model: TeacherCourse, unique: false},
       through: "teacher_course_map",
       foreignKey: "personnel_id"
     });
     models.Course.belongsToMany(models.Personnel, {
       as: "teachers",
-      through: "teacher_course_map",
+      through: {model: TeacherCourse, unique: false},
       foreignKey: "course_id"
     });
   };
