@@ -8,8 +8,9 @@ module.exports = function(app) {
   //only admin
   // Load cms splash page
   app.get("/cms", authMiddleware.adminAuth(), function(req, res) {
+    // console.log(req);
     res.render("cms", {
-      msg: "Welcome Professor Plum!",
+      msg: "Welcome " + req.user.first_name + " " + req.user.last_name + "!",
       nav: true
     });
   });
@@ -69,13 +70,8 @@ module.exports = function(app) {
     });
   });
 
-<<<<<<< HEAD
   // Load parents data entry page (note: only dropdowns are populated)
   app.get("/cms/students", authMiddleware.adminAuth(), function(req, res) {
-=======
-  // Load students data entry page (note: only dropdowns are populated)
-  app.get("/cms/students", function(req, res) {
->>>>>>> 42aaf11d79f6a287a2d2da9bbe637a27989431ef
     db.Parents.findAll({
       attributes: { include: ["last_name", "first_name"] },
       order: [["last_name", "ASC"], ["first_name", "ASC"]]
