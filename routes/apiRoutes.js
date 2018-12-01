@@ -1,4 +1,5 @@
 var db = require("../models");
+var authMiddleware = require("../middleware/authMiddleware.js");
 
 module.exports = function(app) {
   // Get all examples
