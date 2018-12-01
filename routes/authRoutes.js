@@ -1,4 +1,5 @@
 var authController = require("../controllers/authController.js");
+// eslint-disable-next-line no-unused-vars
 var authMiddleware = require("../middleware/authMiddleware.js");
 
 module.exports = function(app, passport) {
@@ -11,7 +12,7 @@ module.exports = function(app, passport) {
       failureRedirect: "/signup"
     })
   );
-  
+
   app.get("/logout", authController.logout);
 
   app.get("/login", authController.login);
