@@ -65,7 +65,7 @@ module.exports = function(app) {
     });
   });
 
-  // Load parents data entry page (note: only dropdowns are populated)
+  // Load students data entry page (note: only dropdowns are populated)
   app.get("/cms/students", function(req, res) {
     db.Parents.findAll({
       attributes: { include: ["last_name", "first_name"] },
@@ -121,5 +121,62 @@ module.exports = function(app) {
     db.Classrooms.create(req.body).then(function(dbClassrooms) {
       res.json(dbClassrooms);
     });
+  });
+
+  // Load Roster data entry page (note: only dropdowns are populated)
+  app.get("/cms/roster", function(req, res) {
+    db.Students.findAll({
+      attributes: ["id", "last_name", "first_name"],
+      order: [["last_name", "ASC"], ["first_name", "ASC"]]
+    }).then(function(dbStudents) {
+      db.Personnel.findAll({
+        attributes: ["id", "last_name", "first_name"],
+        where: { position_descr: "Teacher" },
+        order: [["last_name", "ASC"], ["first_name", "ASC"]]
+      }).then(function(dbTeachers) {
+        db.Personnel.findAll({
+          attributes: ["id", "last_name", "first_name"],
+          where: { position_descr: "TA" },
+          order: [["last_name", "ASC"], ["first_name", "ASC"]]
+        }).then(function(dbTAs) {
+          db.Classrooms.findAll({
+            attributes: ["id", "location_descr", "room_num"]
+          }).then(function(dbClassrooms) {
+            db.Course.findAll({
+              attributes: ["id", "course_descr"],
+              order: [["course_descr", "ASC"]]
+            }).then(function(dbCourses) {
+              //console.log(JSON.stringify(dbCourses));
+              res.render("roster", {
+                nav: true,
+                courses: dbCourses,
+                classrooms: dbClassrooms,
+                tas: dbTAs,
+                teachers: dbTeachers,
+                student: dbStudents
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+
+  // Create the bulk records in the student_course_map
+  app.post("/cms/api/studentcourse", function(req, res) {
+    db.student_course_map
+      .bulkCreate(req.body)
+      .then(function(dbstudent_course_map) {
+        res.json(dbstudent_course_map);
+      });
+  });
+
+  // Create a new record in course table
+  app.post("/cms/api/teachercourse", function(req, res) {
+    db.teacher_course_map
+      .bulkCreate(req.body)
+      .then(function(dbteacher_course_map) {
+        res.json(dbteacher_course_map);
+      });
   });
 };
