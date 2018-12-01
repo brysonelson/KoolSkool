@@ -59,4 +59,4 @@ VALUES
 ('Marvell','','Sangster','','260 Franklin Street','','Boston','MA','02110','7297272200','','zilla@msn.com','',now(),now()),
 ('Patricia','','Niemeyer','','3609 East Tuolumne Road','','Turlock','CA','95382','9957875979','','moonlapse@icloud.com','',now(),now()),
 ('Yolanda','','Rothman','Sr.','400 W. San Antonio Ave., Suite B','','El Paso','TX','79901','9933249362','9883271885','rtanter@optonline.net','ext.1206',now(),now()),
-('Kelly','','Noe','','5212 Wimmelskafts Gade, Suite 200','','St. Thomas','VI','00802','6633343107','','bradl@sbcglobal.net','',now(),now()),
+('Kelly','','Noe','','5212 Wimmelskafts Gade, Suite 200','','St. Thomas','VI','00802','6633343107','','bradl@sbcglobal.net','',now(),now());
