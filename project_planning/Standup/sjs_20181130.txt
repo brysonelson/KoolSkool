@@ -1,0 +1,4 @@
+Was researching issues regarding compound primary keys and how to work-around all the problems we have with n:M tables in our project and found this conversation:
+Q: "Did you ever find a solution to this?"
+A: "No, I found very complex workarounds, but it made other things stop working.  In the end I stopped using sequelize, the outstanging amount of bugs and missing features, in addition to the lack of support makes this package completely unsuitable for production."
+Me:  Ditto!! -- sequelize feels both rediculiously comple and sloppy at the same time.  + I don't know if I could get comfortable with an orm defining my schema as that is literally the foundation for any data-centric application.  If the database is broken, the project is broken.

@@ -1,0 +1,8 @@
+1.  added moment.js to our project
+2.  modified eslint to properly handle switch statements
+3.  added ability to add to the parent_child_map through the student data entry form.
+
+What I'm working on next:
+1.  Add ability to add to the student_course_map
+2.  Add ability to add to the teacher_course_map
+3.  Add ability to add to the Classrooms 

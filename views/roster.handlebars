@@ -1,0 +1,150 @@
+<main>
+
+  <div class="container-fluid student-container col-md-12 align-self-start">
+
+    <!--Roster Data Entry Form Wrapper-->
+    <form id="form_roster_add" name="form_roster_add" autocomplete="nope">
+
+      <div class="mx-5 mt-3">
+        <h3>Create a Roster</h3>
+        <hr>
+      </div>
+
+      <div class="container-fluid">
+        <div class="card-deck mb-3 text-center">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">Course</h4>
+            </div>
+            <div class="card-body">
+              <div class="form-row mx-1 mt-3">
+                <div class="form-group col-md-12 text-left">
+                  <label class="form-label">Course</label>
+                  <select required id="course_select" name="course_select" class="selectpicker" data-style="btn-outline-secondary"
+                    data-width="100%" title="Choose Course for this Roster">
+                    {{#each courses}}
+                    <option value="{{this.id}}">{{this.course_descr}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+                <div class="form-group col-md-12 text-left">
+                  <label class="form-label">Classroom</label>
+                  <select required id="classroom_select" name="classroom_select" class="selectpicker"
+                    data-selected-text-format="count" data-live-search="true" data-style="btn-outline-secondary"
+                    data-width="100%" title="Choose Where This Course Is Held">
+                    {{#each classrooms}}
+                      {{#if this.room_num}}
+                        <option value="{{this.id}}">Room {{this.room_num}} , Room Location Description: {{this.location_descr}}</option>
+                      {{else}}
+                        <option value="{{this.id}}">Room Location Description: {{this.location_descr}}</option>
+                      {{/if}}
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-deck mb-3 text-center">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">Teacher(s)</h4>
+            </div>
+            <div class="card-body">
+              <div class="form-row mx-1 mt-3">
+                <div class="form-group col-md-12 text-left">
+                  <label class="form-label">Teachers</label>
+                  <select required id="teacher_select" name="teacher_select" class="selectpicker"
+                    data-selected-text-format="count" data-live-search="true" data-style="btn-outline-secondary"
+                    data-width="100%" title="Choose Teachers">
+                    {{#each teachers}}
+                    <option value="{{this.id}}">{{this.last_name}}, {{this.first_name}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">Teacher Assistant(s)</h4>
+            </div>
+            <div class="card-body">
+              <div class="form-row mx-1 mt-3">
+                <div class="form-group col-md-12 text-left">
+                  <label class="form-label">Teacher Assistant</label>
+                  <select id="ta_select" name="ta_select" class="selectpicker" multiple 
+                    data-selected-text-format="count" data-live-search="true" data-style="btn-outline-secondary"
+                    data-width="100%" title="Choose TAs">
+                    {{#each tas}}
+                    <option value="{{this.id}}">{{this.last_name}}, {{this.first_name}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">Students</h4>
+            </div>
+            <div class="card-body">
+              <div class="form-row mx-1 mt-3">
+                <div class="form-group col-md-12 text-left">
+                  <label class="form-label">Students</label>
+                  <select required id="student_select" name="student_select" class="selectpicker" multiple
+                    data-selected-text-format="count" data-live-search="true" data-style="btn-outline-secondary"
+                    data-width="100%" title="Choose Students">
+                    {{#each student}}
+                    <option value="{{this.id}}">{{this.last_name}}, {{this.first_name}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Button Group-->
+      <hr class="mx-5">
+      <div class="btnContainer d-flex mx-5">
+
+        <div>
+          <button type="button" id="submit_roster" class="button" name="submit_roster">
+            Fill up Roster
+            <span>
+              <svg>
+                <use xlink:href="#arrow" href="#arrow"></use>
+              </svg>
+            </span>
+          </button>
+        </div>
+
+        <div class="ml-auto">
+          <a href="/cms" id="cancel" class="btn btn-outline-dark">Cancel</a>
+        </div>
+
+      </div>
+
+    </form>
+    <hr>
+      <div class="card mx-5 my-2 d-none" id="success_card">
+        <div class="card-header">Success!:</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="myClass">Your Information is Entered!</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="ml-auto">
+            <a href="/cms" id="cancel" class="btn btn-outline-dark">Home</a>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+</main>
+
+<!--Our Local js file-->
+<script src="/assets/js/roster.js" type="text/javascript"></script>
