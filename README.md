@@ -1,6 +1,17 @@
 # KoolSkool Tool
 Bootcamp Assignment 11/17/18 - Group Project 2:
 
+## Demo
+*Kool Skool Tool!* is deployed to Heroku.  Please check it out [here](https://kool-skool-tool-11235.herokuapp.com/login).
+
+Because our app requires an authentic login to work properly we've created these 4 special logins for purposes of demonstrating the application's functionality.  
+1. Admin User - Authorized to view the content management system (/cms) as well as teacher and parent dashboards
+2. Teacher - Authorized to view the teacher dashbards (/teacher-dashboard)
+3. Parent -  Authorized to view the parent dashboards (/parent-dashboard)
+4. Emergency - This part of our application is intended to be used to notify parents in the event of an emergency via text message.  For this reason, only super-admin (i.e., the principal) will be allowed to use this component.
+
+
+
 ## Tables
 Tables are created via models through sequelize. there is a .js file for each table.  In the circumstance that someone would want to create the database without using sequelize, the SQL files can be found under `project_planning\Schema\[tablename].sql`.  Tables must be created in a specific order due to relationships and foreign key contraints.
   * Students

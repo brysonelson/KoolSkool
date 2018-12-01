@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Abel|Barlow|Barlow+Condensed|Barlow+Semi+Condensed|Lato|Roboto|Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Monoton');
 *{
     font-family: 'Barlow', sans-serif;
     font-size: 18px;
@@ -66,4 +67,67 @@ html {
     font-size: .80rem;
     margin-bottom: .05rem;
 }
+
+/* Error 404 page style
+-------------------------------------------------- */
+#jumbotron_img {
+    border-bottom: solid;
+    border-color: #1F2936;
+    background: #fff url("/assets/images/4-computer-cat.jpg") no-repeat center center fixed;
+    background-size: cover;
+    height: 85%;
+    width: 100%;
+    opacity: 100%;
+  }
+
+  #jumbotron_img1 {
+    border-bottom: solid;
+    border-color: #1F2936;
+    background: #fff url("/assets/images/work-in-progress.jpg") no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    opacity: 100%;
+  }
+
+  .errorpage {
+    font-family: 'Abel';
+  }
+
+  .display-1 {
+    font-size: 3rem;
+    color: #ccccdd;
+  }
+
+  .display-4 {
+    font-size: 2rem;
+    color: black;
+  }
+
+  .btn-outline-home {
+    color: #fff;
+    background-color: transparent;
+    background-image: none;
+    border-color: #fff;
+  }
   
+  #btnHome {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    outline-color: transparent;
+    
+  
+  }
+  #btnHome:active {
+    outline: none!important;
+    border: none;
+    outline-color: transparent;
+    }
+    
+  #btnHome:focus { 
+    outline:none !important; 
+    text-decoration: none;
+    border: none;
+    box-shadow: none;
+  }

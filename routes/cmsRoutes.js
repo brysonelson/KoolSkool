@@ -13,6 +13,13 @@ module.exports = function(app) {
     });
   });
 
+  // load in-progress pages for nav-bar
+  app.get("/reports", function(req, res) {
+    res.render("wip", {
+      nav: false
+    });
+  });
+  
   // Load parents data entry page (note: only dropdowns are populated)
   app.get("/cms/parents", function(req, res) {
     db.Students.findAll({
