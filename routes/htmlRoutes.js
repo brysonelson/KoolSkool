@@ -1,12 +1,11 @@
 var db = require("../models");
 
 module.exports = function(app) {
+  // Render parents page for any unmatched routes
+  app.get("/parents", function(req, res) {
+    res.render("wip");
+  });
 
-    // Render parents page for any unmatched routes
-    app.get("/parents", function(req, res) {
-      res.render("wip");
-    });
-      
   // Load index page
   app.get("/", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
