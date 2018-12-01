@@ -30,7 +30,7 @@ main {
   box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25);
 }
 
-.form-signin {
+.form-login {
   width: 100%;
   max-width: 420px;
   padding: 15px;
