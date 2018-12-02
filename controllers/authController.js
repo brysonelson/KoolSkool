@@ -21,6 +21,7 @@ exports.admin = function(req, res) {
 exports.logout = function(req, res) {
   // eslint-disable-next-line no-unused-vars
   req.session.destroy(function(err) {
+    console.log("Logged Out Yo");
     res.render("login");
   });
 };
