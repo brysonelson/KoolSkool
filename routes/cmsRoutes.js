@@ -8,9 +8,9 @@ module.exports = function(app) {
   //only admin
   // Load cms splash page
   app.get("/cms", function(req, res) {
-    // console.log(req);
+    console.log(req);
     res.render("cms", {
-      msg: "Welcome Professor Plum!",
+      msg: "Welcome " + req.user.first_name + " " + req.user.last_name + "!",
       nav: true
     });
   });

@@ -1,4 +1,10 @@
 require("dotenv").config();
+// eslint-disable-next-line no-unused-vars
+var crypto = require("crypto");
+// eslint-disable-next-line no-unused-vars
+var async = require("async");
+// eslint-disable-next-line no-unused-vars
+var nodemailer = require("nodemailer");
 var express = require("express");
 var exphbs = require("express-handlebars");
 var passport = require("passport");
@@ -64,7 +70,7 @@ require("./routes/apiRoutes")(app);
 require("./routes/cmsRoutes")(app);
 require("./routes/teachersRoutes")(app);
 require("./routes/parentsRoutes")(app);
-require("./routes/authRoutes")(app, passport);
+require("./routes/authRoutes")(app, passport, db.user);
 require("./routes/htmlRoutes")(app);
 
 

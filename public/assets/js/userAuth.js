@@ -1,7 +1,9 @@
 $(document).ready(function() {
   $("#user-logout").click(function() {
     $.get("/logout", function() {
-      console.log("logged out!");
+      if (err) {
+        throw err;
+      }
     });
   });
 
@@ -49,5 +51,17 @@ $(document).ready(function() {
         $(".selectpicker").selectpicker("refresh");
       }
     });
+  });
+});
+
+$("#myModal").on("shown.bs.modal", function() {
+  $("#myInput").trigger("focus");
+});
+
+$("#reset-email-btn").click(function() {
+  var email = $("#forgot-email").val();
+
+  $.post("/forgot", { email: email }).then(function() {
+      alert("sent!");
   });
 });
