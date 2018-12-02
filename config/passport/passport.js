@@ -52,12 +52,17 @@ module.exports = function(passport, User) {
           //otherwise we will create the user in our db
           else {
             var userPassword = generateHash(password);
+            console.log("REQ: " + req.body.personnel_select);
+            var personnel_id_split = req.body.personnel_select.split(/(\d+)/);
+            var personnelId = parseInt(personnel_id_split[1]);
+            console.log(personnel_id_split);
             var data = {
               email: email,
               password: userPassword,
               first_name: req.body["first-name"],
               last_name: req.body["last-name"],
-              use_mode: req.body.use_mode
+              use_mode: req.body.use_mode,
+              personnel_id: personnelId
             };
 
             User.create(data).then(function(newUser) {

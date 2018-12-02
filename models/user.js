@@ -28,6 +28,10 @@ module.exports = function(sequelize, Sequelize) {
       allowNull: false,
       defaultValue: "user"
     },
+    personnel_id: {
+      type: Sequelize.INTEGER,
+      allowNull: true
+    },
     status: {
       type: Sequelize.ENUM("active", "inactive"),
       defaultValue: "active"
