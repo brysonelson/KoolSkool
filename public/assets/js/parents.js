@@ -244,7 +244,6 @@ $(function() {
   // handleFormSubmit for the data that gets written to the ParentChildMap
   var handleMapFormSubmit = function() {
     $student_ids = $("#students_select").val();
-    //comment for no reason
 
     var map = [];
 

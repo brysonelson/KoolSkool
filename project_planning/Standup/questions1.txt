@@ -1,0 +1,50 @@
+//Get reference to page elements -- code came from \UCSD201807FSF5\16-project-2\01-Activities\04-Stu_Project-Starter\Unsolved\public\js lines 2-5
+
+  var $first_name = $("#first_name");
+  var $middle_name = $("#middle_name");
+  var $last_name = $("#last_name");
+  var $name_suffix = $("#name_suffix");
+  var $address1 = $("#address1");
+  var $address2 = $("#address2");
+  var $city = $("#city");
+  var $postal_code = $("#postal_code");
+  var $zip_code = $("#zip_code");
+  var $phone_num_primary = $("#phone_num_primary");
+  var $phone_num_alt = $("#phone_num_alt");
+  var $email_address = $("#email_address");
+  var $remarks = $("#remarks");
+  var $student_ids = $("#students_select").val(); //problem!!!!!!!!!!!!!!!!!!!!!!
+  var $student_id = "";
+  var $relationship = $("#relationship");
+  var $contact_sequence = $("#contact_sequence");
+  var $parent_id = "";
+  var $form_parent_add = $("#form_parent_add");
+  var $form_student_add = $("#form_student_add");
+
+//Later in the code I define these values in a variety of ways, but mostly like this:
+      first_name: $first_name.val().trim(),
+      middle_name: $middle_name.val().trim(),
+      last_name: $last_name.val().trim(),
+      name_suffix: $name_suffix,
+      address1: $address1.val().trim(),
+      address2: $address2.val().trim(),
+      city: $city.val().trim(),
+      postal_code: $postal_code,
+      zip_code: $zip_code.val().trim(),
+      phone_num_primary: $phone_num_primary,
+      phone_num_alt: $phone_num_alt,
+      email_address: $email_address.val().trim(),
+      remarks: $remarks.val().trim()
+
+//The problem row $student_ids is defined like this:  
+$student_ids = $student_ids.val();  ///////problem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+/****************************************************************/
+//Solution
+Replace problem row with this:
+$student_ids = $("#students_select").val();
+
+/**************************************************************/
+//Question:
+Why ? All of the other variables work without a problem?  Why this one?
+
