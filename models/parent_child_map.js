@@ -2,11 +2,11 @@ module.exports = function(sequelize, DataTypes) {
   var ParentChild = sequelize.define(
     "parent_child_map",
     {
-      /*************************************************************************/
+      /**************************************************************************/
       /* Relationship Definition and Usage Example:
       /  Describes the relationship between the parent record and the student; 
       /  Example:  Mother, Father, Stepparent, Grandparent.
-      /*************************************************************************/
+      /**************************************************************************/
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,

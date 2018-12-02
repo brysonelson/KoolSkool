@@ -75,7 +75,7 @@ $(function() {
     if (!$("#postal_code").val()) {
       $postal_code = "";
     } else {
-      $postal_code = $postal_code.val();
+      $postal_code = $("#postal_code").val();
     }
     if (!$("#reports_to_id").val()) {
       $reports_to_id = "";
@@ -136,6 +136,13 @@ $(function() {
     API.savePersonnel(personnel).then(function() {
       console.log("Something is happening!");
       //refreshPersonnel();
+
+      //Hide the child entry grid
+      $("#form_personnel_add").addClass("d-none");
+      //reveal div to display success
+      $("#success_card").removeClass("d-none");
+
+
     });
   };
 

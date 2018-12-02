@@ -1,4 +1,4 @@
-INSERT INTO `koolskool_db`.`student_course_map`
+INSERT INTO `d4bdxdlwqus4z6de`.`student_course_map`
 (`status`,`student_id`,`course_id`,`created_at`,`updated_at`)
 VALUES
 ('Active','1','1',now(),now()),
