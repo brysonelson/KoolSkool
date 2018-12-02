@@ -16,9 +16,14 @@ $(document).ready(function() {
   });
 
   $("#signup-auth").change(function() {
+    // eslint-disable-next-line no-unused-vars
     var authMode = $("#signup-auth").val();
     console.log("test");
+    // eslint-disable-next-line no-unused-vars
     $.get("/api/personnel", function(req, res) {
+      if (err) {
+        throw err;
+      }
     }).then(function(personnel) {
       console.log("personnel " + personnel);
 
