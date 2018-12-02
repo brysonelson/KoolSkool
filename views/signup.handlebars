@@ -20,7 +20,6 @@
           <form class="form-signin" method="POST">
 
             <div class="form-label-group selectpicker">
-              <p>Select The Auth Level: </p>
               <select id="signup-auth" name="use_mode" required data-parents_select="1" class="selectpicker" data-style="btn-outline-secondary" data-width="100%" title="Choose The New User's Authorization." >
                 <option value="student">Student</option>
                 <option value="parent">Parent</option>
@@ -28,10 +27,14 @@
                 <option value="admin">Administrator</option>
               </select>
             </div>
-              
-          </form>
 
-            <form class="form-signin" method="POST">
+            <div class="personnel-selector">
+              <select required id="personnel_select" data-personnel_id="" name="personnel_select" class="selectpicker"
+                data-live-search="true" data-style="btn-outline-secondary" data-width="100%" title="Choose The Relevant Personnel.">
+                {{!-- options go here dynamically --}}
+              </select>
+            </div>
+            <br>
 
             <div class="form-label-group">
               <input type="text" id="first-name" name="first-name" class="form-control outline-secondary" placeholder="First Name"
@@ -57,14 +60,7 @@
               <label for="input-password">Temporary Password</label>
             </div>
 
-            <div>
-              <select required id="parents_select" data-parents_select="1" name="parents_select" class="selectpicker" data-live-search="true" data-style="btn-outline-secondary" data-width="100%" title="Choose one parent from this list." >
-              {{#each parents}}
-                <option value="{{this.id}}">{{this.last_name}}, {{this.first_name}}</option>
-              {{/each}}
-            </select>
-            </div>
-
+            <br>
             <button id="signup-submit-btn" class="btn btn-lg btn-light btn-outline-secondary" type="submit" name="submit">Log in</button>
           </form>
         </div>
