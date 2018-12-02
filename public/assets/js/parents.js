@@ -21,7 +21,7 @@ $(function() {
   var $phone_num_alt = $("#phone_num_alt");
   var $email_address = $("#email_address");
   var $remarks = $("#remarks");
-  var $student_ids = $("#students_select");
+  var $student_ids = [];
   var $student_id = "";
   var $relationship = $("#relationship");
   var $contact_sequence = $("#contact_sequence");
@@ -243,8 +243,8 @@ $(function() {
 
   // handleFormSubmit for the data that gets written to the ParentChildMap
   var handleMapFormSubmit = function() {
-    $student_ids = $student_ids.val();
-
+    $student_ids = $("#students_select").val();
+    
     var map = [];
 
     for (var i = 0; i < $student_ids.length; i++) {
