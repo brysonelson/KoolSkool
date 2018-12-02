@@ -1,4 +1,4 @@
-INSERT INTO `koolskool_db`.`courses`
+INSERT INTO `gycp3tgwaxa3iwws`.`Courses`
 (`course_descr`,`created_at`,`updated_at`)
 VALUES
 ('Introductory Reading',now(),now()),

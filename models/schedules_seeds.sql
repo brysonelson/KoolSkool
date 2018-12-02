@@ -1,4 +1,4 @@
-INSERT INTO `koolskool_db`.`schedules`
+INSERT INTO `d4bdxdlwqus4z6de`.`Schedules`
  (`schedule_dttm`, `course_id`, `classroom_id`, `created_at`, `updated_at`)
  VALUES
 ('2018-10-01 10:00:00','1','6',now(),now()),

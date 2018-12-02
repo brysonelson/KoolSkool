@@ -1,4 +1,4 @@
-INSERT INTO `koolskool_db`.`personnel`
+INSERT INTO `d4bdxdlwqus4z6de`.`Personnel`
 (`first_name`,`middle_name`,`last_name`,`name_suffix`,`address1`,`address2`,`city`,`postal_code`,`zip_code`,`phone_num_primary`,`phone_num_alt`,`email_address`,`position_descr`,`reports_to_id`,`remarks`,`created_at`,`updated_at`)
 VALUES
 ('William','H.','Principiell','IV','2501 Coolidge Road, Suite 400','','East Lansing','MI','48823','9922222371','4542222012','ThePrincipal@KoolSkool.org','Principal',null,'Doesn''t Report to Anybody, cause he da top dawg!',now(),now()),

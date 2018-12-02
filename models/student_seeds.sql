@@ -1,5 +1,4 @@
-USE `koolskool_db`;
-INSERT INTO `koolskool_db`.`students`
+INSERT INTO `gycp3tgwaxa3iwws`.`Students`
 (`first_name`,`middle_name`,`last_name`,`name_suffix`,`nickname`,`birthdate`,`gender`,`photo`,`created_at`,`updated_at`)
 VALUES
 ('Kasandra','D.','Scarlet','','Kassy','2012-02-28','3','Scarlet_Kasandra.jpg',now(),now()),

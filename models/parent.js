@@ -142,6 +142,17 @@ module.exports = function(sequelize, DataTypes) {
         }
       },
       /*************************************************************************/
+      /* Emergency Definition and Usage :
+      /  This is a flag that will default to false and when true will allow 
+      /  the DEVELOPER to write queries to only pull phone numbers where this
+      /  flag is marked true.
+      /*************************************************************************/
+      emergency: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
+      /*************************************************************************/
       /* Email Address Definition and Usage Example:
       /  Not required but if used it should be a valid email
       /*************************************************************************/

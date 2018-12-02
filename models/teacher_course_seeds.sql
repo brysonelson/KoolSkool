@@ -1,4 +1,4 @@
-INSERT INTO `koolskool_db`.`teacher_course_map`
+INSERT INTO `d4bdxdlwqus4z6de`.`teacher_course_map`
 (`teacher_type_descr`,`status`,`personnel_id`,`course_id`,`created_at`,`updated_at`)
 VALUES
 ('Instructor','Not Started','2','1',now(),now()),
