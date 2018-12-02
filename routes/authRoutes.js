@@ -34,7 +34,7 @@ module.exports = function(app, passport) {
     }
   });
 
-  app.post("/forgot", function(req, res, next) {
+  app.post("/forgot", function(req, res) {
     console.log("Posting!!! ========================================");
     // db.user.findOne({where: {email: req.body.email}}).then(function(result) {console.log(result)});
     // console.log(req.body.email);
@@ -63,6 +63,7 @@ module.exports = function(app, passport) {
           dbResult.resetPasswordToken = token;
           dbResult.resetPasswordExpires = Date.now() + 3600000;
 
+          // eslint-disable-next-line no-unused-vars
           dbResult.save(function(err) {
             // done(err, token, user);
           });
@@ -78,12 +79,12 @@ module.exports = function(app, passport) {
         port: 25587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: process.env.SENDGRID_USERNAME, // generated ethereal user
-            pass: process.env.SENDGRID_PASSWORD // generated ethereal password
+          user: process.env.SENDGRID_USERNAME, // generated ethereal user
+          pass: process.env.SENDGRID_PASSWORD // generated ethereal password
         }
-    });
+      });
 
-    console.log(user.email);
+      console.log(user.email);
 
       console.log(user);
       var mailOptions = {
@@ -103,16 +104,14 @@ module.exports = function(app, passport) {
       transporter.sendMail(mailOptions, function(err, info) {
         if (err) {
           return console.log(err);
-      }
-      console.log('Message sent: %s', info.messageId);
-      // Preview only available when sending through an Ethereal account
-      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        }
+        console.log("Message sent: %s", info.messageId);
+        // Preview only available when sending through an Ethereal account
+        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
         done(err, "done");
         console.log("this happened");
       });
-
-      
     }
   });
 };

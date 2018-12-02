@@ -62,6 +62,6 @@ $("#reset-email-btn").click(function() {
   var email = $("#forgot-email").val();
 
   $.post("/forgot", { email: email }).then(function() {
-      alert("sent!");
+    alert("sent!");
   });
 });
