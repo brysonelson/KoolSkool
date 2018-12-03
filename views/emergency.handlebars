@@ -6,7 +6,8 @@
       <form enctype="multipart/form-data" action="" method="" class="emergency-msg-form" name="emergency-msg-form" autocomplete="nope">
 
         <div class="mx-5 mt-3 emergency">
-          <h3>EMERGENCY ADMINISTRATOR CONSOLE</h3>  <h4>{{messageSent}}</h4>
+          <h3>EMERGENCY ADMINISTRATOR CONSOLE</h3>  
+          <div class="emergency" id="messageSent"><h4>{{messageSent}}</h4></div>
           <hr>
         </div>
              <div class="card mx-5 my-2">
@@ -22,7 +23,9 @@
                    </div>
               </div>
       </form>
+            <div id=m>
 
+            </div>
        
           <br>
           <hr>
@@ -36,7 +39,7 @@
             </div>
           <div class="card-body">
           
-            <input type="text" name="emergency-cstm-msg" class="emergency-cstm-msg" id="emergency-cstm-msg" size="70"><br>
+            <input type="text" name="emergency-cstm-msg" class="emergency-cstm-msg" id="emergency-cstm-msg"><br>
   
             <input type="submit" value="SEND CUSTOM TEXT MESSAGE" class="submit-emergency-cstm-msg" name="submit-emergency-cstm-msg"> 
             <input type="reset" value="RESET FORM">
@@ -44,20 +47,6 @@
         </div> 
       </form>
         
-
-
-
-
-
-
-           
-           <!-- <button id="emergency_personnel" class="button" name="submit_emergency_personnel">
-              SEND TO PERSONNEL
-            </button>
-              <button id="emergency_parents" class="button" name="submit_emergency_parent">
-              SEND TO PARENTS
-            </button>
-            -->
           </div>
         </div>
 

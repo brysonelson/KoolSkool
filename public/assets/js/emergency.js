@@ -1,10 +1,13 @@
 //public/assets/js/emergency.js   
-//1.  twilio on submit send to all, personell, or parents
+//1.  twilio on submit send to all, personnel, or parents
 //2.  also the attendence records for the whole school 
 //3.  accounting/check boxes next to each student to show if student accounted for
 //4.  check boxes to show if student picked up and a note box with whom.
 
 $(function() {
+  
+  const emergencyAudio = new Audio ('assets/audio/ems.wav');
+
   setFooterStyle();
   window.onresize = setFooterStyle;
 
@@ -37,11 +40,8 @@ $(function() {
     }).then(function(data) {
       console.log("created newMsg");
       console.log(data);
-
-
-        // Reload the page in case another message desired
-        //location.reload();  //~ steven said not needed when using ajax
-        //location.reload(data);  //~ steven said not needed when using ajax
+      $("#messageSent").text("Last Emergency Message Sent: " + data.messageSent);
+      emergencyAudio.play();
       }
     );
   });
@@ -62,18 +62,10 @@ $(function() {
       type: "POST",
       data: newMsg
     }).then(function(data) {
-        console.log("created newMsg");
-        //console.log(data);  //returns nothing in Inspector
-    
-        // Reload the page in case another message desired
-        //location.reload(data);
-        //This is what I am trying to re-render: res.render("emergency", {
-          //messageSent: data,
-          //nav: false
-
-  
-        //});
-        
+      console.log("created newMsg");
+      console.log(data);
+      $("#messageSent").text("Last Emergency Message Sent: " + data.messageSent);
+      emergencyAudio.play();
       }
     );
   });
