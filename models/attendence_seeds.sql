@@ -1,4 +1,4 @@
-INSERT INTO `d4bdxdlwqus4z6de`.`Attendence`
+INSERT INTO `koolskool_db`.`Attendence`
 (`attendence_dt`,`absent`,`person_id`,`course_id`,`student_id`,`created_at`,`updated_at`)
 VALUES
 ('2018-10-01','0','2','1','1',now(),now()),

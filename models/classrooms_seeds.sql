@@ -1,4 +1,4 @@
-INSERT INTO `d4bdxdlwqus4z6de`.`Classrooms`
+INSERT INTO `koolskool_db`.`Classrooms`
 (`location_descr`,`room_num`,`created_at`,`updated_at`)
 VALUES
 ('Might be on the left or might be on the right.','116',now(),now()),

@@ -1,4 +1,4 @@
-INSERT INTO `d4bdxdlwqus4z6de`.`parent_child_map`
+INSERT INTO `koolskool_db`.`parent_child_map`
 (`relationship`,`contact_sequence`,`parent_id`,`student_id`,`created_at`,`updated_at`)
 VALUES
 ('father','1','1','6',now(),now()),
