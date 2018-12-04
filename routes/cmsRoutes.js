@@ -21,28 +21,12 @@ module.exports = function(app) {
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
     }
-    console.log(req);
+
     res.render("cms", {
       msg: "Welcome " + req.user.first_name + " " + req.user.last_name + "!",
       nav: true,
       navLogo: logoHref
     });
-  });
-
-  app.post("/home", function(req, res) {
-    if (req.user.use_mode === "student") {
-      res.json({ url: "/login" });
-    } else if (req.user.use_mode === "parent") {
-      res.json({ url: "/parents" });
-    } else if (req.user.use_mode === "teacher") {
-      res.json({ url: "/teachers" });
-    } else if (req.user.use_mode === "admin") {
-      res.json({ url: "/cms" });
-    }
-    // res.render("cms", {
-    //   msg: "Welcome " + req.user.first_name + " " + req.user.last_name + "!",
-    //   nav: true
-    // });
   });
 
   // load in-progress pages for nav-bar
@@ -54,13 +38,26 @@ module.exports = function(app) {
 
   // Load parents data entry page (note: only dropdowns are populated)
   app.get("/cms/parents", function(req, res) {
+    var logoHref = {
+      route: null
+    };
+    if (req.user.use_mode === "student") {
+      logoHref.route = "/login";
+    } else if (req.user.use_mode === "parent") {
+      logoHref.route = "/parents";
+    } else if (req.user.use_mode === "teacher") {
+      logoHref.route = "/teachers";
+    } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    }
     db.Students.findAll({
       attributes: { include: ["last_name", "first_name"] },
       order: [["last_name", "ASC"], ["first_name", "ASC"]]
     }).then(function(dbStudents) {
       res.render("parents", {
         nav: true,
-        students: dbStudents
+        students: dbStudents,
+        navLogo: logoHref
       });
     });
   });
@@ -91,8 +88,21 @@ module.exports = function(app) {
 
   // Load personnel data entry page
   app.get("/cms/personnel", function(req, res) {
+    var logoHref = {
+      route: null
+    };
+    if (req.user.use_mode === "student") {
+      logoHref.route = "/login";
+    } else if (req.user.use_mode === "parent") {
+      logoHref.route = "/parents";
+    } else if (req.user.use_mode === "teacher") {
+      logoHref.route = "/teachers";
+    } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    }
     res.render("personnel", {
-      nav: true
+      nav: true,
+      navLogo: logoHref
     });
   });
 
@@ -106,13 +116,26 @@ module.exports = function(app) {
 
   // Load parents data entry page (note: only dropdowns are populated)
   app.get("/cms/students", function(req, res) {
+    var logoHref = {
+      route: null
+    };
+    if (req.user.use_mode === "student") {
+      logoHref.route = "/login";
+    } else if (req.user.use_mode === "parent") {
+      logoHref.route = "/parents";
+    } else if (req.user.use_mode === "teacher") {
+      logoHref.route = "/teachers";
+    } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    }
     db.Parents.findAll({
       attributes: { include: ["last_name", "first_name"] },
       order: [["last_name", "ASC"], ["first_name", "ASC"]]
     }).then(function(dbParents) {
       res.render("students", {
         nav: true,
-        parents: dbParents
+        parents: dbParents,
+        navLogo: logoHref
       });
     });
   });
@@ -136,8 +159,21 @@ module.exports = function(app) {
 
   // Load students data entry page
   app.get("/cms/courses", function(req, res) {
+    var logoHref = {
+      route: null
+    };
+    if (req.user.use_mode === "student") {
+      logoHref.route = "/login";
+    } else if (req.user.use_mode === "parent") {
+      logoHref.route = "/parents";
+    } else if (req.user.use_mode === "teacher") {
+      logoHref.route = "/teachers";
+    } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    }
     res.render("courses", {
-      nav: true
+      nav: true,
+      navLogo: logoHref
     });
   });
 
@@ -150,8 +186,21 @@ module.exports = function(app) {
 
   // Load students data entry page
   app.get("/cms/classrooms", function(req, res) {
+    var logoHref = {
+      route: null
+    };
+    if (req.user.use_mode === "student") {
+      logoHref.route = "/login";
+    } else if (req.user.use_mode === "parent") {
+      logoHref.route = "/parents";
+    } else if (req.user.use_mode === "teacher") {
+      logoHref.route = "/teachers";
+    } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    }
     res.render("classrooms", {
-      nav: true
+      nav: true,
+      navLogo: logoHref
     });
   });
 
@@ -186,13 +235,26 @@ module.exports = function(app) {
               order: [["course_descr", "ASC"]]
             }).then(function(dbCourses) {
               //console.log(JSON.stringify(dbCourses));
+              var logoHref = {
+                route: null
+              };
+              if (req.user.use_mode === "student") {
+                logoHref.route = "/login";
+              } else if (req.user.use_mode === "parent") {
+                logoHref.route = "/parents";
+              } else if (req.user.use_mode === "teacher") {
+                logoHref.route = "/teachers";
+              } else if (req.user.use_mode === "admin") {
+                logoHref.route = "/cms";
+              }
               res.render("roster", {
                 nav: true,
                 courses: dbCourses,
                 classrooms: dbClassrooms,
                 tas: dbTAs,
                 teachers: dbTeachers,
-                student: dbStudents
+                student: dbStudents,
+                navLogo: logoHref
               });
             });
           });
@@ -221,8 +283,21 @@ module.exports = function(app) {
 
   // Create a new record in course table
   app.get("/cms/manageusers", function(req, res) {
+    var logoHref = {
+      route: null
+    };
+    if (req.user.use_mode === "student") {
+      logoHref.route = "/login";
+    } else if (req.user.use_mode === "parent") {
+      logoHref.route = "/parents";
+    } else if (req.user.use_mode === "teacher") {
+      logoHref.route = "/teachers";
+    } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    }
     res.render("manageusers", {
-      nav: true
+      nav: true,
+      navLogo: logoHref
     });
   });
 
@@ -241,16 +316,29 @@ module.exports = function(app) {
 
 
     db.user.findOne({where: {id: userId}}).then(function(dbUser) {
+      var logoHref = {
+        route: null
+      };
+      if (req.user.use_mode === "student") {
+        logoHref.route = "/login";
+      } else if (req.user.use_mode === "parent") {
+        logoHref.route = "/parents";
+      } else if (req.user.use_mode === "teacher") {
+        logoHref.route = "/teachers";
+      } else if (req.user.use_mode === "admin") {
+        logoHref.route = "/cms";
+      }
 
       dbUser.updateAttributes({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email: req.body.email,
         password: password,
-        use_mode: req.body.use_mode
+        use_mode: req.body.use_mode,
       });
       res.render("manageusers", {
-        nav: true
+        nav: true,
+        navLogo: logoHref
       });
     });
   });

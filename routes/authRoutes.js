@@ -163,10 +163,23 @@ module.exports = function(app, passport) {
 
   //route to get the users profile
   app.get("/profile", function(req, res) {
+    var logoHref = {
+      route: null
+    };
+    if (req.user.use_mode === "student") {
+      logoHref.route = "/login";
+    } else if (req.user.use_mode === "parent") {
+      logoHref.route = "/parents";
+    } else if (req.user.use_mode === "teacher") {
+      logoHref.route = "/teachers";
+    } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    }
     //render the profile page with the nav bar and pass in the users info to hbs
     res.render("profile", {
       nav: true,
-      user: req.user
+      user: req.user,
+      navLogo: logoHref
     });
   });
 
@@ -196,10 +209,24 @@ module.exports = function(app, passport) {
             email: req.body.email,
             password: password
           });
+
+          var logoHref = {
+            route: null
+          };
+          if (req.user.use_mode === "student") {
+            logoHref.route = "/login";
+          } else if (req.user.use_mode === "parent") {
+            logoHref.route = "/parents";
+          } else if (req.user.use_mode === "teacher") {
+            logoHref.route = "/teachers";
+          } else if (req.user.use_mode === "admin") {
+            logoHref.route = "/cms";
+          }
           //render the profile page again with nav and the users updated info
           res.render("profile", {
             nav: true,
-            user: req.user
+            user: req.user,
+            navLogo: logoHref
           });
         }
       });
