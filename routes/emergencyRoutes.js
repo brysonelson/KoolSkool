@@ -6,10 +6,23 @@ var client = require("twilio")(accountSid, authToken);
 
 module.exports = function(app) {
   app.get("/emergency", function(req, res) {
+    var logoHref = {
+      route: null
+    };
+    if (req.user.use_mode === "student") {
+      logoHref.route = "/login";
+    } else if (req.user.use_mode === "parent") {
+      logoHref.route = "/parents";
+    } else if (req.user.use_mode === "teacher") {
+      logoHref.route = "/teachers";
+    } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    }
     // console.log(req);
     res.render("emergency", {
       messageSent: "No Messages Sent Yet",
-      nav: true
+      nav: true,
+      navLogo: logoHref
     });
   });
 

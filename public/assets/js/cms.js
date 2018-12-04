@@ -22,7 +22,7 @@ $(function() {
 
   /******************************************************************************
    * Feedback Functions Specific To Contact Add and Edit Form
-   * This function calculates and shows the number of characters remaining for 
+   * This function calculates and shows the number of characters remaining for
    * every input
    *****************************************************************************/
   var text_max_first_name = 35;
@@ -30,7 +30,8 @@ $(function() {
   $("#first_name").bind("input change paste keyup mouseup", function() {
     var text_max_first_name = 35;
     var text_length_first_name = $("#first_name").val().length;
-    var text_remaining_first_name = text_max_first_name - text_length_first_name;
+    var text_remaining_first_name =
+      text_max_first_name - text_length_first_name;
     $("#feedback_first_name").html(
       text_remaining_first_name + " characters remain"
     );
@@ -47,7 +48,8 @@ $(function() {
   $("#middle_name").bind("input change paste keyup mouseup", function() {
     var text_max_middle_name = 25;
     var text_length_middle_name = $("#middle_name").val().length;
-    var text_remaining_middle_name = text_max_middle_name - text_length_middle_name;
+    var text_remaining_middle_name =
+      text_max_middle_name - text_length_middle_name;
     $("#feedback_middle_name").html(
       text_remaining_middle_name + " characters remain"
     );
@@ -114,7 +116,7 @@ $(function() {
   $("#feedback_city").html(text_max_city + " characters remain");
   $("#city").bind("input change paste keyup mouseup", function() {
     var text_max_city = 50;
-    var text_length_city = $('#city').val().length;
+    var text_length_city = $("#city").val().length;
     var text_remaining_city = text_max_city - text_length_city;
     $("#feedback_city").html(text_remaining_city + " characters remain");
     $(this).after(
@@ -147,7 +149,8 @@ $(function() {
   $("#phone_num_primary").bind("input change paste keyup mouseup", function() {
     var text_max_phone_num_primary = 14;
     var text_length_phone_num_primary = $("#phone_num_primary").val().length;
-    var text_remaining_phone_num_primary = text_max_phone_num_primary - text_length_phone_num_primary;
+    var text_remaining_phone_num_primary =
+      text_max_phone_num_primary - text_length_phone_num_primary;
     $("#feedback_phone_num_primary").html(
       text_remaining_phone_num_primary + " characters remain"
     );
@@ -166,7 +169,8 @@ $(function() {
   $("#phone_num_alt").bind("input change paste keyup mouseup", function() {
     var text_max_phone_num_alt = 14;
     var text_length_phone_num_alt = $("#phone_num_alt").val().length;
-    var text_remaining_phone_num_alt = text_max_phone_num_alt - text_length_phone_num_alt;
+    var text_remaining_phone_num_alt =
+      text_max_phone_num_alt - text_length_phone_num_alt;
     $("#feedback_phone_num_alt").html(
       text_remaining_phone_num_alt + " characters remain"
     );
@@ -185,7 +189,8 @@ $(function() {
   $("#email_address").bind("input change paste keyup mouseup", function() {
     var text_max_email_address = 50;
     var text_length_email_address = $("#email_address").val().length;
-    var text_remaining_email_address = text_max_email_address - text_length_email_address;
+    var text_remaining_email_address =
+      text_max_email_address - text_length_email_address;
     $("#feedback_email_address").html(
       text_remaining_email_address + " characters remain"
     );
@@ -254,7 +259,8 @@ $(function() {
   $("#course_descr").bind("input change paste keyup mouseup", function() {
     var text_max_course_descr = 35;
     var text_length_course_descr = $("#course_descr").val().length;
-    var text_remaining_course_descr = text_max_course_descr - text_length_course_descr;
+    var text_remaining_course_descr =
+      text_max_course_descr - text_length_course_descr;
     $("#feedback_course_descr").html(
       text_remaining_course_descr + " characters remain"
     );
@@ -273,7 +279,8 @@ $(function() {
   $("#location_descr").bind("input change paste keyup mouseup", function() {
     var text_max_location_descr = 50;
     var text_length_location_descr = $("#location_descr").val().length;
-    var text_remaining_location_descr = text_max_location_descr - text_length_location_descr;
+    var text_remaining_location_descr =
+      text_max_location_descr - text_length_location_descr;
     $("#feedback_location_descr").html(
       text_remaining_location_descr + " characters remain"
     );
@@ -303,11 +310,14 @@ $(function() {
   $("#room_num").keyup();
 
   var text_max_relationship = 35;
-  $("#feedback_relationship").html(text_max_relationship + " characters remain");
+  $("#feedback_relationship").html(
+    text_max_relationship + " characters remain"
+  );
   $("#relationship").bind("input change paste keyup mouseup", function() {
     var text_max_relationship = 35;
     var text_length_relationship = $("#relationship").val().length;
-    var text_remaining_relationship = text_max_relationship - text_length_relationship;
+    var text_remaining_relationship =
+      text_max_relationship - text_length_relationship;
     $("#feedback_relationship").html(
       text_remaining_relationship + " characters remain"
     );
@@ -319,3 +329,8 @@ $(function() {
   });
   $("#relationship").keyup();
 });
+
+// $(document).ready(function() {
+//   $.get("/cms")
+//   $(".skool-logo").attr("href", req.user.)
+// });
