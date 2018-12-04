@@ -12,7 +12,7 @@ module.exports = function(app) {
     // console.log(req);
     res.render("emergency", {
       messageSent: "No Messages Sent Yet",
-      nav: false
+      nav: true
     });
   });
 

@@ -8,21 +8,6 @@ $(function() {
   
   const emergencyAudio = new Audio ('assets/audio/ems.wav');
 
-  setFooterStyle();
-  window.onresize = setFooterStyle;
-
-  function setFooterStyle() {
-    var docHeight = $(window).height();
-    var footerHeight = $("#footer").outerHeight();
-    var footerTop = $("#footer").position().top + footerHeight;
-    if (footerTop < docHeight) {
-      $("#footer").css("margin-top", docHeight - footerTop + "px");
-    } else {
-      $("#footer").css("margin-top", "");
-    }
-    $("#footer").removeClass("invisible");
-  }
-
   // grab default message from handlebars html and then POST to emergency route
   $(".emergency-msg-form").on("submit", function(event) {
     // preventDefault on a submit event.
