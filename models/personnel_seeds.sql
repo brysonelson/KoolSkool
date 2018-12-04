@@ -1,6 +1,7 @@
 INSERT INTO `koolskool_db`.`Personnel`
 (`first_name`,`middle_name`,`last_name`,`name_suffix`,`address1`,`address2`,`city`,`postal_code`,`zip_code`,`phone_num_primary`,`phone_num_alt`,`email_address`,`position_descr`,`reports_to_id`,`remarks`,`created_at`,`updated_at`)
 VALUES
+('Kamran','J.','Bryson','','4123 Apiyai Road, Suite 400','','San Diego','CA','92121','8586926920','5417784167','kamranbryson@koolskool.org','Developer',null,'Principal',now(),now()),
 ('William','H.','Principiell','IV','2501 Coolidge Road, Suite 400','','East Lansing','MI','48823','9922222371','4542222012','ThePrincipal@KoolSkool.org','Principal',null,'Doesn''t Report to Anybody, cause he da top dawg!',now(),now()),
 ('Peter','','Plum','','10673 Grape Street','','Saginaw','MI','48607','2306163445','4466443109','pplum@KoolSkool.org','Professor','1','Head of Professory Dept.  All Teachers report to professor.',now(),now()),
 ('Vivienne','','Scarlet','','3300 North Central Avenue','Floor 14','Phoenix','AZ','85012-2502','6532712621','2902713922','scarletv@koolskool.org','Teacher','2','',now(),now()),
