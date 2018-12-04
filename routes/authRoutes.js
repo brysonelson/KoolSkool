@@ -177,7 +177,6 @@ module.exports = function(app, passport) {
       .findOne({ where: { email: req.user.email } })
       //then...
       .then(function(dbUser) {
-        
         //if there is no user, let them know
         if (!dbUser) {
           console.log("No User Found.");
