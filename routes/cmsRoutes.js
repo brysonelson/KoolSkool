@@ -1,4 +1,6 @@
 var db = require("../models");
+//var bCrypt = require("bcrypt-nodejs");
+
 // eslint-disable-next-line no-unused-vars
 //var ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
 // eslint-disable-next-line no-unused-vars
@@ -10,6 +12,7 @@ module.exports = function(app) {
   app.get("/cms", function(req, res) {
     // console.log(req);
     res.render("cms", {
+      //msg: "Welcome " + req.user.first_name + " " + req.user.last_name + "!",
       msg: "Welcome Professor Plum!",
       nav: true
     });
