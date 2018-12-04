@@ -1,4 +1,5 @@
 var db = require("../models");
+var bCrypt = require("bcrypt-nodejs");
 // eslint-disable-next-line no-unused-vars
 //var ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
 // eslint-disable-next-line no-unused-vars
