@@ -9,7 +9,6 @@ var bCrypt = require("bcrypt-nodejs");
 
 //export all of our routes
 module.exports = function(app, passport) {
-
   //route to get the sign up page
   app.get("/signup", authController.signup);
 
@@ -44,7 +43,6 @@ module.exports = function(app, passport) {
 
   //when the user submits a password reset request
   app.post("/forgot", function(req, res) {
-    
     //do this async so we dont have so many callbacks
     async.waterfall([
       function(done) {
@@ -159,6 +157,46 @@ module.exports = function(app, passport) {
           });
           //take the user to the login page once pass is updated.
           res.render("login");
+        }
+      });
+  });
+
+  app.get("/profile", function(req, res) {
+    console.log(req.user);
+    res.render("profile", {
+      nav: true,
+      user: req.user
+    });
+  });
+
+  app.post("/update", function(req, res) {
+    db.user
+      .findOne({ where: { email: req.user.email } })
+      .then(function(dbUser) {
+
+        if (!dbUser) {
+          console.log("No User Found.");
+        } else {
+          console.log("User Found!");
+          var userPass = req.body.password;
+
+          var generateHash = function(password) {
+            return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+          };
+
+          var password = generateHash(userPass);
+          console.log(req.body.password);
+
+          dbUser.updateAttributes({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email,
+            password: password
+          });
+          res.render("profile", {
+            nav: true,
+            user: req.user
+          });
         }
       });
   });
