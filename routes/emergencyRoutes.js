@@ -1,8 +1,8 @@
 var db = require("../models");
 var moment = require('moment');
-const accountSid = process.env.TWILIO_ACCOUNT_SID;    
-const authToken = process.env.TWILIO_AUTH_TOKEN; 
-const client = require('twilio')(accountSid, authToken); 
+var accountSid = process.env.TWILIO_ACCOUNT_SID;    
+var authToken = process.env.TWILIO_AUTH_TOKEN; 
+var client = require('twilio')(accountSid, authToken); 
 
 
 
