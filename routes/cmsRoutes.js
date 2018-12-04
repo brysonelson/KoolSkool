@@ -9,11 +9,40 @@ module.exports = function(app) {
   //only admin
   // Load cms splash page
   app.get("/cms", function(req, res) {
+    var logoHref = {
+      route: null
+    };
+    if (req.user.use_mode === "student") {
+      logoHref.route = "/login";
+    } else if (req.user.use_mode === "parent") {
+      logoHref.route = "/parents";
+    } else if (req.user.use_mode === "teacher") {
+      logoHref.route = "/teachers";
+    } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    }
     console.log(req);
     res.render("cms", {
       msg: "Welcome " + req.user.first_name + " " + req.user.last_name + "!",
-      nav: true
+      nav: true,
+      navLogo: logoHref
     });
+  });
+
+  app.post("/home", function(req, res) {
+    if (req.user.use_mode === "student") {
+      res.json({ url: "/login" });
+    } else if (req.user.use_mode === "parent") {
+      res.json({ url: "/parents" });
+    } else if (req.user.use_mode === "teacher") {
+      res.json({ url: "/teachers" });
+    } else if (req.user.use_mode === "admin") {
+      res.json({ url: "/cms" });
+    }
+    // res.render("cms", {
+    //   msg: "Welcome " + req.user.first_name + " " + req.user.last_name + "!",
+    //   nav: true
+    // });
   });
 
   // load in-progress pages for nav-bar
