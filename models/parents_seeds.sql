@@ -1,6 +1,7 @@
 INSERT INTO `koolskool_db`.`Parents`
 (`first_name`,`middle_name`,`last_name`,`name_suffix`,`address1`,`address2`,`city`,`postal_code`,`zip_code`,`phone_num_primary`,`phone_num_alt`,`email_address`,`remarks`,`created_at`,`updated_at`)
 VALUES
+('Sue','J.','Miranda','','4312 La Costa Drive', 'Apt. A','San Diego','CA','92011','7604020898','4422910744','suemiranda@email.com','',now(),now()),
 ('Tyrone','','Barbey','','150 N. Radnor Chester Road','Suite C300','Radnor','PA','19087','3734762250','6374762257','damian@aol.com','',now(),now()),
 ('Ollie','J.','Darmanin','','905 16th Street NW','Suite 303','Washington','DC','20006','4714566000','','dsowsy@sbcglobal.net','',now(),now()),
 ('Jessie','','Funck','','11603 W. Coker Loop','Suite 201','San Antonio','TX','78216','9685424285','2876286938','gavinls@msn.com','',now(),now()),
