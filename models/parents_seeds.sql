@@ -1,4 +1,4 @@
-INSERT INTO `d4bdxdlwqus4z6de`.`Parents`
+INSERT INTO `koolskool_db`.`Parents`
 (`first_name`,`middle_name`,`last_name`,`name_suffix`,`address1`,`address2`,`city`,`postal_code`,`zip_code`,`phone_num_primary`,`phone_num_alt`,`email_address`,`remarks`,`created_at`,`updated_at`)
 VALUES
 ('Tyrone','','Barbey','','150 N. Radnor Chester Road','Suite C300','Radnor','PA','19087','3734762250','6374762257','damian@aol.com','',now(),now()),

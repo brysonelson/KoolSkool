@@ -7,7 +7,7 @@ $(document).ready(function() {
     });
   });
 
-  $(".form-login").on("submit", function(event) {
+  $("#login_form").on("submit", function(event) {
     event.preventDefault();
     $.post("/login", {
       email: $("#email").val(),
@@ -64,4 +64,10 @@ $("#reset-email-btn").click(function() {
   $.post("/forgot", { email: email }).then(function() {
     alert("sent!");
   });
+});
+
+$("#reset-pass-btn").click(function() {
+  var email = $("#forgot-email").val();
+  var newPassword = $("#reset_password").val();
+  var confirmPassword = $("#confirm_password").val();
 });

@@ -3,12 +3,17 @@ var authController = require("../controllers/authController.js");
 var authMiddleware = require("../middleware/authMiddleware.js");
 var crypto = require("crypto");
 var async = require("async");
-var nodemailer = require("nodemailer");
 var db = require("../models");
+var sgMail = require("@sendgrid/mail");
+var bCrypt = require("bcrypt-nodejs");
 
+//export all of our routes
 module.exports = function(app, passport) {
+
+  //route to get the sign up page
   app.get("/signup", authController.signup);
 
+  //route to sign a user in with passport
   app.post(
     "/signup",
     passport.authenticate("local-signup", {
@@ -17,12 +22,15 @@ module.exports = function(app, passport) {
     })
   );
 
+  //log the user out and send them back to the homepage
   app.get("/logout", authController.logout);
 
+  //route to get the login screen
   app.get("/login", authController.login);
 
+  //route to sign the user in
   app.post("/login", passport.authenticate("local-login"), function(req, res) {
-    console.log(req.user.use_mode);
+    //if statements to check the users use_mode and then redirect them to the right page
     if (req.user.use_mode === "student") {
       res.json({ url: "/login" });
     } else if (req.user.use_mode === "parent") {
@@ -34,10 +42,9 @@ module.exports = function(app, passport) {
     }
   });
 
+  //when the user submits a password reset request
   app.post("/forgot", function(req, res) {
-    console.log("Posting!!! ========================================");
-    // db.user.findOne({where: {email: req.body.email}}).then(function(result) {console.log(result)});
-    // console.log(req.body.email);
+    
     //do this async so we dont have so many callbacks
     async.waterfall([
       function(done) {
@@ -58,7 +65,6 @@ module.exports = function(app, passport) {
             return res.redirect("/login");
           }
 
-          console.log("Found User! ============================");
           //set the token to the user object and make it expire in 1 hour
           dbResult.resetPasswordToken = token;
           dbResult.resetPasswordExpires = Date.now() + 3600000;
@@ -67,33 +73,26 @@ module.exports = function(app, passport) {
           dbResult.save(function(err) {
             // done(err, token, user);
           });
-          callNext(token, dbResult, done);
+          //call the next function
+          sendEmail(token, dbResult, done);
         });
       }
     ]);
 
-    function callNext(token, user, done) {
-      console.log("Sending Mail! ===============================");
-      var transporter = nodemailer.createTransport({
-        host: "smtp.sendgrid.net",
-        port: 25587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-          user: process.env.SENDGRID_USERNAME, // generated ethereal user
-          pass: process.env.SENDGRID_PASSWORD // generated ethereal password
-        }
-      });
+    //this is the function to send mail with SendGrid
+    function sendEmail(token, user, done) {
+      //set our API key
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-      console.log(user.email);
-
-      console.log(user);
-      var mailOptions = {
+      //create our message content
+      var msg = {
         to: user.email,
         from: "koolskooltool@gmail.com",
         subject: "Kool Skool Tool Password Reset",
         text:
           "You are receiving this because you (or someone else) have requested the reset of the password for your Kool Skool Tool account.\n\n" +
           "Please click on the following link, or paste this into your browser to complete the process:\n\n" +
+          //this is creating the url with the users token to reset their password
           "http://" +
           req.headers.host +
           "/reset/" +
@@ -101,17 +100,66 @@ module.exports = function(app, passport) {
           "\n\n" +
           "If you did not request this, please ignore this email and your password will remain unchanged.\n"
       };
-      transporter.sendMail(mailOptions, function(err, info) {
+      //send the email with the above message
+      sgMail.send(msg, function(err) {
         if (err) {
           return console.log(err);
         }
-        console.log("Message sent: %s", info.messageId);
-        // Preview only available when sending through an Ethereal account
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
         done(err, "done");
-        console.log("this happened");
       });
     }
+  });
+
+  //get the proper page for the specified user to reset their password
+  app.get("/reset/:token", function(req, res) {
+    //find the user in the database based on their token and only if it is not expired
+    db.user
+      .findOne({
+        where: {
+          resetPasswordToken: req.params.token,
+          resetPasswordExpires: { $gt: Date.now() }
+        }
+      })
+      //then if there is no user, let the person know
+      .then(function(user) {
+        if (!user) {
+          console.log(
+            "error",
+            "Password reset token is invalid or has expired."
+          );
+          return res.redirect("/forgot");
+        }
+        //now show the reset page with the users name
+        res.render("reset", {
+          user: user
+        });
+      });
+  });
+
+  //when the user submits their new password
+  app.post("/reset", function(req, res) {
+    //find the user based off the email they provided
+    db.user
+      .findOne({ where: { email: req.body.reset_pass_email } })
+      //then store their new password in a hash
+      .then(function(dbUser) {
+        var generateHash = function(password) {
+          return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+        };
+        //store the hashed pass in a variable
+        var updatedPass = generateHash(req.body.reset_password);
+        //if there is no user with the provided email, let the user know
+        if (!dbUser) {
+          console.log("No User Found");
+        } else {
+          //otherwise update their password with the new password
+          dbUser.updateAttributes({
+            password: updatedPass
+          });
+          //take the user to the login page once pass is updated.
+          res.render("login");
+        }
+      });
   });
 };

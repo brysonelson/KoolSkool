@@ -4,7 +4,6 @@ var crypto = require("crypto");
 // eslint-disable-next-line no-unused-vars
 var async = require("async");
 // eslint-disable-next-line no-unused-vars
-var nodemailer = require("nodemailer");
 var express = require("express");
 var exphbs = require("express-handlebars");
 var passport = require("passport");
