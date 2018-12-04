@@ -6,7 +6,7 @@
 
 $(function() {
   
-  const emergencyAudio = new Audio ('assets/audio/ems.wav');
+  var emergencyAudio = new Audio ('assets/audio/ems.wav');
 
   // grab default message from handlebars html and then POST to emergency route
   $(".emergency-msg-form").on("submit", function(event) {
