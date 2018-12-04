@@ -36,7 +36,9 @@ module.exports = function(app) {
              from: '+18582408765',       
              to: dbParents[0].phone_num_primary
            }) 
-          .then(message => console.log(message.sid)) 
+          .then(message => {
+            return console.log(message.sid);
+          }) 
           .done();}
 
           client.messages 
