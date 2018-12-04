@@ -1,4 +1,5 @@
 var db = require("../models");
+var bCrypt = require("bcrypt-nodejs");
 // eslint-disable-next-line no-unused-vars
 //var ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
 // eslint-disable-next-line no-unused-vars
@@ -8,9 +9,9 @@ module.exports = function(app) {
   //only admin
   // Load cms splash page
   app.get("/cms", function(req, res) {
-    // console.log(req);
+    console.log(req);
     res.render("cms", {
-      msg: "Welcome Professor Plum!",
+      msg: "Welcome " + req.user.first_name + " " + req.user.last_name + "!",
       nav: true
     });
   });
@@ -187,5 +188,41 @@ module.exports = function(app) {
       .then(function(dbteacher_course_map) {
         res.json(dbteacher_course_map);
       });
+  });
+
+  // Create a new record in course table
+  app.get("/cms/manageusers", function(req, res) {
+    res.render("manageusers", {
+      nav: true
+    });
+  });
+
+  // Create a new record in course table
+  app.post("/cms/api/users", function(req, res) {
+
+    var user_id_split = req.body.user_select.split(/(\d+)/);
+    var userId = parseInt(user_id_split[1]);
+    //function to hash the users password
+    var generateHash = function(password) {
+      return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+    };
+
+    //store the users hashed password
+    var password = generateHash(req.body.password);
+
+
+    db.user.findOne({where: {id: userId}}).then(function(dbUser) {
+
+      dbUser.updateAttributes({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        password: password,
+        use_mode: req.body.use_mode
+      });
+      res.render("manageusers", {
+        nav: true
+      });
+    });
   });
 };
