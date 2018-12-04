@@ -1,107 +1,132 @@
-    <!--The Nav Bar - navbar-light bg-light is white background, black letters-->
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-      <a class="navbar-brand" href="/cms"><img class="img-responsive" src="/assets/images/logo2.png" alt="logo_small"
-          height="50"></a>
-      <a class="navbar-brand" href="#cms"><img class="img-responsive" src="/assets/images/slogan.png" alt="logo_small"
-          height="35"></a>
+<!--The Nav Bar - navbar-light bg-light is white background, black letters-->
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <a class="navbar-brand" href="/cms"><img class="img-responsive" src="/assets/images/logo2.png" alt="logo_small"
+      height="50"></a>
+  <a class="navbar-brand" href="#cms"><img class="img-responsive" src="/assets/images/slogan.png" alt="logo_small"
+      height="35"></a>
 
-      <!--The Hamburger-->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <!--The Hamburger-->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-      <div id="navbarNavDropdown" class="navbar-collapse collapse mt-0 mb-1">
-        <!--some navigation items on the left **Note! text-right in the hamburger-->
-        <ul class="navbar-nav mr-auto text-right">
-          <!--HOME-->
-          <li class="nav-item active">
-            <a class="nav-link" href="home">
-              <span class="bar">|&emsp;</span>Home <span class="sr-only">(current)</span></a>
-          </li>
+  <div id="navbarNavDropdown" class="navbar-collapse collapse mt-0 mb-1">
+    <!--some navigation items on the left **Note! text-right in the hamburger-->
+    <ul class="navbar-nav mr-auto text-right">
+      <!--HOME-->
+      <li class="nav-item active">
+        <a class="nav-link" href="home">
+          <span class="bar">|&emsp;</span>Home <span class="sr-only">(current)</span></a>
+      </li>
 
-          <!--Reports-->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <span class="bar">|&emsp;</span>Custom Reports
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="/reports">Report #1</a></li>
-              <li><a class="dropdown-item" href="#">Report #2</a></li>
-              <li><a class="dropdown-item" href="#">Report #3</a></li>
-              <li><a class="dropdown-item" href="#">Report #4</a></li>
-              <li><a class="dropdown-item" href="#">Report #5</a></li>
-            </ul>
-          </li>
+      <!--Reports-->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <span class="bar">|&emsp;</span>Custom Reports
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" href="/reports">Report #1</a></li>
+          <li><a class="dropdown-item" href="#">Report #2</a></li>
+          <li><a class="dropdown-item" href="#">Report #3</a></li>
+          <li><a class="dropdown-item" href="#">Report #4</a></li>
+          <li><a class="dropdown-item" href="#">Report #5</a></li>
         </ul>
+      </li>
+    </ul>
 
 
 
 
-        <!--some navigation items on the right-->
-        <ul class="navbar-nav text-right">
+    <!--some navigation items on the right-->
+    <ul class="navbar-nav text-right">
 
-          <!--PARENTS-->
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="/parents">Parents Dashboard</a>
-          </li>
+      <!--PARENTS-->
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="/parents">Parents Dashboard</a>
+      </li>
 
-          <!--TEACHERS-->
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="/teachers">
-              <span class="bar">|&emsp;</span>
-              Teachers Dashboard
-            </a>
-          </li>
+      <!--TEACHERS-->
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="/teachers">
+          <span class="bar">|&emsp;</span>
+          Teachers Dashboard
+        </a>
+      </li>
 
-          <!--CONTENT MANAGEMENT SYSTEM-->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <span class="bar">|&emsp;</span>Content Management
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/cms">CMS Dashboard</a>
-              <a class="dropdown-item" href="/cms/students">Enter New Students</a>
-              <a class="dropdown-item" href="/cms/parents">Enter Parents</a>
-              <a class="dropdown-item" href="/cms/personnel">Enter Personnel</a>
-              <a class="dropdown-item" href="/cms/roster">Build Roster</a>
-            </div>
-          </li>
+      <!--CONTENT MANAGEMENT SYSTEM-->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <span class="bar">|&emsp;</span>Content Management
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/cms">CMS Dashboard</a>
+          <a class="dropdown-item" href="/cms/students">Enter New Students</a>
+          <a class="dropdown-item" href="/cms/parents">Enter Parents</a>
+          <a class="dropdown-item" href="/cms/personnel">Enter Personnel</a>
+          <a class="dropdown-item" href="/cms/roster">Build Roster</a>
+        </div>
+      </li>
 
-          <!--ADMINISTRATION-->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <span class="bar">|&emsp;</span>Administration
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="*">Password and User Manager</a>
-            </div>
-          </li>
+      <!--ADMINISTRATION-->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <span class="bar">|&emsp;</span>Administration
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="*">Password and User Manager</a>
+        </div>
+      </li>
 
-          <!--HOME-->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuHome" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <span class="bar">|&emsp;</span>Account
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <!--HOME-->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuHome" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <span class="bar">|&emsp;</span>Account
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-              <a class="dropdown-item" href="home.html">Home</a>
-              <a class="dropdown-item" href="#">Change My Password</a>
-              <a class="dropdown-item" href="/login">Login</a>
-              <a class="dropdown-item" href="/logout">Logout</a>
-              <a class="dropdown-item" href="home.html">Profile</a>
-              <a class="dropdown-item" href="index.html">Settings</a>
-              <a id="user-logout" class="dropdown-item" href="/logout">Logout</a>
-            </div>
-          </li>
+          <a class="dropdown-item" href="/cms">Home</a>
+          <a class="dropdown-item" href="/profile">Profile</a>
+          <a class="dropdown-item" data-toggle="modal" data-target="#myModal">Change My Password</a>
+          <a id="user-logout" class="dropdown-item" href="/logout">Logout</a>
+        </div>
+      </li>
 
-          <!--CLOSE NAV-->
+      <!--CLOSE NAV-->
 
-        </ul>
+    </ul>
+  </div>
+</nav>
+
+{{!-- Change My Password Modal --}}
+
+<div id="myModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Change My Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </nav>
-    <script src="/assets/js/userAuth.js" type="text/javascript"></script>
+      <div class="modal-body">
+        <form class="form-login">
+          <div class="form-label-group">
+            <input type="email" id="forgot-email" name="forgot_email" class="form-control outline-secondary" placeholder="Email address"
+              autocomplete="email" required autofocus>
+            <label for="forgot-email">Email</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button id="reset-email-btn"type="button" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/assets/js/userAuth.js" type="text/javascript"></script>

@@ -1,0 +1,51 @@
+<main>
+
+    <!--Use Bootstrap's grid system inside the main area of the page-->
+    <div class="container">
+        <!--1st row holds the logo and application name-->
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center m-0">
+                    <img class="m-0" src="assets/images/logo1.png" alt="logo">
+                    <h3>Welcome, {{user.first_name}}!</h3>
+                    <h4>Please reset your password below.</h4>
+                </div>
+            </div>
+        </div>
+        <!--Hidden row holds warning or alert messages-->
+        <div class="row warningMsg">
+        </div>
+        <!--2nd row holds the form-->
+        <div class="row">
+            <div class="col-12">
+                <form class="form-login-" method="POST" action="/reset">
+
+                    <div class="form-label-group">
+                        <input type="email" id="reset_pass_email" name="reset_pass_email" class="form-control outline-secondary"
+                            placeholder="Email address" autocomplete="email" required autofocus>
+                        <label for="reset_pass_email">Email</label>
+                    </div>
+
+                    <div class="form-label-group">
+                        <input type="password" id="reset_password" name="reset_password" class="form-control"
+                            placeholder="Password" autocomplete="password" required>
+                        <label for="reset_password">Password</label>
+                    </div>
+
+                    <div class="form-label-group">
+                        <input type="password" id="confirm_password" name="confirm_password" class="form-control"
+                            placeholder="Confirm Password" autocomplete="password" required>
+                        <label for="confirm_password">Confirm Password</label>
+                    </div>
+
+                    <button id="reset-pass-btn" class="btn btn-lg btn-light btn-outline-secondary" type="submit" name="submit">Reset Password</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+
+<script src="/assets/js/userAuth.js" type="text/javascript"></script>
