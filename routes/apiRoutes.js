@@ -226,4 +226,11 @@ module.exports = function(app) {
       res.json(result);
     });
   });
+
+  // Get users
+  app.get("/api/users", function(req, res) {
+    db.user.findAll({}).then(function(dbUser) {
+      res.json(dbUser);
+    });
+  });
 };

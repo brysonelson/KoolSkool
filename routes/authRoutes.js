@@ -9,7 +9,6 @@ var bCrypt = require("bcrypt-nodejs");
 
 //export all of our routes
 module.exports = function(app, passport) {
-
   //route to get the sign up page
   app.get("/signup", authController.signup);
 
@@ -44,7 +43,6 @@ module.exports = function(app, passport) {
 
   //when the user submits a password reset request
   app.post("/forgot", function(req, res) {
-    
     //do this async so we dont have so many callbacks
     async.waterfall([
       function(done) {
@@ -159,6 +157,50 @@ module.exports = function(app, passport) {
           });
           //take the user to the login page once pass is updated.
           res.render("login");
+        }
+      });
+  });
+
+  //route to get the users profile
+  app.get("/profile", function(req, res) {
+    //render the profile page with the nav bar and pass in the users info to hbs
+    res.render("profile", {
+      nav: true,
+      user: req.user
+    });
+  });
+
+  //route to update the users profile
+  app.post("/update", function(req, res) {
+    //find the user in the db by their email
+    db.user
+      .findOne({ where: { email: req.user.email } })
+      //then...
+      .then(function(dbUser) {
+        //if there is no user, let them know
+        if (!dbUser) {
+          console.log("No User Found.");
+        } else {
+          //function to hash the users password
+          var generateHash = function(password) {
+            return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+          };
+
+          //store the users hashed password
+          var password = generateHash(req.body.password);
+
+          //update the db with the new values
+          dbUser.updateAttributes({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email,
+            password: password
+          });
+          //render the profile page again with nav and the users updated info
+          res.render("profile", {
+            nav: true,
+            user: req.user
+          });
         }
       });
   });

@@ -74,9 +74,3 @@ $("#reset-email-btn").click(function() {
     alert("sent!");
   });
 });
-
-$("#reset-pass-btn").click(function() {
-  var email = $("#forgot-email").val();
-  var newPassword = $("#reset_password").val();
-  var confirmPassword = $("#confirm_password").val();
-});
