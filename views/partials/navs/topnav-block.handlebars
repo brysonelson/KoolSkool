@@ -114,11 +114,17 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Modal body text goes here.</p>
+        <form class="form-login">
+          <div class="form-label-group">
+            <input type="email" id="forgot-email" name="forgot_email" class="form-control outline-secondary" placeholder="Email address"
+              autocomplete="email" required autofocus>
+            <label for="forgot-email">Email</label>
+          </div>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="reset-email-btn"type="button" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
