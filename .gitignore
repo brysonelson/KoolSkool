@@ -3,4 +3,5 @@ node_modules
 npm-debug.log
 .env
 koolskool.code-workspacesendgrid.env
+koolskool.code-workspace
 sendgrid.env

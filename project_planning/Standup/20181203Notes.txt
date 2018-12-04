@@ -1,0 +1,57 @@
+Step 1:  Who is suppose to be in my class?
+Miranda has written a route `/attendence` Here is the code:
+<code>
+  app.get("/attendence", function(req, res) {
+    db.Course.findAll({
+      include: [
+        {
+          model: db.Students,
+          as: "course_students",
+          through: "student_course_map",
+          foreignKey: "student_id"
+        }
+      ]
+    }).then(function(dbCourse) {
+      res.render("attendence", {
+        course: dbCourse
+        // scm: dbSCM,
+        // students: dbStudents
+      });
+    });
+  });
+</code>
+
+That route renders the view `attendence.handlebars`.
+This is the list of all of the classes and the students in those classes with a checkbox (or toggle) so that the teacher can take attendence.
+When the form is loaded for the first time, the toggles are all set to abasent -- or if checkboxes, all not checked.
+
+When the form is submitted, via clicking the submit button, the attence records are created via a post route.
+
+To get started, know what fields are necessary in the attendence table.  They are:
+`id`,
+`attendence_dt`,
+`absent`,
+`person_id`,
+`created_at`,
+`updated_at`,
+`student_id`,
+`course_id`
+`id` `created at` and `updated at` are automatic -- so we don't need to create those.
+
+
+
+
+  app.get("/api/course_students", function(req, res) {
+    db.Course.findAll({
+      include: [
+        {
+          model: db.Students,
+          as: "course_students",
+          through: "student_course_map",
+          foreignKey: "student_id"
+        }
+      ]
+    }).then(function(result) {
+      res.json(result);
+    });
+  });

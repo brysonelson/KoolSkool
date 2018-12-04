@@ -1,5 +1,6 @@
 var db = require("../models");
-var bCrypt = require("bcrypt-nodejs");
+//var bCrypt = require("bcrypt-nodejs");
+
 // eslint-disable-next-line no-unused-vars
 //var ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
 // eslint-disable-next-line no-unused-vars
@@ -303,7 +304,6 @@ module.exports = function(app) {
 
   // Create a new record in course table
   app.post("/cms/api/users", function(req, res) {
-
     var user_id_split = req.body.user_select.split(/(\d+)/);
     var userId = parseInt(user_id_split[1]);
     //function to hash the users password
@@ -314,7 +314,7 @@ module.exports = function(app) {
     //store the users hashed password
     var password = generateHash(req.body.password);
 
-
+    // eslint-disable-next-line prettier/prettier
     db.user.findOne({where: {id: userId}}).then(function(dbUser) {
       var logoHref = {
         route: null
