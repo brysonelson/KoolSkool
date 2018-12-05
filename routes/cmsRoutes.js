@@ -298,7 +298,7 @@ module.exports = function(app) {
     });
   });
 
-  // Create a new record in course table
+  // Update a new record in users table
   app.post("/cms/api/users", authMiddleware.adminAuth(), function(req, res) {
     var user_id_split = req.body.user_select.split(/(\d+)/);
     var userId = parseInt(user_id_split[1]);
