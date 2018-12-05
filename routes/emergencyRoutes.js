@@ -10,22 +10,43 @@ module.exports = function(app) {
     var logoHref = {
       route: null
     };
+
+    var use_mode_obj = {
+      studentVal: false,
+      parentVal: false,
+      teacherVal: false,
+      adminVal: false
+    };
     if (req.user.use_mode === "student") {
       logoHref.route = "/login";
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "parent") {
       logoHref.route = "/parents";
+      use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "super_admin") {
       logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     }
-    // console.log(req);
+
     res.render("emergency", {
       messageSent: "No Messages Sent Yet",
       nav: true,
-      navLogo: logoHref
+      navLogo: logoHref,
+      use_mode: use_mode_obj
     });
   });
 
