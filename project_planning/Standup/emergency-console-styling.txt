@@ -1,0 +1,73 @@
+
+Create your own style sheet and move your feature branch styling into it.  emergency.css
+Don't forget to add the link:
+<link href="public/assets/css/emergency.css" rel="stylesheet">
+
+Use as many bootstrap classes as you can so that you can take advantage of bootstrap responsive.
+
+Row 3 in Handlebars:
+1.  You don't need my class "parent-container" -- so remove that.
+2.  I'm not understanding why you'd want to use col-md-9.  Especially if you want it centered.  -- so remove that.
+3.  I don't see what "align-self-start" is doing for this page -- so remove that.
+4.  Now you are left with:  <div class="container-fluid">
+
+Header of your html page:
+lets try to make the eye focus on what is important. So...
+1. I would flip the color scheme and make the words red and the background white.
+  .emergency{
+    color: darkred;
+  }
+
+2.Next I would add a font-awesome to each side of the header and then color that red.
+Font-awesome like this:  <i class="fas fa-minus-circle fa-lg">
+Color for font-awesome like this: 
+  .fa-minus-circle{
+      color: darkred;
+  }
+
+3.  Then center it with bootstrap clss text-center
+
+4.  lets move your message out of the visual heading.  Take the entire div and move it below the hr.
+          <div class="emergency" id="messageSent">
+            <h4>No Messages Sent Yet</h4>
+          </div>
+5.  For visual to create a separation while still keeping the red theme, let color the hr tag.  Add a class 'emergencyhr' to it.
+6. Add a margin and center it with boostrap class text-center m-3
+
+
+1st card:
+Lets try to give these cards some room on the page.
+1. Change the boostrap class to my-5. This will give some top and bottom margins.
+2. Remove mx-3 because we want to take up the entire phone width.
+3. You could add red for the border of all your cards by creating a red-border class and putting that in all your card divs.
+4. You could make all card headers red with your existing card-header-emergency class by adding background-color.
+5. Consider everything on the page doesn't need to be SHOUTING!!! You want the principal to be calm and collected in the event of an emergency.
+6. Make the card-header full width with the bootstrap w-100 class
+7. Lets make the card body white.  Make sure bootstrap knows it's the card-body class.
+8. Lets make it clear it's a message that is going to be sent when the button is clicked.  You can do this with simple HTML tags.
+9. Put the message inside a div or a paragraph or some other tag so you can style it.
+10.  Move the action buttons into a card-footer, which you can style red -- or white.  But style the button opposite.
+11.  Use bootstrap button class.  btn btn-light .  This will make the button size properly.
+
+Before we get to the next card:
+You have a stray div with an id of m but that id isn't in double quotes -- so this feels off to me.
+
+Style the hr as described above.
+
+Style the 2nd card like the 1st card.
+
+You need a lable to go with the input.
+You need to style the input by giving it a bootstrap form-control class.
+You don't need break tags -- just use bootstrap margin classes.
+Are you going to limit how many characters in the message?
+Move the reset button outside the card -- and then it can be styled like the other buttons throughout the app.
+
+
+
+
+
+
+
+
+
+
