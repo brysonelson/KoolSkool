@@ -1,11 +1,12 @@
 var db = require("../models");
 var moment = require("moment");
+var authMiddleware = require("../middleware/authMiddleware.js");
 var accountSid = process.env.TWILIO_ACCOUNT_SID;
 var authToken = process.env.TWILIO_AUTH_TOKEN;
 var client = require("twilio")(accountSid, authToken);
 
 module.exports = function(app) {
-  app.get("/emergency", function(req, res) {
+  app.get("/emergency", authMiddleware.emergencyAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
@@ -17,6 +18,8 @@ module.exports = function(app) {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
     }
     // console.log(req);
     res.render("emergency", {
@@ -27,7 +30,7 @@ module.exports = function(app) {
   });
 
   //app.post("/api/emergency", authMiddleware.adminAuth(), function(req, res) {
-  app.post("/api/emergency", function(req, res) {
+  app.post("/api/emergency", authMiddleware.emergencyAuth(), function(req, res) {
     console.log(req.body);
     var msgTimestamp = moment().format("MM-DD-YY h:mm:ss a");
     console.log(msgTimestamp);
@@ -40,7 +43,7 @@ module.exports = function(app) {
           .create({
             body: req.body.emergencyMsg,
             from: "+18582408765",
-            to: dbParents[0].phone_num_primary
+            to: dbParents[i].phone_num_primary
           })
           .then(function(message) {
             console.log(message.sid);
@@ -52,7 +55,7 @@ module.exports = function(app) {
         .create({
           body: req.body.emergencyMsg,
           from: "+18582408765",
-          to: dbParents[0].phone_num_alt
+          to: dbParents[i].phone_num_alt
         })
         .then(function(message) {
           console.log(message.sid);
@@ -69,7 +72,7 @@ module.exports = function(app) {
           .create({
             body: req.body.emergencyMsg,
             from: "+18582408765",
-            to: dbPersonnel[0].phone_num_primary
+            to: dbPersonnel[i].phone_num_primary
           })
           .then(function(message) {
             console.log(message.sid);
@@ -81,7 +84,7 @@ module.exports = function(app) {
         .create({
           body: req.body.emergencyMsg,
           from: "+18582408765",
-          to: dbPersonnel[0].phone_num_alt
+          to: dbPersonnel[i].phone_num_alt
         })
         .then(function(message) {
           console.log(message.sid);
