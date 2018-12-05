@@ -39,7 +39,7 @@ module.exports = function(app) {
       attributes: ["phone_num_primary", "phone_num_alt"]
     }).then(function(dbParents) {
       for (var i = 0; i < dbParents.length; i++) {
-        client.messages
+        client.messages //
           .create({
             body: req.body.emergencyMsg,
             from: "+18582408765",
