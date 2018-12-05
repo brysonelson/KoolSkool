@@ -12,7 +12,7 @@ exports.adminAuth = function() {
       ) {
         next();
       } else {
-        res.send(401, "Unauthorized");
+        res.render("login");
       }
     }
   ];
@@ -29,7 +29,7 @@ exports.teacherAuth = function() {
       ) {
         next();
       } else {
-        res.send(401, "Unauthorized");
+        res.render("login");
       }
     }
   ];
@@ -48,7 +48,7 @@ exports.parentAuth = function() {
         next();
       } else {
         // eslint-disable-next-line no-unused-vars
-        var newLocal = res.send(401, "Unauthorized");
+        res.render("login");
       }
     }
   ];
@@ -61,7 +61,7 @@ exports.studentAuth = function() {
       if (req.user && req.user.use_mode === "student") {
         next();
       } else {
-        res.send(401, "Unauthorized");
+        res.render("login");
       }
     }
   ];
@@ -74,7 +74,7 @@ exports.emergencyAuth = function() {
       if (req.user && req.user.use_mode === "super_admin") {
         next();
       } else {
-        res.send(401, "Unauthorized");
+        res.render("login");
       }
     }
   ];
