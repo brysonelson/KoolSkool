@@ -67,12 +67,12 @@ app.set("view engine", "handlebars");
 require("./config/passport/passport.js")(passport, db.user);
 require("./routes/apiRoutes")(app);
 require("./routes/cmsRoutes")(app);
+require("./routes/attRoutes")(app);
 require("./routes/emergencyRoutes")(app);
 require("./routes/teachersRoutes")(app);
 require("./routes/parentsRoutes")(app);
 require("./routes/authRoutes")(app, passport, db.user);
 require("./routes/htmlRoutes")(app);
-
 
 var syncOptions = { force: false };
 
