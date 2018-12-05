@@ -43,19 +43,25 @@
     <ul class="navbar-nav text-right">
 
       <!--PARENTS-->
+      {{#if use_mode.parentVal}}
       <li class="nav-item dropdown">
         <a class="nav-link" href="/parents">Parents</a>
       </li>
+      {{/if}}
+
 
       <!--TEACHERS-->
+      {{#if use_mode.teacherVal}}
       <li class="nav-item dropdown">
         <a class="nav-link" href="/teachers">
           <span class="bar">|&emsp;</span>
           Teachers
         </a>
       </li>
+      {{/if}}
 
       <!--CONTENT MANAGEMENT SYSTEM-->
+      {{#if use_mode.adminVal}}
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
@@ -69,8 +75,10 @@
           <a class="dropdown-item" href="/cms/roster">Build Roster</a>
         </div>
       </li>
+      {{/if}}
 
       <!--ADMINISTRATION-->
+      {{#if use_mode.adminVal}}
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
@@ -80,6 +88,7 @@
           <a class="dropdown-item" href="/cms/manageusers">Password and User Manager</a>
         </div>
       </li>
+      {{/if}}
 
       <!--HOME-->
       <li class="nav-item dropdown">
