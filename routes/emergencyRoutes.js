@@ -30,6 +30,7 @@ module.exports = function(app) {
   });
 
   //app.post("/api/emergency", authMiddleware.adminAuth(), function(req, res) {
+  // eslint-disable-next-line prettier/prettier
   app.post("/api/emergency", authMiddleware.emergencyAuth(), function(req, res) {
     console.log(req.body);
     var msgTimestamp = moment().format("MM-DD-YY h:mm:ss a");
@@ -39,7 +40,7 @@ module.exports = function(app) {
       attributes: ["phone_num_primary", "phone_num_alt"]
     }).then(function(dbParents) {
       for (var i = 0; i < dbParents.length; i++) {
-        client.messages
+        client.messages //
           .create({
             body: req.body.emergencyMsg,
             from: "+18582408765",
@@ -49,18 +50,18 @@ module.exports = function(app) {
             console.log(message.sid);
           })
           .done();
-      }
 
-      client.messages
-        .create({
-          body: req.body.emergencyMsg,
-          from: "+18582408765",
-          to: dbParents[i].phone_num_alt
-        })
-        .then(function(message) {
-          console.log(message.sid);
-        })
-        .done();
+        client.messages
+          .create({
+            body: req.body.emergencyMsg,
+            from: "+18582408765",
+            to: dbParents[i].phone_num_alt
+          })
+          .then(function(message) {
+            console.log(message.sid);
+          })
+          .done();
+      }
     });
 
     db.Personnel.findAll({
@@ -78,18 +79,17 @@ module.exports = function(app) {
             console.log(message.sid);
           })
           .done();
+        client.messages
+          .create({
+            body: req.body.emergencyMsg,
+            from: "+18582408765",
+            to: dbPersonnel[i].phone_num_alt
+          })
+          .then(function(message) {
+            console.log(message.sid);
+          })
+          .done();
       }
-
-      client.messages
-        .create({
-          body: req.body.emergencyMsg,
-          from: "+18582408765",
-          to: dbPersonnel[i].phone_num_alt
-        })
-        .then(function(message) {
-          console.log(message.sid);
-        })
-        .done();
     });
     res.json({ messageSent: msgTimestamp });
   });
