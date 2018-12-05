@@ -41,7 +41,7 @@ module.exports = function(app) {
           .create({
             body: req.body.emergencyMsg,
             from: "+18582408765",
-            to: dbParents[0].phone_num_primary
+            to: dbParents[i].phone_num_primary
           })
           .then(function(message) {
             console.log(message.sid);
@@ -53,7 +53,7 @@ module.exports = function(app) {
         .create({
           body: req.body.emergencyMsg,
           from: "+18582408765",
-          to: dbParents[0].phone_num_alt
+          to: dbParents[i].phone_num_alt
         })
         .then(function(message) {
           console.log(message.sid);
@@ -70,7 +70,7 @@ module.exports = function(app) {
           .create({
             body: req.body.emergencyMsg,
             from: "+18582408765",
-            to: dbPersonnel[0].phone_num_primary
+            to: dbPersonnel[i].phone_num_primary
           })
           .then(function(message) {
             console.log(message.sid);
@@ -82,7 +82,7 @@ module.exports = function(app) {
         .create({
           body: req.body.emergencyMsg,
           from: "+18582408765",
-          to: dbPersonnel[0].phone_num_alt
+          to: dbPersonnel[i].phone_num_alt
         })
         .then(function(message) {
           console.log(message.sid);

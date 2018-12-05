@@ -12,7 +12,7 @@ $(document).ready(function() {
   });
 
   //when the login form is submitted
-  $("#login_form").on("submit", function(event) {
+  $("#login-submit-btn").on("click", function(event) {
     //prevent the default
     event.preventDefault();
     //post the request to the login route

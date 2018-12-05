@@ -6,7 +6,10 @@ exports.adminAuth = function() {
   return [
     ensureLoggedIn("/login"),
     function(req, res, next) {
-      if (req.user && req.user.use_mode === "admin") {
+      if (
+        req.user.use_mode === "admin" ||
+        req.user.use_mode === "super_admin"
+      ) {
         next();
       } else {
         res.send(401, "Unauthorized");
@@ -19,7 +22,11 @@ exports.teacherAuth = function() {
   return [
     ensureLoggedIn("/login"),
     function(req, res, next) {
-      if (req.user && req.user.use_mode === "teacher") {
+      if (
+        req.user.use_mode === "teacher" ||
+        req.user.use_mode === "admin" ||
+        req.user.use_mode === "super_admin"
+      ) {
         next();
       } else {
         res.send(401, "Unauthorized");
@@ -32,7 +39,12 @@ exports.parentAuth = function() {
   return [
     ensureLoggedIn("/login"),
     function(req, res, next) {
-      if (req.user && req.user.use_mode === "parent") {
+      if (
+        req.user.use_mode === "parent" ||
+        req.user.use_mode === "teacher" ||
+        req.user.use_mode === "super_admin" ||
+        req.user.use_mode === "teacher"
+      ) {
         next();
       } else {
         // eslint-disable-next-line no-unused-vars
