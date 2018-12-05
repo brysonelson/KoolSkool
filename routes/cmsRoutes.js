@@ -1,15 +1,11 @@
 var db = require("../models");
-//var bCrypt = require("bcrypt-nodejs");
-
-// eslint-disable-next-line no-unused-vars
-//var ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
-// eslint-disable-next-line no-unused-vars
-//var authMiddleware = require("../middleware/authMiddleware.js");
+var bCrypt = require("bcrypt-nodejs");
+var authMiddleware = require("../middleware/authMiddleware.js");
 
 module.exports = function(app) {
   //only admin
   // Load cms splash page
-  app.get("/cms", function(req, res) {
+  app.get("/cms", authMiddleware.adminAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
@@ -20,6 +16,8 @@ module.exports = function(app) {
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
       logoHref.route = "/cms";
     }
 
@@ -38,7 +36,7 @@ module.exports = function(app) {
   });
 
   // Load parents data entry page (note: only dropdowns are populated)
-  app.get("/cms/parents", function(req, res) {
+  app.get("/cms/parents", authMiddleware.adminAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
@@ -49,6 +47,8 @@ module.exports = function(app) {
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
       logoHref.route = "/cms";
     }
     db.Students.findAll({
@@ -88,7 +88,7 @@ module.exports = function(app) {
   });
 
   // Load personnel data entry page
-  app.get("/cms/personnel", function(req, res) {
+  app.get("/cms/personnel", authMiddleware.adminAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
@@ -99,6 +99,8 @@ module.exports = function(app) {
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
       logoHref.route = "/cms";
     }
     res.render("personnel", {
@@ -116,7 +118,7 @@ module.exports = function(app) {
   });
 
   // Load parents data entry page (note: only dropdowns are populated)
-  app.get("/cms/students", function(req, res) {
+  app.get("/cms/students", authMiddleware.adminAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
@@ -127,6 +129,8 @@ module.exports = function(app) {
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
       logoHref.route = "/cms";
     }
     db.Parents.findAll({
@@ -159,7 +163,7 @@ module.exports = function(app) {
   });
 
   // Load students data entry page
-  app.get("/cms/courses", function(req, res) {
+  app.get("/cms/courses", authMiddleware.adminAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
@@ -170,6 +174,8 @@ module.exports = function(app) {
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
       logoHref.route = "/cms";
     }
     res.render("courses", {
@@ -186,7 +192,7 @@ module.exports = function(app) {
   });
 
   // Load students data entry page
-  app.get("/cms/classrooms", function(req, res) {
+  app.get("/cms/classrooms", authMiddleware.adminAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
@@ -197,6 +203,8 @@ module.exports = function(app) {
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
       logoHref.route = "/cms";
     }
     res.render("classrooms", {
@@ -213,7 +221,7 @@ module.exports = function(app) {
   });
 
   // Load Roster data entry page (note: only dropdowns are populated)
-  app.get("/cms/roster", function(req, res) {
+  app.get("/cms/roster", authMiddleware.adminAuth(), function(req, res) {
     db.Students.findAll({
       attributes: ["id", "last_name", "first_name"],
       order: [["last_name", "ASC"], ["first_name", "ASC"]]
@@ -247,7 +255,10 @@ module.exports = function(app) {
                 logoHref.route = "/teachers";
               } else if (req.user.use_mode === "admin") {
                 logoHref.route = "/cms";
+              } else if (req.user.use_mode === "super_admin") {
+                logoHref.route = "/cms";
               }
+
               res.render("roster", {
                 nav: true,
                 courses: dbCourses,
@@ -283,7 +294,7 @@ module.exports = function(app) {
   });
 
   // Create a new record in course table
-  app.get("/cms/manageusers", function(req, res) {
+  app.get("/cms/manageusers", authMiddleware.adminAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
@@ -295,15 +306,18 @@ module.exports = function(app) {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
     }
+
     res.render("manageusers", {
       nav: true,
       navLogo: logoHref
     });
   });
 
-  // Create a new record in course table
-  app.post("/cms/api/users", function(req, res) {
+  // Update a new record in users table
+  app.post("/cms/api/users", authMiddleware.adminAuth(), function(req, res) {
     var user_id_split = req.body.user_select.split(/(\d+)/);
     var userId = parseInt(user_id_split[1]);
     //function to hash the users password
@@ -326,6 +340,8 @@ module.exports = function(app) {
       } else if (req.user.use_mode === "teacher") {
         logoHref.route = "/teachers";
       } else if (req.user.use_mode === "admin") {
+        logoHref.route = "/cms";
+      } else if (req.user.use_mode === "super_admin") {
         logoHref.route = "/cms";
       }
 

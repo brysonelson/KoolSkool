@@ -1,6 +1,6 @@
 var authController = require("../controllers/authController.js");
-// eslint-disable-next-line no-unused-vars
 var authMiddleware = require("../middleware/authMiddleware.js");
+var ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
 var crypto = require("crypto");
 var async = require("async");
 var db = require("../models");
@@ -10,16 +10,69 @@ var bCrypt = require("bcrypt-nodejs");
 //export all of our routes
 module.exports = function(app, passport) {
   //route to get the sign up page
-  app.get("/signup", authController.signup);
+  app.get("/signup", authMiddleware.adminAuth(), authController.signup);
 
-  //route to sign a user in with passport
-  app.post(
-    "/signup",
-    passport.authenticate("local-signup", {
-      successRedirect: "/cms",
-      failureRedirect: "/signup"
-    })
-  );
+  // Update a new record in users table
+  app.post("/signup", authMiddleware.adminAuth(), function(req, res) {
+    // var user_id_split = req.body.user_select.split(/(\d+)/);
+    // var userId = parseInt(user_id_split[1]);
+    //function to hash the users password
+    var generateHash = function(password) {
+      return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+    };
+
+    //store the users hashed password
+    var password = generateHash(req.body.password);
+
+    //look for any users that already have that email
+    db.user.findOne({ where: { email: req.body.email } }).then(function(user) {
+      // if there is a user with that email, tell them the email is taken
+      if (user) {
+        console.log("That email is already taken");
+      }
+      //otherwise we will create the user in our db
+      else {
+        // var userPassword = generateHash(password);
+        // console.log("REQ: " + req.body.personnel_select);
+        var personnel_id_split = req.body.personnel_select.split(/(\d+)/);
+        var personnelId = parseInt(personnel_id_split[1]);
+        console.log(personnel_id_split);
+        var data = {
+          email: req.body.email,
+          password: password,
+          first_name: req.body["first-name"],
+          last_name: req.body["last-name"],
+          use_mode: req.body.use_mode,
+          personnel_id: personnelId
+        };
+
+        db.user.create(data).then(function(newUser) {
+          var logoHref = {
+            route: null
+          };
+          if (req.user.use_mode === "student") {
+            logoHref.route = "/login";
+          } else if (req.user.use_mode === "parent") {
+            logoHref.route = "/parents";
+          } else if (req.user.use_mode === "teacher") {
+            logoHref.route = "/teachers";
+          } else if (req.user.use_mode === "admin") {
+            logoHref.route = "/cms";
+          }
+
+          if (!newUser) {
+            // return done(null, false);
+            console.log("No New User Created");
+          } else {
+            res.render("manageusers", {
+              nav: true,
+              navLogo: logoHref
+            });
+          }
+        });
+      }
+    });
+  });
 
   //log the user out and send them back to the homepage
   app.get("/logout", authController.logout);
@@ -38,6 +91,8 @@ module.exports = function(app, passport) {
       res.json({ url: "/teachers" });
     } else if (req.user.use_mode === "admin") {
       res.json({ url: "/cms" });
+    } else if (req.user.use_mode === "super_admin") {
+      res.json({ url: "/emergency" });
     }
   });
 
@@ -162,7 +217,7 @@ module.exports = function(app, passport) {
   });
 
   //route to get the users profile
-  app.get("/profile", function(req, res) {
+  app.get("/profile", ensureLoggedIn("/login"), function(req, res) {
     var logoHref = {
       route: null
     };
@@ -174,6 +229,8 @@ module.exports = function(app, passport) {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
     }
     //render the profile page with the nav bar and pass in the users info to hbs
     res.render("profile", {
@@ -184,7 +241,7 @@ module.exports = function(app, passport) {
   });
 
   //route to update the users profile
-  app.post("/update", function(req, res) {
+  app.post("/update", ensureLoggedIn("/login"), function(req, res) {
     //find the user in the db by their email
     db.user
       .findOne({ where: { email: req.user.email } })
@@ -220,6 +277,8 @@ module.exports = function(app, passport) {
           } else if (req.user.use_mode === "teacher") {
             logoHref.route = "/teachers";
           } else if (req.user.use_mode === "admin") {
+            logoHref.route = "/cms";
+          } else if (req.user.use_mode === "super_admin") {
             logoHref.route = "/cms";
           }
           //render the profile page again with nav and the users updated info
