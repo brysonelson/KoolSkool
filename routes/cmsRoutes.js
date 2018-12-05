@@ -17,6 +17,8 @@ module.exports = function(app) {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
     }
 
     res.render("cms", {
@@ -45,6 +47,8 @@ module.exports = function(app) {
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
       logoHref.route = "/cms";
     }
     db.Students.findAll({
@@ -96,6 +100,8 @@ module.exports = function(app) {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
     }
     res.render("personnel", {
       nav: true,
@@ -123,6 +129,8 @@ module.exports = function(app) {
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
       logoHref.route = "/cms";
     }
     db.Parents.findAll({
@@ -167,6 +175,8 @@ module.exports = function(app) {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
     }
     res.render("courses", {
       nav: true,
@@ -193,6 +203,8 @@ module.exports = function(app) {
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
+      logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
       logoHref.route = "/cms";
     }
     res.render("classrooms", {
@@ -243,7 +255,10 @@ module.exports = function(app) {
                 logoHref.route = "/teachers";
               } else if (req.user.use_mode === "admin") {
                 logoHref.route = "/cms";
+              } else if (req.user.use_mode === "super_admin") {
+                logoHref.route = "/cms";
               }
+
               res.render("roster", {
                 nav: true,
                 courses: dbCourses,
@@ -291,7 +306,10 @@ module.exports = function(app) {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
     }
+
     res.render("manageusers", {
       nav: true,
       navLogo: logoHref
@@ -322,6 +340,8 @@ module.exports = function(app) {
       } else if (req.user.use_mode === "teacher") {
         logoHref.route = "/teachers";
       } else if (req.user.use_mode === "admin") {
+        logoHref.route = "/cms";
+      } else if (req.user.use_mode === "super_admin") {
         logoHref.route = "/cms";
       }
 

@@ -18,6 +18,8 @@ module.exports = function(app) {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
     }
     // console.log(req);
     res.render("emergency", {

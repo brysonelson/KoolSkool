@@ -229,6 +229,8 @@ module.exports = function(app, passport) {
       logoHref.route = "/teachers";
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
     }
     //render the profile page with the nav bar and pass in the users info to hbs
     res.render("profile", {
@@ -275,6 +277,8 @@ module.exports = function(app, passport) {
           } else if (req.user.use_mode === "teacher") {
             logoHref.route = "/teachers";
           } else if (req.user.use_mode === "admin") {
+            logoHref.route = "/cms";
+          } else if (req.user.use_mode === "super_admin") {
             logoHref.route = "/cms";
           }
           //render the profile page again with nav and the users updated info
