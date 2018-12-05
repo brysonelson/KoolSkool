@@ -1,6 +1,6 @@
 var authController = require("../controllers/authController.js");
-// eslint-disable-next-line no-unused-vars
 var authMiddleware = require("../middleware/authMiddleware.js");
+var ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
 var crypto = require("crypto");
 var async = require("async");
 var db = require("../models");
@@ -10,7 +10,7 @@ var bCrypt = require("bcrypt-nodejs");
 //export all of our routes
 module.exports = function(app, passport) {
   //route to get the sign up page
-  app.get("/signup", authController.signup);
+  app.get("/signup", authMiddleware.adminAuth(), authController.signup);
 
   //route to sign a user in with passport
   app.post(
@@ -162,7 +162,7 @@ module.exports = function(app, passport) {
   });
 
   //route to get the users profile
-  app.get("/profile", function(req, res) {
+  app.get("/profile", ensureLoggedIn("/login"), function(req, res) {
     var logoHref = {
       route: null
     };
@@ -184,7 +184,7 @@ module.exports = function(app, passport) {
   });
 
   //route to update the users profile
-  app.post("/update", function(req, res) {
+  app.post("/update", ensureLoggedIn("/login"), function(req, res) {
     //find the user in the db by their email
     db.user
       .findOne({ where: { email: req.user.email } })

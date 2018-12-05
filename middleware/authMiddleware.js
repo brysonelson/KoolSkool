@@ -19,7 +19,7 @@ exports.teacherAuth = function() {
   return [
     ensureLoggedIn("/login"),
     function(req, res, next) {
-      if (req.user && req.user.useMode === "admin") {
+      if (req.user && req.user.use_mode === "teacher") {
         next();
       } else {
         res.send(401, "Unauthorized");
@@ -32,7 +32,7 @@ exports.parentAuth = function() {
   return [
     ensureLoggedIn("/login"),
     function(req, res, next) {
-      if (req.user && req.user.useMode === "admin") {
+      if (req.user && req.user.use_mode === "parent") {
         next();
       } else {
         // eslint-disable-next-line no-unused-vars
@@ -46,7 +46,7 @@ exports.studentAuth = function() {
   return [
     ensureLoggedIn("/login"),
     function(req, res, next) {
-      if (req.user && req.user.useMode === "admin") {
+      if (req.user && req.user.use_mode === "student") {
         next();
       } else {
         res.send(401, "Unauthorized");
@@ -59,7 +59,7 @@ exports.emergencyAuth = function() {
   return [
     ensureLoggedIn("/login"),
     function(req, res, next) {
-      if (req.user && req.user.useMode === "super_admin") {
+      if (req.user && req.user.use_mode === "super_admin") {
         next();
       } else {
         res.send(401, "Unauthorized");

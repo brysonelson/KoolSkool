@@ -1,11 +1,12 @@
 var db = require("../models");
 var moment = require("moment");
+var authMiddleware = require("../middleware/authMiddleware.js");
 var accountSid = process.env.TWILIO_ACCOUNT_SID;
 var authToken = process.env.TWILIO_AUTH_TOKEN;
 var client = require("twilio")(accountSid, authToken);
 
 module.exports = function(app) {
-  app.get("/emergency", function(req, res) {
+  app.get("/emergency", authMiddleware.emergencyAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
@@ -27,7 +28,7 @@ module.exports = function(app) {
   });
 
   //app.post("/api/emergency", authMiddleware.adminAuth(), function(req, res) {
-  app.post("/api/emergency", function(req, res) {
+  app.post("/api/emergency", authMiddleware.emergencyAuth(), function(req, res) {
     console.log(req.body);
     var msgTimestamp = moment().format("MM-DD-YY h:mm:ss a");
     console.log(msgTimestamp);
