@@ -83,11 +83,14 @@ html {
   #jumbotron_img1 {
     border-bottom: solid;
     border-color: #1F2936;
-    background: #fff url("/assets/images/work-in-progress.jpg") no-repeat center center fixed;
-    background-size: cover;
+    background: #fff url("/assets/images/work-in-progress.jpg") no-repeat center center;
+    background-size: 100% 100%;
     height: 100%;
-    width: 100%;
     opacity: 100%;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
   }
 
   .errorpage {
