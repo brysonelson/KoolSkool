@@ -1,46 +1,53 @@
 <main>
 
-    <!--Use Bootstrap's grid system inside the main area of the page-->
-    <div class="container">
-      <!--1st row holds the logo and application name-->
-      <div class="row">
-        <div class="col-12">
-          <div class="text-center m-0">
-            <img class="m-0" src="assets/images/logo1.png" alt="logo">
-              <h3>Please log in to continue</h3>
+  <!--Use Bootstrap's grid system inside the main area of the page-->
+  <div class="container">
+    <!--1st row holds the logo and application name-->
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center m-0">
+          <img class="m-0" src="assets/images/logo1.png" alt="logo">
+          <h3>Please log in to continue</h3>
+        </div>
+      </div>
+    </div>
+    <!--Hidden row holds warning or alert messages-->
+    <div class="row warningMsg">
+    </div>
+    <!--2nd row holds the form-->
+    <div class="row">
+      <div class="col-12">
+        <form id="login_form" class="form-login">
+          <div class="form-label-group">
+            <input type="email" id="email" name="email" class="form-control outline-secondary" placeholder="Email address"
+              autocomplete="email" required autofocus>
+            <label for="email">Email</label>
+          </div>
+
+          <div class="form-label-group">
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+              autocomplete="password" required>
+            <label for="password">Password</label>
+          </div>
+
+          <button id="login-submit-btn" class="btn btn-lg btn-light btn-outline-secondary" type="button">Log in</button>
+        </form>
+        <hr />
+        <div class="row">
+        <div class=" col-12 text-center">
+          <a data-toggle="modal" data-target="#myModal">Forgot Password?</a>
           </div>
         </div>
-      </div>
-      <!--Hidden row holds warning or alert messages-->
-      <div class="row warningMsg">
-      </div>
-      <!--2nd row holds the form-->
-      <div class="row">
-        <div class="col-12">
-          <form id="login_form" class="form-login">
-            <div class="form-label-group">
-              <input type="email" id="email" name="email" class="form-control outline-secondary" placeholder="Email address"
-                autocomplete="email" required autofocus>
-              <label for="email">Email</label>
-            </div>
-
-            <div class="form-label-group">
-              <input type="password" id="password" name="password" class="form-control" placeholder="Password"
-                autocomplete="password" required>
-              <label for="password">Password</label>
-            </div>
-
-            <button id="login-submit-btn" class="btn btn-lg btn-light btn-outline-secondary" type="button">Log in</button>
-          </form>
-          <a data-toggle="modal" data-target="#myModal">Forgot Password?</a>
         </div>
       </div>
-
     </div>
+  </div>
 
-  </main>
+  </div>
 
-  {{!-- Change My Password Modal --}}
+</main>
+
+{{!-- Change My Password Modal --}}
 
 <div id="myModal" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -55,14 +62,14 @@
         <form class="form-login">
           <p>Input the email you use to login below, and we will send you an email to reset your password.</p>
           <div class="form-label-group">
-            <input type="email" id="forgot-email" name="forgot_email" class="form-control outline-secondary" placeholder="Email address"
-              autocomplete="email" required autofocus>
+            <input type="email" id="forgot-email" name="forgot_email" class="form-control outline-secondary"
+              placeholder="Email address" autocomplete="email" required autofocus>
             <label for="forgot-email">Email</label>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button id="reset-email-btn"type="button" class="btn btn-primary">Submit</button>
+        <button id="reset-email-btn" type="button" class="btn btn-primary">Submit</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
       </div>
     </div>
