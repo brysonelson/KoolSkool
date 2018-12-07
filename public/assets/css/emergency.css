@@ -1,0 +1,21 @@
+.emergency {
+  color: darkred;
+}
+
+.fa-minus-circle{
+  color: darkred;
+}
+
+.emergency-hr {
+  background-color: darkred;
+}
+
+.red-border {
+  border-color: darkred;
+}
+  
+.card-emergency {
+  font-family: 'Barlow+Semi+Condensed', sans-serif;
+  background-color: darkred;
+}
+

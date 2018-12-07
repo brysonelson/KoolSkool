@@ -123,7 +123,7 @@ $(function() {
     //if less than 10 chars, won't pass validation, so change to blank
     //TODO!! RETURN MESSAGE TO USER TO REENTER PHONE NUMBER
     if ($phone_num_primary.length !== 10) {
-      $phone_num_primary = "";
+      $phone_num_primary = "9999999999";
     }
     if ($phone_num_alt.length !== 10) {
       $phone_num_alt = "";

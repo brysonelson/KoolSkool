@@ -1,32 +1,50 @@
 var db = require("../models");
-//var bCrypt = require("bcrypt-nodejs");
-
-// eslint-disable-next-line no-unused-vars
-//var ensureLoggedIn = require("connect-ensure-login").ensureLoggedIn;
-// eslint-disable-next-line no-unused-vars
-//var authMiddleware = require("../middleware/authMiddleware.js");
+var bCrypt = require("bcrypt-nodejs");
+var authMiddleware = require("../middleware/authMiddleware.js");
 
 module.exports = function(app) {
   //only admin
   // Load cms splash page
-  app.get("/cms", function(req, res) {
+  app.get("/cms", authMiddleware.adminAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
+
+    var use_mode_obj = {
+      studentVal: false,
+      parentVal: false,
+      teacherVal: false,
+      adminVal: false
+    };
     if (req.user.use_mode === "student") {
       logoHref.route = "/login";
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "parent") {
       logoHref.route = "/parents";
+      use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     }
-
     res.render("cms", {
       msg: "Welcome " + req.user.first_name + " " + req.user.last_name + "!",
       nav: true,
-      navLogo: logoHref
+      navLogo: logoHref,
+      use_mode: use_mode_obj
     });
   });
 
@@ -38,19 +56,42 @@ module.exports = function(app) {
   });
 
   // Load parents data entry page (note: only dropdowns are populated)
-  app.get("/cms/parents", function(req, res) {
+  app.get("/cms/parents", authMiddleware.adminAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
+
+    var use_mode_obj = {
+      studentVal: false,
+      parentVal: false,
+      teacherVal: false,
+      adminVal: false
+    };
     if (req.user.use_mode === "student") {
       logoHref.route = "/login";
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "parent") {
       logoHref.route = "/parents";
+      use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     }
+
     db.Students.findAll({
       attributes: { include: ["last_name", "first_name"] },
       order: [["last_name", "ASC"], ["first_name", "ASC"]]
@@ -58,7 +99,8 @@ module.exports = function(app) {
       res.render("parents", {
         nav: true,
         students: dbStudents,
-        navLogo: logoHref
+        navLogo: logoHref,
+        use_mode: use_mode_obj
       });
     });
   });
@@ -88,22 +130,46 @@ module.exports = function(app) {
   });
 
   // Load personnel data entry page
-  app.get("/cms/personnel", function(req, res) {
+  app.get("/cms/personnel", authMiddleware.adminAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
+
+    var use_mode_obj = {
+      studentVal: false,
+      parentVal: false,
+      teacherVal: false,
+      adminVal: false
+    };
     if (req.user.use_mode === "student") {
       logoHref.route = "/login";
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "parent") {
       logoHref.route = "/parents";
+      use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     }
+
     res.render("personnel", {
       nav: true,
-      navLogo: logoHref
+      navLogo: logoHref,
+      use_mode: use_mode_obj
     });
   });
 
@@ -116,18 +182,40 @@ module.exports = function(app) {
   });
 
   // Load parents data entry page (note: only dropdowns are populated)
-  app.get("/cms/students", function(req, res) {
+  app.get("/cms/students", authMiddleware.adminAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
+
+    var use_mode_obj = {
+      studentVal: false,
+      parentVal: false,
+      teacherVal: false,
+      adminVal: false
+    };
     if (req.user.use_mode === "student") {
       logoHref.route = "/login";
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "parent") {
       logoHref.route = "/parents";
+      use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     }
     db.Parents.findAll({
       attributes: { include: ["last_name", "first_name"] },
@@ -136,7 +224,8 @@ module.exports = function(app) {
       res.render("students", {
         nav: true,
         parents: dbParents,
-        navLogo: logoHref
+        navLogo: logoHref,
+        use_mode: use_mode_obj
       });
     });
   });
@@ -159,22 +248,46 @@ module.exports = function(app) {
   });
 
   // Load students data entry page
-  app.get("/cms/courses", function(req, res) {
+  app.get("/cms/courses", authMiddleware.adminAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
+
+    var use_mode_obj = {
+      studentVal: false,
+      parentVal: false,
+      teacherVal: false,
+      adminVal: false
+    };
     if (req.user.use_mode === "student") {
       logoHref.route = "/login";
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "parent") {
       logoHref.route = "/parents";
+      use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     }
+
     res.render("courses", {
       nav: true,
-      navLogo: logoHref
+      navLogo: logoHref,
+      use_mode: use_mode_obj
     });
   });
 
@@ -186,22 +299,46 @@ module.exports = function(app) {
   });
 
   // Load students data entry page
-  app.get("/cms/classrooms", function(req, res) {
+  app.get("/cms/classrooms", authMiddleware.adminAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
+
+    var use_mode_obj = {
+      studentVal: false,
+      parentVal: false,
+      teacherVal: false,
+      adminVal: false
+    };
     if (req.user.use_mode === "student") {
       logoHref.route = "/login";
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "parent") {
       logoHref.route = "/parents";
+      use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     }
+
     res.render("classrooms", {
       nav: true,
-      navLogo: logoHref
+      navLogo: logoHref,
+      use_mode: use_mode_obj
     });
   });
 
@@ -213,7 +350,7 @@ module.exports = function(app) {
   });
 
   // Load Roster data entry page (note: only dropdowns are populated)
-  app.get("/cms/roster", function(req, res) {
+  app.get("/cms/roster", authMiddleware.adminAuth(), function(req, res) {
     db.Students.findAll({
       attributes: ["id", "last_name", "first_name"],
       order: [["last_name", "ASC"], ["first_name", "ASC"]]
@@ -239,14 +376,36 @@ module.exports = function(app) {
               var logoHref = {
                 route: null
               };
+
+              var use_mode_obj = {
+                studentVal: false,
+                parentVal: false,
+                teacherVal: false,
+                adminVal: false
+              };
               if (req.user.use_mode === "student") {
                 logoHref.route = "/login";
+                use_mode_obj.studentVal = true;
               } else if (req.user.use_mode === "parent") {
                 logoHref.route = "/parents";
+                use_mode_obj.parentVal = true;
               } else if (req.user.use_mode === "teacher") {
                 logoHref.route = "/teachers";
+                use_mode_obj.teacherVal = true;
+                use_mode_obj.parentVal = true;
+                use_mode_obj.studentVal = true;
               } else if (req.user.use_mode === "admin") {
                 logoHref.route = "/cms";
+                use_mode_obj.adminVal = true;
+                use_mode_obj.teacherVal = true;
+                use_mode_obj.parentVal = true;
+                use_mode_obj.studentVal = true;
+              } else if (req.user.use_mode === "super_admin") {
+                logoHref.route = "/cms";
+                use_mode_obj.adminVal = true;
+                use_mode_obj.teacherVal = true;
+                use_mode_obj.parentVal = true;
+                use_mode_obj.studentVal = true;
               }
               res.render("roster", {
                 nav: true,
@@ -255,7 +414,8 @@ module.exports = function(app) {
                 tas: dbTAs,
                 teachers: dbTeachers,
                 student: dbStudents,
-                navLogo: logoHref
+                navLogo: logoHref,
+                use_mode: use_mode_obj
               });
             });
           });
@@ -283,27 +443,51 @@ module.exports = function(app) {
   });
 
   // Create a new record in course table
-  app.get("/cms/manageusers", function(req, res) {
+  app.get("/cms/manageusers", authMiddleware.adminAuth(), function(req, res) {
     var logoHref = {
       route: null
     };
+
+    var use_mode_obj = {
+      studentVal: false,
+      parentVal: false,
+      teacherVal: false,
+      adminVal: false
+    };
     if (req.user.use_mode === "student") {
       logoHref.route = "/login";
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "parent") {
       logoHref.route = "/parents";
+      use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
       logoHref.route = "/teachers";
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
+    } else if (req.user.use_mode === "super_admin") {
+      logoHref.route = "/cms";
+      use_mode_obj.adminVal = true;
+      use_mode_obj.teacherVal = true;
+      use_mode_obj.parentVal = true;
+      use_mode_obj.studentVal = true;
     }
+
     res.render("manageusers", {
       nav: true,
-      navLogo: logoHref
+      navLogo: logoHref,
+      use_mode: use_mode_obj
     });
   });
 
-  // Create a new record in course table
-  app.post("/cms/api/users", function(req, res) {
+  // Update a new record in users table
+  app.post("/cms/api/users", authMiddleware.adminAuth(), function(req, res) {
     var user_id_split = req.body.user_select.split(/(\d+)/);
     var userId = parseInt(user_id_split[1]);
     //function to hash the users password
@@ -319,26 +503,49 @@ module.exports = function(app) {
       var logoHref = {
         route: null
       };
+  
+      var use_mode_obj = {
+        studentVal: false,
+        parentVal: false,
+        teacherVal: false,
+        adminVal: false
+      };
       if (req.user.use_mode === "student") {
         logoHref.route = "/login";
+        use_mode_obj.studentVal = true;
       } else if (req.user.use_mode === "parent") {
         logoHref.route = "/parents";
+        use_mode_obj.parentVal = true;
       } else if (req.user.use_mode === "teacher") {
         logoHref.route = "/teachers";
+        use_mode_obj.teacherVal = true;
+        use_mode_obj.parentVal = true;
+        use_mode_obj.studentVal = true;
       } else if (req.user.use_mode === "admin") {
         logoHref.route = "/cms";
+        use_mode_obj.adminVal = true;
+        use_mode_obj.teacherVal = true;
+        use_mode_obj.parentVal = true;
+        use_mode_obj.studentVal = true;
+      } else if (req.user.use_mode === "super_admin") {
+        logoHref.route = "/cms";
+        use_mode_obj.adminVal = true;
+        use_mode_obj.teacherVal = true;
+        use_mode_obj.parentVal = true;
+        use_mode_obj.studentVal = true;
       }
-
+      
       dbUser.updateAttributes({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email: req.body.email,
         password: password,
-        use_mode: req.body.use_mode,
+        use_mode: req.body.use_mode
       });
       res.render("manageusers", {
         nav: true,
-        navLogo: logoHref
+        navLogo: logoHref,
+        use_mode: use_mode_obj
       });
     });
   });
