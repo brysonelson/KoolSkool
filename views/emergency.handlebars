@@ -1,56 +1,63 @@
   <main>
 
- <div class="container-fluid parent-container col-md-9 align-self-start">
+    <div class="container-fluid">
 
       <!--Emergency Data Entry Form Wrapper-->
-      <form enctype="multipart/form-data" action="" method="" class="emergency-msg-form" name="emergency-msg-form" autocomplete="nope">
+      <form enctype="multipart/form-data" action="" method="" class="emergency-msg-form" name="emergency-msg-form"
+        autocomplete="nope">
 
-        <div class="mx-5 mt-3 emergency">
-          <h3>EMERGENCY ADMINISTRATOR CONSOLE</h3>  
-          <div class="emergency" id="messageSent"><h4>{{messageSent}}</h4></div>
-          <hr>
+        <div class="text-center mt-3 emergency">
+          <h3><i class="fas fa-minus-circle fa-lg"></i><br><br>EMERGENCY CONSOLE <br><br><i class="fas fa-minus-circle fa-lg"></i></h3>
+          <hr class="emergency-hr">
         </div>
-             <div class="card mx-5 my-2">
-                <div class="card-header"> SEND EMERGENCY TEXT MESSAGE TO ALL PARENTS AND PERSONNEL: 
-                </div>
-                   <div class="card-body-emergency">
-          
-                      <!--<input type="text" name="emergency-msg" class="emergency-msg" id="emergency-msg" size="140" value="DRILL:  EMERGENCY AT KOOL SKOOL!! - PLEASE MEET OUTSIDE AUDITORIUM IMMEDIATELY! - AUTOMATED MESSAGE"><br> -->
-                      "DRILL:  EMERGENCY AT KOOL SKOOL!! - PLEASE MEET OUTSIDE AUDITORIUM IMMEDIATELY! - AUTOMATED MESSAGE"
-                      <input type="hidden" name="emergency-msg" class="emergency-msg" id="emergency-msg" value="DRILL:  EMERGENCY AT KOOL SKOOL!! - PLEASE MEET OUTSIDE AUDITORIUM IMMEDIATELY! - AUTOMATED MESSAGE"><br>
-  
-                      <input type="submit" value="SEND EMERGENCY TEXT MESSAGE" class="submit-emergency-msg" name="submit-emergency-msg"> 
-                   </div>
-              </div>
-      </form>
-            <div id=m>
+        <div class="emergency m-3 text-center" id="messageSent">
+          {{messageSent}}
+        </div>
 
-            </div>
-       
-          <br>
-          <hr>
-
-
-      <form enctype="multipart/form-data" action="" method="" class="emergency-cstm-msg-form" name="emergency-cstm-msg-form" autocomplete="nope">
-
-        <div class="card-emergency mx-5 mt-3">
-          
-            <div class="card-header card-header-emergency">SEND CUSTOM TEXT MESSAGE TO ALL PARENTS AND PERSONNEL: 
-            </div>
+        <div class="card my-5 red-border">
+          <div class="card-header card-emergency w-100 text-center text-white"> Send Emergency Text Message To All
+            Parents & Personnel </div>
           <div class="card-body">
-          
-            <input type="text" name="emergency-cstm-msg" class="emergency-cstm-msg" id="emergency-cstm-msg"><br>
-  
-            <input type="submit" value="SEND CUSTOM TEXT MESSAGE" class="submit-emergency-cstm-msg" name="submit-emergency-cstm-msg"> 
-            <input type="reset" value="RESET FORM">
+            <p><u><strong>Message:</strong></u></p>
+
+            <!--<input type="text" name="emergency-msg" class="emergency-msg" id="emergency-msg" size="140" value="DRILL:  EMERGENCY AT KOOL SKOOL!! - PLEASE MEET OUTSIDE AUDITORIUM IMMEDIATELY! - AUTOMATED MESSAGE"><br> -->
+            <p>"DRILL: EMERGENCY AT KOOL SKOOL!! - PLEASE MEET OUTSIDE AUDITORIUM IMMEDIATELY! - AUTOMATED MESSAGE"</p>
+            <input type="hidden" name="emergency-msg" class="emergency-msg" id="emergency-msg" value="DRILL:  EMERGENCY AT KOOL SKOOL!! - PLEASE MEET OUTSIDE AUDITORIUM IMMEDIATELY! - AUTOMATED MESSAGE"><br>
+
           </div>
-        </div> 
-      </form>
-        
+          <div class="card-footer card-emergency w-100 text-center text-white">
+            <input type="submit" value="SEND EMERGENCY TEXT MESSAGE" class="btn btn-light submit-emergency-msg" name="submit-emergency-msg">
           </div>
         </div>
+      </form>
 
-        <!--Contact Information-->
+      <div id=m>
+
+      </div>
+
+      <br>
+      <hr class="emergency-hr">
+
+      <form enctype="multipart/form-data" action="" method="" class="emergency-cstm-msg-form" name="emergency-cstm-msg-form"
+        autocomplete="nope">
+
+        <div class="card my-5 red-border">
+
+          <div class="card-header card-emergency w-100 text-center text-white">Send Custom Text Message To All Parents
+            & Personnel</div>
+          <div class="card-body">
+            <label class="form-label" for="emergency-cstm-msg"><strong>Message:</strong></label>
+            <input type="text" name="emergency-cstm-msg" class="form-control emergency-cstm-msg" id="emergency-cstm-msg">
+          </div>
+          <div class="card-footer card-emergency w-100 text-center text-white">
+              <input type="submit" value="SEND CUSTOM TEXT MESSAGE" class="btn btn-light submit-emergency-cstm-msg" name="submit-emergency-cstm-msg">
+            </div>
+          </div>
+          <input type="reset" value="Reset Form" class="btn btn-outline-dark">
+        </form>
+
+    </div>
+    </div>
    
   </main>
 

@@ -16,7 +16,7 @@
     <ul class="navbar-nav mr-auto text-right">
       <!--HOME-->
       <li class="nav-item active">
-        <a class="nav-link" href="home">
+        <a class="nav-link" href="{{navLogo.route}}">
           <span class="bar">|&emsp;</span>Home <span class="sr-only">(current)</span></a>
       </li>
 
@@ -49,16 +49,20 @@
       </li>
       {{/if}}
 
-
       <!--TEACHERS-->
       {{#if use_mode.teacherVal}}
       <li class="nav-item dropdown">
-        <a class="nav-link" href="/teachers">
-          <span class="bar">|&emsp;</span>
-          Teachers
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          <span class="bar">|&emsp;</span>Teachers
         </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/teachers/attendence">Enter Attendence</a>
+          <a class="dropdown-item" href="/teachers/reattendence">Take Attendence Again</a>
+        </div>
       </li>
       {{/if}}
+
 
       <!--CONTENT MANAGEMENT SYSTEM-->
       {{#if use_mode.adminVal}}
