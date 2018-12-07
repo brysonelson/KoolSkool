@@ -64,12 +64,14 @@ $(function() {
         course_id: $course_id
       };
       i++;
-      alert("Attendence for course #" + $course_id + " has been submitted!");
     }); //end absent check
     i = 0;
     // console log of array
     API.saveAttendence(att).then(function() {
       console.log("att saved");
+      $("#submit-" + $course_id).html("Saved!");
+      alert("Hello!");
+      alert("Attendence for course #" + $course_id + " has been submitted!");
     });
   }); //end submit
 });

@@ -67,6 +67,7 @@ app.set("view engine", "handlebars");
 require("./config/passport/passport.js")(passport, db.user);
 require("./routes/apiRoutes")(app);
 require("./routes/cmsRoutes")(app);
+require("./routes/optinRoutes")(app);
 require("./routes/attRoutes")(app);
 require("./routes/emergencyRoutes")(app);
 require("./routes/teachersRoutes")(app);
