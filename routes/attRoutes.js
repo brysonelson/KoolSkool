@@ -171,7 +171,7 @@ module.exports = function(app) {
         }
       ]
       // eslint-disable-next-line no-unused-vars
-    }).then(function(dbCourse) {
+    }).then(function() {
       //  start of raw query
       db.sequelize
         .query(
