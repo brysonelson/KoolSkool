@@ -17,8 +17,15 @@ module.exports = function(app) {
   });
 
   // Delete an example by id
+<<<<<<< HEAD
   app.delete("/api/examples/:id", ensureLoggedIn("/login"), function(req, res) {
     db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
+=======
+  app.delete("/api/examples/:id", function(req, res) {
+    db.Example.destroy({ where: { id: req.params.id } }).then(function(
+      dbExample
+    ) {
+>>>>>>> fad07f89e1c7c3fe1afb1af5c9f7511abd757a6b
       res.json(dbExample);
     });
   });

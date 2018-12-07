@@ -23,7 +23,7 @@ module.exports = function(app) {
       logoHref.route = "/parents";
       use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
-      logoHref.route = "/teachers";
+      logoHref.route = "/teachers/attendence";
       use_mode_obj.teacherVal = true;
       use_mode_obj.parentVal = true;
       use_mode_obj.studentVal = true;
@@ -74,7 +74,7 @@ module.exports = function(app) {
       logoHref.route = "/parents";
       use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
-      logoHref.route = "/teachers";
+      logoHref.route = "/teachers/attendence";
       use_mode_obj.teacherVal = true;
       use_mode_obj.parentVal = true;
       use_mode_obj.studentVal = true;
@@ -148,7 +148,7 @@ module.exports = function(app) {
       logoHref.route = "/parents";
       use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
-      logoHref.route = "/teachers";
+      logoHref.route = "/teachers/attendence";
       use_mode_obj.teacherVal = true;
       use_mode_obj.parentVal = true;
       use_mode_obj.studentVal = true;
@@ -200,7 +200,7 @@ module.exports = function(app) {
       logoHref.route = "/parents";
       use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
-      logoHref.route = "/teachers";
+      logoHref.route = "/teachers/attendence";
       use_mode_obj.teacherVal = true;
       use_mode_obj.parentVal = true;
       use_mode_obj.studentVal = true;
@@ -266,7 +266,7 @@ module.exports = function(app) {
       logoHref.route = "/parents";
       use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
-      logoHref.route = "/teachers";
+      logoHref.route = "/teachers/attendence";
       use_mode_obj.teacherVal = true;
       use_mode_obj.parentVal = true;
       use_mode_obj.studentVal = true;
@@ -317,7 +317,7 @@ module.exports = function(app) {
       logoHref.route = "/parents";
       use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
-      logoHref.route = "/teachers";
+      logoHref.route = "/teachers/attendence";
       use_mode_obj.teacherVal = true;
       use_mode_obj.parentVal = true;
       use_mode_obj.studentVal = true;
@@ -390,7 +390,7 @@ module.exports = function(app) {
                 logoHref.route = "/parents";
                 use_mode_obj.parentVal = true;
               } else if (req.user.use_mode === "teacher") {
-                logoHref.route = "/teachers";
+                logoHref.route = "/teachers/attendence";
                 use_mode_obj.teacherVal = true;
                 use_mode_obj.parentVal = true;
                 use_mode_obj.studentVal = true;
@@ -461,7 +461,7 @@ module.exports = function(app) {
       logoHref.route = "/parents";
       use_mode_obj.parentVal = true;
     } else if (req.user.use_mode === "teacher") {
-      logoHref.route = "/teachers";
+      logoHref.route = "/teachers/attendence";
       use_mode_obj.teacherVal = true;
       use_mode_obj.parentVal = true;
       use_mode_obj.studentVal = true;
@@ -517,7 +517,7 @@ module.exports = function(app) {
         logoHref.route = "/parents";
         use_mode_obj.parentVal = true;
       } else if (req.user.use_mode === "teacher") {
-        logoHref.route = "/teachers";
+        logoHref.route = "/teachers/attendence";
         use_mode_obj.teacherVal = true;
         use_mode_obj.parentVal = true;
         use_mode_obj.studentVal = true;
