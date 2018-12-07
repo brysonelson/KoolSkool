@@ -55,7 +55,7 @@ module.exports = function(app, passport) {
           } else if (req.user.use_mode === "parent") {
             logoHref.route = "/parents";
           } else if (req.user.use_mode === "teacher") {
-            logoHref.route = "/teachers";
+            logoHref.route = "/teachers/attendence";
           } else if (req.user.use_mode === "admin") {
             logoHref.route = "/cms";
           }
