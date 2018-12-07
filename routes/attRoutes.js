@@ -4,7 +4,6 @@ var authMiddleware = require("../middleware/authMiddleware.js");
 
 module.exports = function(app) {
   app.get("/att", authMiddleware.teacherAuth(), function(req, res) {
-
     //the following logic is for dynamically updating the handlebars nav
     var logoHref = {
       route: null
@@ -44,10 +43,12 @@ module.exports = function(app) {
       nav: true,
       navLogo: logoHref,
       use_mode: use_mode_obj
-      
     });
   });
-  app.get("/photo-attendence", authMiddleware.teacherAuth(), function(req, res) {
+  app.get("/photo-attendence", authMiddleware.teacherAuth(), function(
+    req,
+    res
+  ) {
     var logoHref = {
       route: null
     };
@@ -90,7 +91,10 @@ module.exports = function(app) {
   });
 
   //USING THIS TO RENDER COURSE NAMES ONTO THE FILE
-  app.get("/teachers/attendence", authMiddleware.teacherAuth(), function(req, res) {
+  app.get("/teachers/attendence", authMiddleware.teacherAuth(), function(
+    req,
+    res
+  ) {
     db.Course.findAll({
       include: [
         {
@@ -101,11 +105,10 @@ module.exports = function(app) {
         }
       ]
     }).then(function(dbCourse) {
-
       var logoHref = {
         route: null
       };
-  
+
       var use_mode_obj = {
         studentVal: false,
         parentVal: false,
@@ -147,7 +150,10 @@ module.exports = function(app) {
   });
 
   // Create the bulk records in the attendence api
-  app.post("/teachers/api/attendence", authMiddleware.teacherAuth(), function(req, res) {
+  app.post("/teachers/api/attendence", authMiddleware.teacherAuth(), function(
+    req,
+    res
+  ) {
     db.Attendence.bulkCreate(req.body).then(function(dbattendence) {
       res.json(dbattendence);
     });
@@ -164,6 +170,7 @@ module.exports = function(app) {
           foreignKey: "course_id"
         }
       ]
+      // eslint-disable-next-line no-unused-vars
     }).then(function(dbCourse) {
       //  start of raw query
       db.sequelize
