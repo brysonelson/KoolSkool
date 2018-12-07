@@ -53,7 +53,7 @@ module.exports = function(app, passport) {
           if (req.user.use_mode === "student") {
             logoHref.route = "/login";
           } else if (req.user.use_mode === "parent") {
-            logoHref.route = "/parents";
+            logoHref.route = "/studentinfo";
           } else if (req.user.use_mode === "teacher") {
             logoHref.route = "/teachers/attendence";
           } else if (req.user.use_mode === "admin") {
@@ -86,9 +86,9 @@ module.exports = function(app, passport) {
     if (req.user.use_mode === "student") {
       res.json({ url: "/login" });
     } else if (req.user.use_mode === "parent") {
-      res.json({ url: "/parents" });
+      res.json({ url: "/studentinfo" });
     } else if (req.user.use_mode === "teacher") {
-      res.json({ url: "/teachers" });
+      res.json({ url: "/teachers/attendence" });
     } else if (req.user.use_mode === "admin") {
       res.json({ url: "/cms" });
     } else if (req.user.use_mode === "super_admin") {
@@ -224,9 +224,9 @@ module.exports = function(app, passport) {
     if (req.user.use_mode === "student") {
       logoHref.route = "/login";
     } else if (req.user.use_mode === "parent") {
-      logoHref.route = "/parents";
+      logoHref.route = "/parent";
     } else if (req.user.use_mode === "teacher") {
-      logoHref.route = "/teachers";
+      logoHref.route = "/teachers/attendence";
     } else if (req.user.use_mode === "admin") {
       logoHref.route = "/cms";
     } else if (req.user.use_mode === "super_admin") {
@@ -273,9 +273,9 @@ module.exports = function(app, passport) {
           if (req.user.use_mode === "student") {
             logoHref.route = "/login";
           } else if (req.user.use_mode === "parent") {
-            logoHref.route = "/parents";
+            logoHref.route = "/studentinfo";
           } else if (req.user.use_mode === "teacher") {
-            logoHref.route = "/teachers";
+            logoHref.route = "/teachers/attendence";
           } else if (req.user.use_mode === "admin") {
             logoHref.route = "/cms";
           } else if (req.user.use_mode === "super_admin") {
