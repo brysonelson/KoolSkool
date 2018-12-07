@@ -8,7 +8,7 @@
 $(function() {
   var $attendence_dt = moment().format("YYYY-MM-DD");
   var $person_id = "";
-  $person_id = 7;
+  $person_id = 25;
   var $student_id = "";
   var $course_id = "";
 
@@ -53,7 +53,6 @@ $(function() {
       } else {
         $absent = true;
       }
-      console.log($absent);
 
       att[i] = {
         // field names   :   values
@@ -64,9 +63,11 @@ $(function() {
         course_id: $course_id
       };
       i++;
-      alert("Attendence for course #" + $course_id + " has been submitted!");
     }); //end absent check
     i = 0;
+    console.log("************************************************");
+    console.log(att);
+    console.log("************************************************");
     // console log of array
     API.saveAttendence(att).then(function() {
       console.log("att saved");

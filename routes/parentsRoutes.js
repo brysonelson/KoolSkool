@@ -1,8 +1,8 @@
 module.exports = function(app) {
   // Load parents splash page
-  app.get("/parents", function(req, res) {
-    res.render("wip", {
-      nav: false
+  app.get("/studentinfo", function(req, res) {
+    res.render("parent", {
+      nav: true
     });
   });
 };
